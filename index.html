@@ -39,9 +39,11 @@
       --radius-pill: 9999px;
       --shadow-card: rgba(0,0,0,0.14) 0 28px 70px, rgba(0,0,0,0.1) 0 14px 32px, rgba(var(--ink-rgb), 0.1) 0 0 0 1px;
       --shadow-soft: rgba(0,0,0,0.02) 0 0 16px, rgba(0,0,0,0.008) 0 0 8px;
-      --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-      --font-serif: "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
-      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", "微软雅黑", "Segoe UI", "Noto Sans CJK SC", "Source Han Sans SC", "Helvetica Neue", Arial, sans-serif;
+      --font-display: var(--font-sans);
+      --font-serif: "Iowan Old Style", "Palatino Linotype", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Microsoft YaHei UI", "Microsoft YaHei", "微软雅黑", "Liberation Mono", "Courier New", monospace;
+      --font-number: Bahnschrift, "Bahnschrift Light", "DIN Alternate", "Segoe UI", var(--font-sans);
       --ink-rgb: 38, 37, 30;
       --bg-rgb: 242, 241, 237;
       --surface-rgb: 230, 229, 224;
@@ -1037,8 +1039,8 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       align-items: center;
-      width: 76px;
-      min-width: 76px;
+      width: 96px;
+      min-width: 96px;
       border: 0;
       border-radius: 0;
       background: transparent;
@@ -1055,8 +1057,8 @@
     .year-wheel-stack {
       position: relative;
       height: 30px;
-      overflow: hidden;
-      font-family: Bahnschrift, "Bahnschrift Light", "Segoe UI", sans-serif;
+      overflow: visible;
+      font-family: var(--font-number);
       font-weight: 300;
       transform-style: preserve-3d;
     }
@@ -1096,8 +1098,24 @@
       overflow-x: auto;
       overflow-y: visible;
       padding: 20px 0 22px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(var(--ink-rgb), 0.2) transparent;
+      cursor: grab;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      user-select: none;
+    }
+
+    .timeline-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .timeline-scroll.is-dragging {
+      cursor: grabbing;
+      scroll-behavior: auto;
+    }
+
+    .timeline-scroll.is-dragging * {
+      cursor: grabbing !important;
+      user-select: none !important;
     }
 
     body[data-timeline-only="true"] .timeline-scroll {
@@ -1485,7 +1503,7 @@
     }
 
     body[data-timeline-mode="scale"]:not([data-dock-resized="true"]) {
-      --dock-height: 312px;
+      --dock-height: 520px;
     }
 
     body[data-timeline-mode="scale"] .timeline-scroll {
@@ -1496,7 +1514,8 @@
       display: block;
       min-width: var(--scale-width, 4600px);
       width: var(--scale-width, 4600px);
-      height: 210px;
+      height: 420px;
+      --scale-axis-y: 210px;
       padding: 0 160px;
       box-sizing: content-box;
     }
@@ -1509,7 +1528,7 @@
       position: absolute;
       left: 160px;
       right: 160px;
-      top: 105px;
+      top: var(--scale-axis-y, 105px);
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(var(--ink-rgb), 0.24), rgba(var(--ink-rgb), 0.24), transparent);
       z-index: 1;
@@ -1518,7 +1537,8 @@
     .scale-tick {
       position: absolute;
       left: var(--left);
-      top: var(--tick-top, 97px);
+      --tick-top: calc(var(--scale-axis-y, 105px) - 8px);
+      top: var(--tick-top);
       width: 1px;
       height: 17px;
       background: rgba(var(--ink-rgb), 0.18);
@@ -1526,34 +1546,34 @@
     }
 
     .scale-tick.is-major {
-      --tick-top: 91px;
+      --tick-top: calc(var(--scale-axis-y, 105px) - 14px);
       height: 28px;
       background: rgba(var(--ink-rgb), 0.34);
     }
 
     .scale-tick-label {
       position: absolute;
-      top: calc(138px - var(--tick-top, 97px));
+      top: calc(var(--scale-axis-y, 105px) + 43px - var(--tick-top));
       left: 50%;
       display: inline-flex;
       align-items: baseline;
       gap: 4px;
       transform: translateX(-50%);
       color: var(--color-text-muted);
-      font-family: Bahnschrift, "Bahnschrift Light", "Segoe UI", sans-serif;
-      font-size: 18px;
+      font-family: var(--font-number);
+      font-size: 32.4px;
       font-weight: 300;
       white-space: nowrap;
     }
 
     .scale-tick.is-major .scale-tick-label {
       color: var(--color-text-soft);
-      font-size: 18px;
+      font-size: 32.4px;
       font-weight: 300;
     }
 
     .scale-tick:not(.is-current) .scale-tick-label {
-      font-size: 18px;
+      font-size: 32.4px;
     }
 
     .scale-tick-month {
@@ -1563,14 +1583,14 @@
     }
 
     .scale-tick.is-current {
-      --tick-top: 88px;
+      --tick-top: calc(var(--scale-axis-y, 105px) - 17px);
       height: 34px;
       background: var(--color-accent);
     }
 
     .scale-tick.is-current .scale-tick-label {
       color: var(--color-accent);
-      font-size: 18px;
+      font-size: 32.4px;
       font-weight: 300;
     }
 
@@ -1582,7 +1602,7 @@
     .scale-node {
       position: absolute;
       left: var(--left);
-      top: 105px;
+      top: var(--scale-axis-y, 105px);
       z-index: 4;
       width: 1px;
       height: 1px;
@@ -1610,7 +1630,8 @@
       position: absolute;
       left: 0;
       top: 0;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%) scale(var(--dock-scale, 1));
+      transform-origin: center center;
       display: grid;
       place-items: center;
       width: 14px;
@@ -1619,7 +1640,8 @@
       border: 1.5px solid var(--color-bg);
       background: var(--node-color, var(--color-accent));
       box-shadow: 0 0 0 1px rgba(var(--ink-rgb), 0.22), rgba(0,0,0,0.1) 0 6px 14px;
-      transition: width 170ms ease, height 170ms ease, border-radius 170ms ease, transform 170ms ease, box-shadow 170ms ease;
+      transition: transform 120ms ease, box-shadow 160ms ease;
+      will-change: transform;
     }
 
     .scale-node.has-logo .scale-point {
@@ -1639,7 +1661,7 @@
       border: 0;
       background: transparent;
       overflow: visible;
-      transition: width 170ms ease, height 170ms ease, border-radius 170ms ease;
+      transition: none;
     }
 
     .scale-node.has-logo .product-avatar img {
@@ -1660,7 +1682,7 @@
       position: absolute;
       left: 0;
       top: var(--keyword-y, -42px);
-      max-width: 86px;
+      max-width: 156px;
       transform: translateX(-50%);
       overflow: hidden;
       text-overflow: ellipsis;
@@ -1700,26 +1722,18 @@
 
     .scale-node:hover .scale-point,
     .scale-node:focus-visible .scale-point {
-      width: 20px;
-      height: 20px;
       border-radius: 50%;
-      transform: translate(-50%, -50%);
       box-shadow: 0 0 0 4px rgba(var(--ink-rgb), 0.08), rgba(0,0,0,0.18) 0 12px 24px;
-    }
-
-    .scale-node:hover .product-avatar,
-    .scale-node:focus-visible .product-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 0;
     }
 
     .scale-node.has-logo:hover .scale-point,
     .scale-node.has-logo:focus-visible .scale-point {
-      width: 32px;
-      height: 32px;
       border-radius: 0;
       box-shadow: none;
+    }
+
+    .scale-node:focus-visible .scale-point {
+      transform: translate(-50%, -50%) scale(1.55);
     }
 
     .scale-node.is-active .scale-point {
@@ -6006,7 +6020,7 @@
     }
 
     function defaultDockHeight() {
-      return state.timelineMode === 'scale' ? 312 : 198;
+      return state.timelineMode === 'scale' ? 520 : 198;
     }
 
     function currentDockHeight() {
@@ -6033,7 +6047,7 @@
     }
 
     function setDockHeight(height, persist = true) {
-      const minHeight = state.timelineMode === 'scale' ? 286 : 168;
+      const minHeight = state.timelineMode === 'scale' ? 470 : 168;
       const maxHeight = window.innerHeight;
       const nextHeight = clamp(height, minHeight, maxHeight);
       state.timelineOnly = window.innerHeight - nextHeight <= 118;
@@ -6109,7 +6123,7 @@
 
     function buildScaleTicks(bounds) {
       const width = scaleWidth();
-      const labelGap = state.timelineZoom >= 4 ? 92 : 118;
+      const labelGap = state.timelineZoom >= 4 ? 138 : 168;
       const candidates = [];
       let previousDateKey = null;
       let previousVisibleYear = null;
@@ -6175,19 +6189,22 @@
         { y: -132, side: 'above', stem: 114, last: -999 }
       ];
       const labelLanes = [
-        { y: -42, leaderTop: -29, leaderHeight: 21, lastRight: -Infinity },
-        { y: 54, leaderTop: 8, leaderHeight: 42, lastRight: -Infinity },
-        { y: -66, leaderTop: -53, leaderHeight: 45, lastRight: -Infinity },
-        { y: 78, leaderTop: 8, leaderHeight: 66, lastRight: -Infinity },
-        { y: -90, leaderTop: -77, leaderHeight: 69, lastRight: -Infinity },
-        { y: 102, leaderTop: 8, leaderHeight: 90, lastRight: -Infinity },
+        { y: -50, leaderTop: -37, leaderHeight: 29, lastRight: -Infinity },
+        { y: 82, leaderTop: 8, leaderHeight: 70, lastRight: -Infinity },
+        { y: -82, leaderTop: -69, leaderHeight: 61, lastRight: -Infinity },
+        { y: 114, leaderTop: 8, leaderHeight: 102, lastRight: -Infinity },
         { y: -114, leaderTop: -101, leaderHeight: 93, lastRight: -Infinity },
-        { y: 126, leaderTop: 8, leaderHeight: 114, lastRight: -Infinity }
+        { y: 146, leaderTop: 8, leaderHeight: 134, lastRight: -Infinity },
+        { y: -146, leaderTop: -133, leaderHeight: 125, lastRight: -Infinity },
+        { y: 178, leaderTop: 8, leaderHeight: 166, lastRight: -Infinity },
+        { y: -178, leaderTop: -165, leaderHeight: 157, lastRight: -Infinity },
+        { y: 210, leaderTop: 8, leaderHeight: 198, lastRight: -Infinity },
+        { y: -210, leaderTop: -197, leaderHeight: 189, lastRight: -Infinity }
       ];
       const estimateLabelWidth = text => {
         const value = String(text || '');
         const units = [...value].reduce((sum, char) => sum + (char.charCodeAt(0) > 255 ? 10 : 6), 10);
-        return clamp(units, 34, 86);
+        return clamp(units, 42, 156);
       };
       const width = scaleWidth();
       return list.map((node, index) => {
@@ -6456,7 +6473,14 @@
     }
 
     function bindEvents() {
+      let timelineDragSuppressUntil = 0;
       document.addEventListener('click', event => {
+        if (event.target.closest('#timelineScroll') && Date.now() < timelineDragSuppressUntil) {
+          event.preventDefault();
+          event.stopPropagation();
+          return;
+        }
+
         if (!event.target.closest('.dock-actions')) {
           el.timelineModeMenu.classList.remove('is-open');
           el.timelineModeBtn.setAttribute('aria-expanded', 'false');
@@ -6682,10 +6706,39 @@
       timelineScroll.addEventListener('scroll', () => positionFloatingTooltip());
       el.sidebarList.addEventListener('scroll', hideFloatingTooltip);
 
+      function resetDockMagnification() {
+        el.timelineTrack.querySelectorAll('.scale-node').forEach(node => {
+          node.style.removeProperty('--dock-scale');
+        });
+      }
+
+      function updateDockMagnification(event) {
+        if (state.timelineMode !== 'scale' || timelineDrag.active) return;
+        const radius = 180;
+        const maxScale = 1.85;
+        el.timelineTrack.querySelectorAll('.scale-node').forEach(node => {
+          const rect = node.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const distance = Math.abs(event.clientX - centerX);
+          if (distance >= radius) {
+            node.style.setProperty('--dock-scale', '1');
+            return;
+          }
+          const t = 1 - distance / radius;
+          const eased = (1 - Math.cos(t * Math.PI)) / 2;
+          const scale = 1 + eased * (maxScale - 1);
+          node.style.setProperty('--dock-scale', scale.toFixed(3));
+        });
+      }
+
       el.timelineTrack.addEventListener('pointerover', event => {
         const nodeButton = event.target.closest('[data-node]');
         if (nodeButton) setHoverNode(nodeButton.getAttribute('data-node'));
       });
+
+      timelineScroll.addEventListener('pointermove', updateDockMagnification);
+      timelineScroll.addEventListener('pointerleave', resetDockMagnification);
+      timelineScroll.addEventListener('pointercancel', resetDockMagnification);
 
       el.timelineTrack.addEventListener('mouseover', event => {
         const nodeButton = event.target.closest('[data-node]');
@@ -6739,6 +6792,54 @@
         }
       }, { passive: false });
 
+      const timelineDrag = {
+        active: false,
+        moved: false,
+        pointerId: null,
+        startX: 0,
+        startScrollLeft: 0
+      };
+
+      timelineScroll.addEventListener('pointerdown', event => {
+        if (event.button !== 0 || state.layoutMode !== 'bottom') return;
+        timelineDrag.active = true;
+        timelineDrag.moved = false;
+        timelineDrag.pointerId = event.pointerId;
+        timelineDrag.startX = event.clientX;
+        timelineDrag.startScrollLeft = timelineScroll.scrollLeft;
+        timelineScroll.classList.add('is-dragging');
+        resetDockMagnification();
+        timelineScroll.setPointerCapture(event.pointerId);
+      });
+
+      timelineScroll.addEventListener('pointermove', event => {
+        if (!timelineDrag.active || event.pointerId !== timelineDrag.pointerId) return;
+        const deltaX = event.clientX - timelineDrag.startX;
+        if (Math.abs(deltaX) > 3) timelineDrag.moved = true;
+        if (!timelineDrag.moved) return;
+        timelineScroll.scrollLeft = timelineDrag.startScrollLeft - deltaX;
+        event.preventDefault();
+      });
+
+      function finishTimelineDrag(event) {
+        if (!timelineDrag.active || event.pointerId !== timelineDrag.pointerId) return;
+        if (timelineScroll.hasPointerCapture(event.pointerId)) {
+          timelineScroll.releasePointerCapture(event.pointerId);
+        }
+        timelineScroll.classList.remove('is-dragging');
+        if (timelineDrag.moved) timelineDragSuppressUntil = Date.now() + 250;
+        timelineDrag.active = false;
+        timelineDrag.pointerId = null;
+      }
+
+      timelineScroll.addEventListener('pointerup', finishTimelineDrag);
+      timelineScroll.addEventListener('pointercancel', finishTimelineDrag);
+      timelineScroll.addEventListener('lostpointercapture', () => {
+        timelineScroll.classList.remove('is-dragging');
+        timelineDrag.active = false;
+        timelineDrag.pointerId = null;
+      });
+
       el.timelineResizeHandle.addEventListener('pointerdown', event => {
         if (state.layoutMode !== 'bottom') return;
         event.preventDefault();
@@ -6786,7 +6887,7 @@
       if (!['cards', 'scale'].includes(state.timelineMode)) state.timelineMode = 'cards';
       state.timelineZoom = clamp(state.timelineZoom || 1.75, 1, 6);
       if (!Number.isFinite(state.dockHeight) || state.dockHeight < 0) state.dockHeight = 0;
-      if (state.dockHeight) state.dockHeight = Math.max(state.dockHeight, state.timelineMode === 'scale' ? 286 : 168);
+      if (state.dockHeight) state.dockHeight = Math.max(state.dockHeight, state.timelineMode === 'scale' ? 470 : 168);
       if (state.layoutMode === 'side') state.timelineOnly = false;
       state.selectedYear = clampSelectedYear(new Date().getFullYear());
       moveFiltersToDock();
