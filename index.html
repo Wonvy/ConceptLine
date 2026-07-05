@@ -1152,6 +1152,157 @@
       background: linear-gradient(90deg, transparent, rgba(var(--ink-rgb), 0.16), transparent);
     }
 
+    body[data-timeline-mode="cards"]:not([data-dock-resized="true"]) {
+      --dock-height: 640px;
+    }
+
+    body[data-timeline-mode="cards"] .timeline-scroll {
+      width: min(1200px, calc(100vw - 32px));
+      height: calc(var(--dock-height) - 84px);
+      overflow-y: auto;
+      padding: 12px 0 24px;
+    }
+
+    body[data-timeline-mode="cards"] .timeline-track {
+      display: grid;
+      grid-template-columns: 116px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+      width: min(1200px, 100%);
+      min-width: 0;
+      max-width: 1200px;
+      height: auto;
+      margin: 0 auto;
+      padding: 4px 0 40px;
+    }
+
+    body[data-timeline-mode="cards"] .timeline-track::before {
+      display: none;
+    }
+
+    .card-year-axis {
+      position: sticky;
+      top: 8px;
+      display: grid;
+      gap: 10px;
+      padding: 6px 0 6px 18px;
+    }
+
+    .card-year-axis::before {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 18px;
+      bottom: 18px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(var(--ink-rgb), 0.28), transparent);
+    }
+
+    .card-year-marker {
+      position: relative;
+      border: 0;
+      padding: 0 0 0 12px;
+      background: transparent;
+      color: var(--color-text-muted);
+      font-family: var(--font-number);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1;
+      text-align: left;
+      cursor: pointer;
+      transition: color 140ms ease, transform 140ms ease;
+    }
+
+    .card-year-marker::before {
+      content: "";
+      position: absolute;
+      left: -18px;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-bg);
+      box-shadow: 0 0 0 1px rgba(var(--ink-rgb), 0.3);
+      transform: translateY(-50%);
+    }
+
+    .card-year-marker:hover,
+    .card-year-marker.is-active {
+      color: var(--color-accent);
+      transform: translateX(2px);
+    }
+
+    .card-year-marker.is-active::before {
+      background: var(--color-accent);
+      box-shadow: 0 0 0 4px rgba(245, 78, 0, 0.16);
+    }
+
+    .card-year-content {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card-year-group {
+      display: block;
+      scroll-margin-top: 16px;
+    }
+
+    .card-year-heading {
+      display: none;
+    }
+
+    .card-year-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 760px) {
+      body[data-timeline-mode="cards"] .timeline-track {
+        grid-template-columns: 1fr;
+      }
+
+      .card-year-axis {
+        position: relative;
+        top: auto;
+        display: flex;
+        overflow-x: auto;
+        padding: 4px 0 10px;
+      }
+
+      .card-year-axis::before,
+      .card-year-marker::before {
+        display: none;
+      }
+
+      .card-year-marker {
+        padding: 0 8px;
+      }
+
+      .card-year-content {
+        gap: 14px;
+      }
+    }
+
+    body[data-timeline-mode="cards"] .timeline-node {
+      flex: 1 1 168px;
+      max-width: 240px;
+      min-height: 48px;
+      justify-content: start;
+      border-radius: var(--radius-md);
+      background: rgba(var(--bg-rgb), 0.72);
+      backdrop-filter: blur(10px);
+    }
+
+    body[data-timeline-mode="cards"] .timeline-node:hover {
+      transform: translateY(-2px);
+    }
+
+    body[data-timeline-mode="cards"] .timeline-node.is-active {
+      transform: translateY(-1px);
+    }
+
     .timeline-node {
       position: relative;
       z-index: 2;
@@ -1237,7 +1388,9 @@
     }
 
     .timeline-node:hover .node-tooltip,
-    .sidebar-node:hover .node-tooltip {
+    .sidebar-node:hover .node-tooltip,
+    .spiral-node:hover .node-tooltip,
+    .spiral-node:focus-visible .node-tooltip {
       opacity: 1;
       visibility: visible;
       transform: translateX(-50%) translateY(0);
@@ -1331,6 +1484,24 @@
     .timeline-node > .node-tooltip,
     .sidebar-node > .node-tooltip {
       display: none;
+    }
+
+    .spiral-node > .node-tooltip {
+      top: 42px;
+      bottom: auto;
+      width: 320px;
+      z-index: 60;
+      text-align: left;
+      transform: translateX(-50%) translateY(8px);
+    }
+
+    .spiral-node > .node-tooltip::after {
+      top: -7px;
+      bottom: auto;
+      border-right: 0;
+      border-bottom: 0;
+      border-left: var(--border-soft);
+      border-top: var(--border-soft);
     }
 
     .floating-tooltip {
@@ -1678,7 +1849,7 @@
       position: absolute;
       left: 0;
       top: 0;
-      transform: translate(-50%, -50%) scale(var(--dock-scale, 1));
+      transform: translate(-50%, -50%) scale(calc(var(--depth-scale, 1) * var(--dock-scale, 1)));
       transform-origin: center center;
       display: grid;
       place-items: center;
@@ -1803,14 +1974,14 @@
       left: 50%;
       top: var(--label-y, 22px);
       transform: translateX(-50%) translateY(4px) scale(0.98);
-      width: 124px;
-      padding: 7px 8px;
+      width: 240px;
+      padding: 10px 11px;
       border: var(--border-soft);
       border-radius: 10px;
       background: rgba(var(--bg-rgb), 0.92);
       backdrop-filter: blur(12px);
       box-shadow: rgba(0,0,0,0.04) 0 10px 24px;
-      text-align: center;
+      text-align: left;
       opacity: 0;
       visibility: hidden;
       transition: opacity 150ms ease, visibility 150ms ease, color 150ms ease, transform 150ms ease, border 150ms ease, background 150ms ease;
@@ -1838,7 +2009,7 @@
     }
 
     .scale-node.is-above .scale-node-card::before {
-      bottom: calc(-1 * var(--stem, 14px));
+      top: calc(-1 * var(--stem, 14px));
     }
 
     .scale-node.is-below .scale-node-card::before {
@@ -1848,7 +2019,7 @@
     .scale-date {
       display: inline-flex;
       align-items: baseline;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 3px;
       color: var(--color-accent);
       font-family: var(--font-mono);
@@ -1891,12 +2062,53 @@
       font-family: var(--font-mono);
     }
 
+    .scale-info-block {
+      display: block;
+      margin-top: 7px;
+      padding-top: 7px;
+      border-top: 1px solid rgba(var(--ink-rgb), 0.1);
+    }
+
+    .scale-info-label {
+      display: block;
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .scale-info-text {
+      display: block;
+      margin-top: 3px;
+      color: var(--color-text-soft);
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.42;
+      white-space: normal;
+    }
+
     body[data-timeline-mode="spiral"]:not([data-dock-resized="true"]) {
       --dock-height: 640px;
     }
 
     body[data-timeline-mode="spiral"] .timeline-scroll {
+      width: 100vw;
+      max-width: none;
+      margin-left: 0;
+      margin-right: 0;
+      height: calc(var(--dock-height) - 84px);
+      display: block;
+      align-items: initial;
+      overflow: auto;
       padding: 8px 0 18px;
+    }
+
+    body[data-timeline-only="true"][data-timeline-mode="spiral"] .timeline-scroll {
+      width: 100vw;
+      max-width: none;
+      display: block;
+      align-items: initial;
     }
 
     body[data-timeline-mode="spiral"] .timeline-track {
@@ -1906,7 +2118,7 @@
       min-width: var(--spiral-width, 1120px);
       height: var(--spiral-height, 560px);
       padding: 0;
-      margin: 0 auto;
+      margin: 0;
     }
 
     body[data-timeline-mode="spiral"] .timeline-track::before {
@@ -1920,16 +2132,17 @@
       height: 100%;
       pointer-events: none;
       color: var(--color-text-muted);
-      opacity: 0.8;
+      opacity: 0.9;
     }
 
     .spiral-path {
       fill: none;
       stroke: currentColor;
-      stroke-width: 1.2;
+      stroke-width: 1.5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      opacity: 0.34;
+      opacity: 0.46;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.16));
     }
 
     .spiral-node {
@@ -1944,6 +2157,7 @@
       color: var(--color-text);
       cursor: pointer;
       z-index: 4;
+      --hover-scale: 1;
     }
 
     .spiral-node.is-dimmed {
@@ -1961,33 +2175,38 @@
       border-radius: 50%;
       border: 1px solid var(--color-bg);
       background: var(--node-color, var(--color-accent));
-      transform: translate(-50%, -50%) scale(var(--dock-scale, 1));
+      transform: translate(-50%, -50%) scale(calc(var(--depth-scale, 1) * var(--hover-scale, 1)));
       transform-origin: center center;
       box-shadow: 0 0 0 1px rgba(var(--ink-rgb), 0.2);
-      transition: transform 80ms cubic-bezier(0.2, 0, 0.2, 1), box-shadow 140ms ease;
+      transition: transform 140ms cubic-bezier(0.18, 0.82, 0.24, 1), box-shadow 140ms ease, filter 140ms ease;
       will-change: transform;
     }
 
     .spiral-node.has-logo .spiral-point {
       width: 24px;
       height: 24px;
-      border: 0;
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
+      border: 1px solid rgba(var(--ink-rgb), 0.16);
+      border-radius: 50%;
+      overflow: hidden;
+      background: rgba(var(--bg-rgb), 0.82);
+      box-shadow: 0 0 0 1px rgba(var(--ink-rgb), 0.12), rgba(0,0,0,0.12) 0 8px 18px;
     }
 
     .spiral-node .product-avatar {
-      width: 24px;
-      height: 24px;
+      width: 100%;
+      height: 100%;
       border: 0;
-      border-radius: 0;
+      border-radius: 50%;
       background: transparent;
+      overflow: hidden;
+      opacity: var(--depth-opacity, 1);
+      transition: border-radius 140ms ease, transform 140ms ease, opacity 140ms ease;
     }
 
     .spiral-node .product-avatar img {
       object-fit: contain;
       background: transparent;
+      padding: 2px;
     }
 
     .spiral-label {
@@ -2007,12 +2226,115 @@
       overflow: hidden;
       text-overflow: ellipsis;
       transform: translateX(-50%);
+      opacity: var(--depth-opacity, 1);
       pointer-events: auto;
+      transition: opacity 140ms ease, visibility 140ms ease, transform 140ms ease, color 140ms ease, background 140ms ease, box-shadow 140ms ease;
+    }
+
+    .spiral-label.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .spiral-year-node {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      z-index: 2;
+      width: 1px;
+      height: 1px;
+      transform: translate(-50%, -50%) scale(var(--depth-scale, 1));
+      color: var(--color-accent);
+      font-family: var(--font-number);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1;
+      opacity: var(--depth-opacity, 0.78);
+      pointer-events: none;
+      text-shadow: 0 8px 22px rgba(0,0,0,0.28);
+      white-space: nowrap;
+    }
+
+    .spiral-year-node::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      box-shadow: 0 0 0 4px rgba(245, 78, 0, 0.14);
+      transform: translate(-50%, -50%);
+    }
+
+    .spiral-year-node::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: none;
+      width: var(--year-leader, 26px);
+      height: 1px;
+      background: rgba(245, 78, 0, 0.34);
+      transform: translateY(-50%) rotate(var(--year-angle, 0deg));
+      transform-origin: left center;
+    }
+
+    .spiral-year-text {
+      position: absolute;
+      left: var(--year-text-x, 18px);
+      top: var(--year-text-y, -10px);
+      display: block;
+      transform: translate(-50%, -50%);
     }
 
     .spiral-node:hover,
     .spiral-node:focus-visible {
       z-index: 20;
+      --hover-scale: 1.72;
+    }
+
+    .spiral-node.has-logo:hover,
+    .spiral-node.has-logo:focus-visible {
+      --hover-scale: 1.58;
+    }
+
+    .spiral-node:hover .spiral-point,
+    .spiral-node:focus-visible .spiral-point {
+      box-shadow: 0 0 0 4px rgba(var(--ink-rgb), 0.08), rgba(0,0,0,0.18) 0 12px 24px;
+      filter: saturate(1.08);
+    }
+
+    .spiral-node.has-logo:hover .spiral-point,
+    .spiral-node.has-logo:focus-visible .spiral-point {
+      border: 0;
+      border-radius: 0;
+      overflow: visible;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .spiral-node.has-logo:hover .product-avatar,
+    .spiral-node.has-logo:focus-visible .product-avatar {
+      border-radius: 0;
+      overflow: visible;
+    }
+
+    .spiral-node.has-logo:hover .product-avatar img,
+    .spiral-node.has-logo:focus-visible .product-avatar img {
+      padding: 0;
+    }
+
+    body[data-timeline-mode="spiral"] .timeline-track.is-spiral-hovering .spiral-node:not(.is-hovered) .spiral-label {
+      opacity: 0.28;
+      visibility: visible;
+    }
+
+    body[data-timeline-mode="spiral"] .timeline-track:has(.spiral-node:hover) .spiral-node:not(:hover):not(.is-occluded) .spiral-label:not(.is-hidden),
+    body[data-timeline-mode="spiral"] .timeline-track:has(.spiral-node:focus-visible) .spiral-node:not(:focus-visible):not(.is-occluded) .spiral-label:not(.is-hidden) {
+      opacity: 0.28;
+      visibility: visible;
     }
 
     .spiral-node:hover .spiral-label,
@@ -2021,6 +2343,22 @@
       color: var(--color-text);
       background: rgba(var(--surface-rgb), 0.9);
       box-shadow: 0 0 0 1px rgba(var(--ink-rgb), 0.12), rgba(0,0,0,0.1) 0 8px 18px;
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(2px);
+    }
+
+    body[data-timeline-mode="spiral"] .timeline-track.is-spiral-hovering .spiral-node:not(.is-hovered) .spiral-label.is-hidden,
+    body[data-timeline-mode="spiral"] .timeline-track.is-spiral-hovering .spiral-node.is-occluded .spiral-label {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    body[data-timeline-mode="spiral"] .timeline-track.is-spiral-hovering .spiral-node.is-hovered,
+    body[data-timeline-mode="spiral"] .timeline-track.is-spiral-hovering .spiral-node.is-hovered .spiral-label,
+    body[data-timeline-mode="spiral"] .timeline-track.is-spiral-hovering .spiral-node.is-hovered .spiral-label {
+      opacity: 1;
+      visibility: visible;
     }
 
     .timeline-sidebar {
@@ -2548,7 +2886,7 @@
         </div>
         <label class="timeline-zoom" title="缩放刻度 / 螺旋时间轴">
           <span>缩放</span>
-          <input id="timelineZoom" type="range" min="1" max="6" step="0.25" value="1.75" />
+          <input id="timelineZoom" type="range" min="1" max="32" step="0.25" value="1.75" />
         </label>
       </div>
     </div>
@@ -6219,21 +6557,29 @@
       return Math.round(minWidth + (maxScaleWidth() - minWidth) * progress);
     }
 
-    function timelineZoomProgress() {
+    function timelineZoomProgress(maxZoom = 6) {
       const zoomMin = Number(el.timelineZoom.min || 1);
-      const zoomMax = Number(el.timelineZoom.max || 6);
+      const zoomMax = maxZoom;
       return clamp((state.timelineZoom - zoomMin) / (zoomMax - zoomMin || 1), 0, 1);
     }
 
     function spiralDimensions() {
       const baseWidth = 1120;
-      const baseHeight = 560;
+      const baseHeight = 620;
       const baseZoom = 1.75;
-      const scale = clamp(1 + (state.timelineZoom - baseZoom) * 0.16, 0.82, 1.5);
+      const scale = clamp(Math.pow(1.18, state.timelineZoom - baseZoom), 0.72, 48);
+      const contentWidth = Math.round(baseWidth * Math.max(1, scale));
+      const contentHeight = Math.round(baseHeight * Math.max(1, scale * 0.72));
+      const gutterX = Math.round(Math.max(window.innerWidth * 0.75, 420));
+      const gutterY = Math.round(Math.max(window.innerHeight * 0.85, 520));
       return {
         scale,
-        width: Math.round(baseWidth * Math.max(1, scale)),
-        height: Math.round(baseHeight * Math.max(1, scale))
+        contentWidth,
+        contentHeight,
+        gutterX,
+        gutterY,
+        width: contentWidth + gutterX * 2,
+        height: contentHeight + gutterY * 2
       };
     }
 
@@ -6255,20 +6601,95 @@
 
     function timelineContentCenterRatio() {
       const width = Math.max(1, el.timelineTrack.getBoundingClientRect().width);
-      const center = el.timelineScroll.scrollLeft + el.timelineScroll.clientWidth / 2;
-      return clamp(center / width, 0, 1);
+      const height = Math.max(1, el.timelineTrack.getBoundingClientRect().height);
+      const centerX = el.timelineScroll.scrollLeft + el.timelineScroll.clientWidth / 2;
+      const centerY = el.timelineScroll.scrollTop + el.timelineScroll.clientHeight / 2;
+      return {
+        x: clamp(centerX / width, 0, 1),
+        y: clamp(centerY / height, 0, 1)
+      };
+    }
+
+    function timelinePointerRatio(event) {
+      const width = Math.max(1, el.timelineTrack.getBoundingClientRect().width);
+      const height = Math.max(1, el.timelineTrack.getBoundingClientRect().height);
+      const rect = el.timelineScroll.getBoundingClientRect();
+      const x = el.timelineScroll.scrollLeft + event.clientX - rect.left;
+      const y = el.timelineScroll.scrollTop + event.clientY - rect.top;
+      return {
+        x: clamp(x / width, 0, 1),
+        y: clamp(y / height, 0, 1),
+        clientX: event.clientX,
+        clientY: event.clientY
+      };
     }
 
     function restoreTimelineContentCenter(ratio) {
       const width = Math.max(1, el.timelineTrack.getBoundingClientRect().width);
-      const center = ratio * width;
-      const maxScroll = Math.max(0, el.timelineScroll.scrollWidth - el.timelineScroll.clientWidth);
-      el.timelineScroll.scrollLeft = clamp(center - el.timelineScroll.clientWidth / 2, 0, maxScroll);
+      const height = Math.max(1, el.timelineTrack.getBoundingClientRect().height);
+      const centerX = (ratio?.x ?? 0.5) * width;
+      const centerY = (ratio?.y ?? 0.5) * height;
+      const maxScrollX = Math.max(0, el.timelineScroll.scrollWidth - el.timelineScroll.clientWidth);
+      const maxScrollY = Math.max(0, el.timelineScroll.scrollHeight - el.timelineScroll.clientHeight);
+      el.timelineScroll.scrollLeft = clamp(centerX - el.timelineScroll.clientWidth / 2, 0, maxScrollX);
+      el.timelineScroll.scrollTop = clamp(centerY - el.timelineScroll.clientHeight / 2, 0, maxScrollY);
       positionFloatingTooltip();
     }
 
+    function restoreTimelineAnchorAtPointer(anchor) {
+      if (!anchor) {
+        restoreTimelineContentCenter({ x: 0.5, y: 0.5 });
+        return;
+      }
+      const width = Math.max(1, el.timelineTrack.getBoundingClientRect().width);
+      const height = Math.max(1, el.timelineTrack.getBoundingClientRect().height);
+      const rect = el.timelineScroll.getBoundingClientRect();
+      const maxScrollX = Math.max(0, el.timelineScroll.scrollWidth - el.timelineScroll.clientWidth);
+      const maxScrollY = Math.max(0, el.timelineScroll.scrollHeight - el.timelineScroll.clientHeight);
+      el.timelineScroll.scrollLeft = clamp(anchor.x * width - (anchor.clientX - rect.left), 0, maxScrollX);
+      el.timelineScroll.scrollTop = clamp(anchor.y * height - (anchor.clientY - rect.top), 0, maxScrollY);
+      positionFloatingTooltip();
+    }
+
+    function centerTimelineContent() {
+      restoreTimelineContentCenter({ x: 0.5, y: 0.5 });
+    }
+
+    function hasVisibleSpiralContent() {
+      if (state.timelineMode !== 'spiral') return true;
+      const scrollRect = el.timelineScroll.getBoundingClientRect();
+      const margin = 24;
+      return Array.from(el.timelineTrack.querySelectorAll('.spiral-node')).some(node => {
+        const rect = node.getBoundingClientRect();
+        return rect.right >= scrollRect.left - margin
+          && rect.left <= scrollRect.right + margin
+          && rect.bottom >= scrollRect.top - margin
+          && rect.top <= scrollRect.bottom + margin;
+      });
+    }
+
+    function queueEnsureSpiralVisible() {
+      if (state.timelineMode !== 'spiral') return;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (!hasVisibleSpiralContent()) centerTimelineContent();
+        });
+      });
+    }
+
+    function queueCenterSpiralContent() {
+      if (state.timelineMode !== 'spiral') return;
+      requestAnimationFrame(() => {
+        centerTimelineContent();
+        requestAnimationFrame(centerTimelineContent);
+        window.setTimeout(() => {
+          if (!hasVisibleSpiralContent()) centerTimelineContent();
+        }, 120);
+      });
+    }
+
     function defaultDockHeight() {
-      return state.timelineMode === 'scale' ? 540 : state.timelineMode === 'spiral' ? 640 : 198;
+      return state.timelineMode === 'scale' ? 540 : state.timelineMode === 'spiral' ? 640 : state.timelineMode === 'cards' ? 700 : 198;
     }
 
     function currentDockHeight() {
@@ -6295,7 +6716,7 @@
     }
 
     function setDockHeight(height, persist = true) {
-      const minHeight = state.timelineMode === 'scale' ? 500 : state.timelineMode === 'spiral' ? 580 : 168;
+      const minHeight = state.timelineMode === 'scale' ? 500 : state.timelineMode === 'spiral' ? 580 : state.timelineMode === 'cards' ? 560 : 168;
       const maxHeight = window.innerHeight;
       const nextHeight = clamp(height, minHeight, maxHeight);
       state.timelineOnly = window.innerHeight - nextHeight <= 118;
@@ -6308,16 +6729,16 @@
       positionFloatingTooltip();
     }
 
-    function setTimelineZoom(value) {
+    function setTimelineZoom(value, anchorRatio = null) {
       const zoomMin = Number(el.timelineZoom.min || 1);
-      const zoomMax = Number(el.timelineZoom.max || 6);
+      const zoomMax = state.timelineMode === 'spiral' ? 32 : 6;
       const nextZoom = clamp(value, zoomMin, zoomMax);
       if (nextZoom === state.timelineZoom) return;
 
       const wasScale = state.timelineMode === 'scale';
       const wasSpiral = state.timelineMode === 'spiral';
       const centerRatio = wasScale ? scaleCenterRatio() : 0.5;
-      const contentCenterRatio = wasSpiral ? timelineContentCenterRatio() : 0.5;
+      const contentCenterRatio = wasSpiral ? (anchorRatio || timelineContentCenterRatio()) : 0.5;
       state.timelineZoom = nextZoom;
       localStorage.setItem('conceptline-timeline-zoom', state.timelineZoom);
       if (!wasScale && !wasSpiral) {
@@ -6326,11 +6747,12 @@
       }
       renderAll({ scrollActive: false });
       if (wasScale) restoreScaleCenter(centerRatio);
-      if (wasSpiral) restoreTimelineContentCenter(contentCenterRatio);
+      if (wasSpiral && contentCenterRatio?.clientX != null) restoreTimelineAnchorAtPointer(contentCenterRatio);
+      else if (wasSpiral) restoreTimelineContentCenter(contentCenterRatio);
     }
 
-    function adjustTimelineZoom(delta) {
-      setTimelineZoom(state.timelineZoom + delta);
+    function adjustTimelineZoom(delta, anchorRatio = null) {
+      setTimelineZoom(state.timelineZoom + delta, anchorRatio);
     }
 
     let timelineZoomModifierDown = false;
@@ -6346,6 +6768,11 @@
 
     function handleTimelineZoomWheel(event) {
       if (!(event.ctrlKey || event.metaKey || timelineZoomModifierDown) || !isPointInTimelineDock(event)) return;
+      if (state.timelineMode === 'spiral') {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
       event.preventDefault();
       event.stopPropagation();
       const delta = event.deltaY || -event.wheelDelta || 0;
@@ -6475,20 +6902,43 @@
     }
 
     function renderCardTimeline(filteredSet) {
-      return nodes.map(node => {
-        const era = eraMap[node.eraId];
-        const hasLogo = node.domain || node.type === 'product';
+      const groups = new Map();
+      nodes.forEach(node => {
+        const match = String(node.sortDate || node.date || '').match(/^(\d{4})/);
+        const year = match ? match[1] : '未知';
+        if (!groups.has(year)) groups.set(year, []);
+        groups.get(year).push(node);
+      });
+      const years = Array.from(groups.keys()).sort((a, b) => Number(b) - Number(a));
+      const activeYear = String((nodeMap[state.activeNodeId]?.sortDate || nodeMap[state.activeNodeId]?.date || '').match(/^(\d{4})/)?.[1] || years[0] || '');
+      const axis = years.map(year => `
+        <button class="card-year-marker ${year === activeYear ? 'is-active' : ''}" data-card-year="${escapeHtml(year)}" type="button">${escapeHtml(year)}</button>
+      `).join('');
+      const content = years.map(year => {
+        const cards = groups.get(year).slice().sort((a, b) => b.sortDate.localeCompare(a.sortDate)).map(node => {
+          const era = eraMap[node.eraId];
+          const hasLogo = node.domain || node.type === 'product';
+          return `
+            <button class="timeline-node ${hasLogo ? 'has-logo' : ''} ${node.id === state.activeNodeId ? 'is-active' : ''} ${filteredSet.has(node.id) ? '' : 'is-dimmed'}" data-node="${node.id}" style="--node-color:${era?.color || '#f54e00'}" type="button" aria-label="${escapeHtml(node.title)}">
+              ${hasLogo ? nodeAvatar(node) : ''}
+              <span class="node-label">
+                <span class="node-date">${escapeHtml(node.date)}</span>
+                <span class="node-title">${escapeHtml(node.shortTitle || node.title)}</span>
+              </span>
+              ${createTooltip(node)}
+            </button>
+          `;
+        }).join('');
         return `
-          <button class="timeline-node ${hasLogo ? 'has-logo' : ''} ${node.id === state.activeNodeId ? 'is-active' : ''} ${filteredSet.has(node.id) ? '' : 'is-dimmed'}" data-node="${node.id}" style="--node-color:${era?.color || '#f54e00'}" type="button" aria-label="${escapeHtml(node.title)}">
-            ${hasLogo ? nodeAvatar(node) : ''}
-            <span class="node-label">
-              <span class="node-date">${escapeHtml(node.date)}</span>
-              <span class="node-title">${escapeHtml(node.shortTitle || node.title)}</span>
-            </span>
-            ${createTooltip(node)}
-          </button>
+          <section class="card-year-group" data-card-year-section="${escapeHtml(year)}">
+            <div class="card-year-cards">${cards}</div>
+          </section>
         `;
       }).join('');
+      return `
+        <nav class="card-year-axis" aria-label="年份时间轴">${axis}</nav>
+        <div class="card-year-content">${content}</div>
+      `;
     }
 
     function renderScaleDate(date) {
@@ -6498,23 +6948,57 @@
       return `<span class="scale-date-year">${escapeHtml(match[1])}</span>${month}`;
     }
 
+    function shortInfoText(value, maxLength = 54) {
+      const text = String(value || '').trim();
+      if (text.length <= maxLength) return text;
+      return `${text.slice(0, maxLength - 1)}…`;
+    }
+
+    function smoothPath(points) {
+      if (!points.length) return '';
+      if (points.length === 1) return `M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)}`;
+      const commands = [`M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)}`];
+      for (let i = 0; i < points.length - 1; i += 1) {
+        const p0 = points[Math.max(0, i - 1)];
+        const p1 = points[i];
+        const p2 = points[i + 1];
+        const p3 = points[Math.min(points.length - 1, i + 2)];
+        const c1x = p1.x + (p2.x - p0.x) / 6;
+        const c1y = p1.y + (p2.y - p0.y) / 6;
+        const c2x = p2.x - (p3.x - p1.x) / 6;
+        const c2y = p2.y - (p3.y - p1.y) / 6;
+        commands.push(`C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`);
+      }
+      return commands.join(' ');
+    }
+
     function renderScaleTimeline(filteredSet) {
       const bounds = timelineBounds();
       const layouts = assignScaleLayout(nodes);
-      const scaleNodes = layouts.map(({ node, x, lane, labelLane }) => {
+      const scaleNodes = layouts.map(({ node, x, lane, labelLane }, index) => {
         const era = eraMap[node.eraId];
         const hasLogo = node.domain || node.type === 'product';
         const desc = node.productCategory || typeLabel(node.type);
         const left = `calc(160px + ${(x * 100).toFixed(5)}% - ${(x * 320).toFixed(2)}px)`;
         const labelStyle = labelLane ? `;--keyword-y:${labelLane.y}px;--leader-top:${labelLane.leaderTop}px;--leader-height:${labelLane.leaderHeight}px` : '';
+        const detailY = 68 + (index % 3) * 18;
+        const detailStem = detailY - 10;
         return `
-          <button class="scale-node ${hasLogo ? 'has-logo' : ''} is-${lane.side} ${node.id === state.activeNodeId ? 'is-active' : ''} ${filteredSet.has(node.id) ? '' : 'is-dimmed'}" data-node="${node.id}" style="--left:${left};--label-y:${lane.y}px;--stem:${lane.stem}px;--node-color:${era?.color || '#f54e00'}${labelStyle}" type="button" aria-label="${escapeHtml(node.title)}">
+          <button class="scale-node ${hasLogo ? 'has-logo' : ''} is-${lane.side} ${node.id === state.activeNodeId ? 'is-active' : ''} ${filteredSet.has(node.id) ? '' : 'is-dimmed'}" data-node="${node.id}" style="--left:${left};--label-y:${detailY}px;--stem:${detailStem}px;--node-color:${era?.color || '#f54e00'}${labelStyle}" type="button" aria-label="${escapeHtml(node.title)}">
             <span class="scale-point">${hasLogo ? nodeAvatar(node) : ''}</span>
             <span class="scale-keyword-label">${escapeHtml(node.shortTitle || node.keywords?.[0] || node.title)}</span>
             <span class="scale-node-card">
               <span class="scale-date">${renderScaleDate(node.date)}</span>
               <span class="scale-title">${escapeHtml(node.shortTitle || node.title)}</span>
               <span class="scale-desc">${escapeHtml(desc)}</span>
+              <span class="scale-info-block">
+                <span class="scale-info-label">简洁</span>
+                <span class="scale-info-text">${escapeHtml(shortInfoText(node.summary || node.hoverSummary))}</span>
+              </span>
+              <span class="scale-info-block">
+                <span class="scale-info-label">类比</span>
+                <span class="scale-info-text">${escapeHtml(shortInfoText(node.analogy, 62))}</span>
+              </span>
             </span>
             ${createTooltip(node)}
           </button>
@@ -6531,35 +7015,59 @@
       const cy = height / 2;
       const turns = 3.65;
       const outerRadius = 252 * dimensions.scale;
-      const innerRadius = 34 * dimensions.scale;
+      const innerRadius = 36 * dimensions.scale;
+      const yTilt = 0.46;
       const total = Math.max(1, nodes.length - 1);
       const points = nodes.map((node, index) => {
         const t = index / total;
         const angle = -Math.PI / 2 + t * turns * Math.PI * 2;
         const radius = innerRadius + (outerRadius - innerRadius) * t;
-        const x = cx + Math.cos(angle) * radius;
-        const y = cy + Math.sin(angle) * radius;
-        return { node, x, y };
+        const depth = Math.sin(angle);
+        const perspective = 0.78 + ((depth + 1) / 2) * 0.34;
+        const x = cx + Math.cos(angle) * radius * perspective;
+        const y = cy + Math.sin(angle) * radius * yTilt * perspective;
+        const depthScale = 0.72 + ((depth + 1) / 2) * 0.5;
+        const depthOpacity = 0.42 + ((depth + 1) / 2) * 0.58;
+        return { node, x, y, depth, depthScale, depthOpacity };
       });
-      const path = points.map((point, index) => `${index ? 'L' : 'M'} ${point.x.toFixed(1)} ${point.y.toFixed(1)}`).join(' ');
-      const spiralNodes = points.map(({ node, x, y }, index) => {
+      const orbitPath = smoothPath(points);
+      const labelDensity = dimensions.scale < 0.95 ? 6 : dimensions.scale < 1.18 ? 3 : 1;
+      const spiralNodes = points.map(({ node, x, y, depthScale, depthOpacity }, index) => {
         const era = eraMap[node.eraId];
         const hasLogo = node.domain || node.type === 'product';
         const dimmed = filteredSet.has(node.id) ? '' : 'is-dimmed';
         const active = node.id === state.activeNodeId ? 'is-active' : '';
         const label = escapeHtml(node.shortTitle || node.keywords?.[0] || node.title);
+        const hideLabel = labelDensity > 1 && index % labelDensity !== 0 && node.id !== state.activeNodeId;
         return `
-          <button class="spiral-node ${hasLogo ? 'has-logo' : ''} ${active} ${dimmed}" data-node="${node.id}" style="--x:${x.toFixed(2)}px;--y:${y.toFixed(2)}px;--node-color:${era?.color || '#f54e00'}" type="button" aria-label="${escapeHtml(node.title)}">
+          <button class="spiral-node ${hasLogo ? 'has-logo' : ''} ${active} ${dimmed}" data-node="${node.id}" style="--x:${x.toFixed(2)}px;--y:${y.toFixed(2)}px;--depth-scale:${depthScale.toFixed(3)};--depth-opacity:${depthOpacity.toFixed(3)};--node-color:${era?.color || '#f54e00'}" type="button" aria-label="${escapeHtml(node.title)}">
             <span class="spiral-point">${hasLogo ? nodeAvatar(node) : ''}</span>
-            <span class="spiral-label">${label}</span>
+            <span class="spiral-label ${hideLabel ? 'is-hidden' : ''}">${label}</span>
             ${createTooltip(node)}
           </button>
         `;
       }).join('');
+      const seenYears = new Set();
+      const yearNodes = points.map(({ node, x, y, depthScale, depthOpacity, depth }, index) => {
+        const year = String(node.sortDate || node.date || '').match(/^(\d{4})/)?.[1];
+        if (!year || seenYears.has(year)) return '';
+        const lane = seenYears.size % 3;
+        seenYears.add(year);
+        const outwardX = x - cx;
+        const outwardY = y - cy;
+        const length = Math.max(1, Math.hypot(outwardX, outwardY));
+        const textDistance = (28 + lane * 18) * dimensions.scale;
+        const textX = outwardX / length * textDistance;
+        const textY = outwardY / length * textDistance;
+        const leader = Math.max(14, textDistance - 12);
+        const angleDeg = Math.atan2(textY, textX) * 180 / Math.PI;
+        return `<span class="spiral-year-node" style="--x:${x.toFixed(2)}px;--y:${y.toFixed(2)}px;--year-text-x:${textX.toFixed(2)}px;--year-text-y:${textY.toFixed(2)}px;--year-leader:${leader.toFixed(2)}px;--year-angle:${angleDeg.toFixed(2)}deg;--depth-scale:${depthScale.toFixed(3)};--depth-opacity:${Math.max(0.58, depthOpacity).toFixed(3)}"><span class="spiral-year-text">${escapeHtml(year)}</span></span>`;
+      }).join('');
       return `
         <svg class="spiral-svg" viewBox="0 0 ${width} ${height}" aria-hidden="true">
-          <path class="spiral-path" d="${path}" />
+          <path class="spiral-path" d="${orbitPath}" />
         </svg>
+        ${yearNodes}
         ${spiralNodes}
       `;
     }
@@ -6567,7 +7075,7 @@
     function renderTimeline() {
       const filteredSet = new Set(getFilteredNodes().map(n => n.id));
       const spiral = spiralDimensions();
-      const width = state.timelineMode === 'scale' ? `${scaleWidth()}px` : (state.timelineMode === 'spiral' ? `${spiral.width}px` : 'max-content');
+      const width = state.timelineMode === 'scale' ? `${scaleWidth()}px` : (state.timelineMode === 'spiral' ? `${spiral.width}px` : '100%');
       el.timelineTrack.style.setProperty('--scale-width', width);
       el.timelineTrack.style.setProperty('--spiral-width', `${spiral.width}px`);
       el.timelineTrack.style.setProperty('--spiral-height', `${spiral.height}px`);
@@ -6580,6 +7088,10 @@
 
     function queueScrollActive() {
       requestAnimationFrame(() => {
+        if (state.timelineMode === 'spiral') {
+          centerTimelineContent();
+          return;
+        }
         const active = el.timelineTrack.querySelector('[data-node].is-active');
         if (active) active.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
       });
@@ -6590,6 +7102,10 @@
         if (state.layoutMode !== 'bottom') return;
         if (state.timelineMode === 'scale') {
           el.timelineScroll.scrollLeft = Math.max(0, el.timelineScroll.scrollWidth - el.timelineScroll.clientWidth);
+          return;
+        }
+        if (state.timelineMode === 'spiral') {
+          centerTimelineContent();
           return;
         }
 
@@ -6676,6 +7192,7 @@
       el.timelineModeMenu.querySelectorAll('[data-timeline-mode-option]').forEach(option => {
         option.classList.toggle('is-active', option.dataset.timelineModeOption === state.timelineMode);
       });
+      el.timelineZoom.max = state.timelineMode === 'spiral' ? '32' : '6';
       el.timelineZoom.value = state.timelineZoom;
       renderYearWheel();
       const layoutIcon = state.layoutMode === 'bottom' ? 'panel-left' : 'panel-bottom';
@@ -6688,6 +7205,7 @@
       renderSidebar();
       refreshIcons();
       if (scrollActive) queueScrollActive();
+      else queueEnsureSpiralVisible();
     }
 
     function refreshIcons() {
@@ -6700,7 +7218,7 @@
       hideFloatingTooltip();
       if (!nodeMap[nodeId]) return;
       state.activeNodeId = nodeId;
-      renderAll();
+      renderAll({ scrollActive: false });
       if (openModal) showModal(nodeId);
     }
 
@@ -6786,6 +7304,14 @@
         if (!event.target.closest('.dock-actions')) {
           el.timelineModeMenu.classList.remove('is-open');
           el.timelineModeBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        const yearButton = event.target.closest('[data-card-year]');
+        if (yearButton) {
+          const year = yearButton.getAttribute('data-card-year');
+          const section = el.timelineTrack.querySelector(`[data-card-year-section="${CSS.escape(year)}"]`);
+          if (section) section.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'smooth' });
+          return;
         }
 
         const nodeButton = event.target.closest('[data-node]');
@@ -6887,7 +7413,8 @@
         localStorage.setItem('conceptline-timeline-mode', state.timelineMode);
         el.timelineModeMenu.classList.remove('is-open');
         el.timelineModeBtn.setAttribute('aria-expanded', 'false');
-        renderAll();
+        renderAll({ scrollActive: state.timelineMode !== 'spiral' });
+        if (state.timelineMode === 'spiral') queueCenterSpiralContent();
       });
 
       el.timelineZoom.addEventListener('input', event => {
@@ -7025,6 +7552,7 @@
       timelineScroll.addEventListener('scroll', () => {
         positionFloatingTooltip();
         dockMagnificationItems = [];
+        clearSpiralHoverState();
       });
       el.sidebarList.addEventListener('scroll', hideFloatingTooltip);
 
@@ -7078,34 +7606,76 @@
         if (!dockMagnificationFrame) dockMagnificationFrame = requestAnimationFrame(applyDockMagnification);
       }
 
+      function clearSpiralHoverState() {
+        el.timelineTrack.classList.remove('is-spiral-hovering');
+        el.timelineTrack.querySelectorAll('.spiral-node.is-hovered, .spiral-node.is-occluded').forEach(node => {
+          node.classList.remove('is-hovered', 'is-occluded');
+        });
+      }
+
+      function rectsOverlap(a, b, padding = 6) {
+        return !(a.right + padding < b.left
+          || a.left - padding > b.right
+          || a.bottom + padding < b.top
+          || a.top - padding > b.bottom);
+      }
+
+      function applySpiralHoverState(targetNode) {
+        if (state.timelineMode !== 'spiral' || !targetNode) return;
+        const targetLabel = targetNode.querySelector('.spiral-label');
+        if (!targetLabel) return;
+        const targetRect = targetLabel.getBoundingClientRect();
+        el.timelineTrack.classList.add('is-spiral-hovering');
+        el.timelineTrack.querySelectorAll('.spiral-node.is-hovered, .spiral-node.is-occluded').forEach(node => {
+          node.classList.remove('is-hovered', 'is-occluded');
+        });
+        targetNode.classList.add('is-hovered');
+        el.timelineTrack.querySelectorAll('.spiral-node').forEach(node => {
+          if (node === targetNode) return;
+          const label = node.querySelector('.spiral-label');
+          if (!label || label.classList.contains('is-hidden')) return;
+          if (rectsOverlap(label.getBoundingClientRect(), targetRect)) node.classList.add('is-occluded');
+        });
+      }
+
       el.timelineTrack.addEventListener('pointerover', event => {
         const nodeButton = event.target.closest('[data-node]');
-        if (nodeButton) setHoverNode(nodeButton.getAttribute('data-node'));
+        if (nodeButton) {
+          setHoverNode(nodeButton.getAttribute('data-node'));
+          applySpiralHoverState(nodeButton);
+        }
       });
 
       timelineScroll.addEventListener('pointermove', updateDockMagnification);
       timelineScroll.addEventListener('pointerleave', () => {
         resetDockMagnification();
+        clearSpiralHoverState();
       });
       timelineScroll.addEventListener('pointercancel', () => {
         resetDockMagnification();
+        clearSpiralHoverState();
       });
 
       el.timelineTrack.addEventListener('mouseover', event => {
         const nodeButton = event.target.closest('[data-node]');
-        if (nodeButton) setHoverNode(nodeButton.getAttribute('data-node'));
+        if (nodeButton) {
+          setHoverNode(nodeButton.getAttribute('data-node'));
+          applySpiralHoverState(nodeButton);
+        }
       });
 
       el.timelineTrack.addEventListener('pointerout', event => {
         const nodeButton = event.target.closest('[data-node]');
         if (!nodeButton || nodeButton.contains(event.relatedTarget)) return;
         setHoverNode(null);
+        clearSpiralHoverState();
       });
 
       el.timelineTrack.addEventListener('mouseout', event => {
         const nodeButton = event.target.closest('[data-node]');
         if (!nodeButton || nodeButton.contains(event.relatedTarget)) return;
         setHoverNode(null);
+        clearSpiralHoverState();
       });
 
       el.sidebarList.addEventListener('pointerover', event => {
@@ -7137,6 +7707,14 @@
 
       timelineScroll.addEventListener('wheel', event => {
         if (event.ctrlKey || event.metaKey) return;
+        if (state.timelineMode === 'cards') return;
+        if (state.timelineMode === 'spiral') {
+          event.preventDefault();
+          event.stopPropagation();
+          const delta = event.deltaY || -event.wheelDelta || 0;
+          adjustTimelineZoom(delta < 0 ? 0.5 : -0.5, timelinePointerRatio(event));
+          return;
+        }
         if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
           timelineScroll.scrollLeft += event.deltaY;
           event.preventDefault();
@@ -7149,7 +7727,9 @@
         pointerId: null,
         startNodeId: null,
         startX: 0,
-        startScrollLeft: 0
+        startY: 0,
+        startScrollLeft: 0,
+        startScrollTop: 0
       };
 
       timelineScroll.addEventListener('pointerdown', event => {
@@ -7160,7 +7740,9 @@
         timelineDrag.pointerId = event.pointerId;
         timelineDrag.startNodeId = nodeButton ? nodeButton.getAttribute('data-node') : null;
         timelineDrag.startX = event.clientX;
+        timelineDrag.startY = event.clientY;
         timelineDrag.startScrollLeft = timelineScroll.scrollLeft;
+        timelineDrag.startScrollTop = timelineScroll.scrollTop;
         timelineScroll.classList.add('is-dragging');
         resetDockMagnification();
         timelineScroll.setPointerCapture(event.pointerId);
@@ -7169,9 +7751,11 @@
       timelineScroll.addEventListener('pointermove', event => {
         if (!timelineDrag.active || event.pointerId !== timelineDrag.pointerId) return;
         const deltaX = event.clientX - timelineDrag.startX;
-        if (Math.abs(deltaX) > 8) timelineDrag.moved = true;
+        const deltaY = event.clientY - timelineDrag.startY;
+        if (Math.hypot(deltaX, deltaY) > 8) timelineDrag.moved = true;
         if (!timelineDrag.moved) return;
         timelineScroll.scrollLeft = timelineDrag.startScrollLeft - deltaX;
+        if (state.timelineMode === 'spiral') timelineScroll.scrollTop = timelineDrag.startScrollTop - deltaY;
         event.preventDefault();
       });
 
@@ -7243,6 +7827,7 @@
       window.addEventListener('resize', () => {
         dockMagnificationItems = [];
         if (state.dockHeight) setDockHeight(currentDockHeight(), true);
+        if (state.timelineMode === 'cards') renderAll({ scrollActive: false });
       });
     }
 
@@ -7251,9 +7836,9 @@
       renderEraOptions();
       if (!['bottom', 'side'].includes(state.layoutMode)) state.layoutMode = 'bottom';
       if (!['cards', 'scale', 'spiral'].includes(state.timelineMode)) state.timelineMode = 'cards';
-      state.timelineZoom = clamp(state.timelineZoom || 1.75, 1, 6);
+      state.timelineZoom = clamp(state.timelineZoom || 1.75, 1, 32);
       if (!Number.isFinite(state.dockHeight) || state.dockHeight < 0) state.dockHeight = 0;
-      if (state.dockHeight) state.dockHeight = Math.max(state.dockHeight, state.timelineMode === 'scale' ? 500 : state.timelineMode === 'spiral' ? 580 : 168);
+      if (state.dockHeight) state.dockHeight = Math.max(state.dockHeight, state.timelineMode === 'scale' ? 500 : state.timelineMode === 'spiral' ? 580 : state.timelineMode === 'cards' ? 560 : 168);
       if (state.layoutMode === 'side') state.timelineOnly = false;
       state.selectedYear = clampSelectedYear(new Date().getFullYear());
       moveFiltersToDock();
@@ -7261,6 +7846,7 @@
       bindEvents();
       refreshIcons();
       queueScrollToday();
+      queueCenterSpiralContent();
       window.addEventListener('load', refreshIcons);
     }
 
