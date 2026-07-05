@@ -1200,8 +1200,8 @@
     .card-year-row {
       position: relative;
       display: grid;
-      grid-template-columns: 116px minmax(0, 1fr);
-      gap: 24px;
+      grid-template-columns: 72px 28px minmax(0, 1fr);
+      gap: 0;
       align-items: start;
       scroll-margin-top: 16px;
     }
@@ -1209,24 +1209,27 @@
     .card-year-row::before {
       content: "";
       position: absolute;
-      left: 3px;
-      top: 18px;
+      left: 86px;
+      top: -18px;
       bottom: -18px;
       width: 1px;
       background: rgba(var(--ink-rgb), 0.18);
     }
 
     .card-year-row:last-child::before {
-      bottom: 18px;
+      bottom: -18px;
     }
 
     .card-year-marker {
       position: relative;
       display: inline-flex;
       align-items: center;
+      justify-content: flex-end;
+      grid-column: 1 / 3;
+      width: 100%;
       min-height: 48px;
       border: 0;
-      padding: 0 0 0 12px;
+      padding: 0 28px 0 0;
       background: transparent;
       color: var(--color-text-muted);
       font-family: var(--font-number);
@@ -1235,20 +1238,23 @@
       line-height: 1;
       text-align: left;
       cursor: pointer;
-      transition: color 140ms ease, transform 140ms ease;
+      transition: color 140ms ease;
     }
 
     .card-year-marker::before {
       content: "";
       position: absolute;
-      left: -18px;
+      right: 10.5px;
       top: 50%;
       width: 7px;
+      min-width: 7px;
       height: 7px;
+      min-height: 7px;
       border-radius: 50%;
       background: var(--color-bg);
       box-shadow: 0 0 0 1px rgba(var(--ink-rgb), 0.3);
       transform: translateY(-50%);
+      z-index: 2;
     }
 
     .card-year-row:has(.timeline-node:hover) .card-year-marker,
@@ -1256,7 +1262,6 @@
     .card-year-marker:hover,
     .card-year-marker.is-active {
       color: var(--color-accent);
-      transform: translateX(2px);
     }
 
     .card-year-row:has(.timeline-node:hover) .card-year-marker::before,
@@ -1267,8 +1272,9 @@
     }
 
     .card-year-cards {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-column: 3;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 10px;
       align-items: stretch;
     }
@@ -1290,13 +1296,18 @@
     }
 
     body[data-timeline-mode="cards"] .timeline-node {
-      flex: 1 1 168px;
-      max-width: 240px;
+      width: 100%;
+      max-width: none;
+      min-width: 0;
       min-height: 48px;
       justify-content: start;
       border-radius: var(--radius-md);
       background: rgba(var(--bg-rgb), 0.72);
       backdrop-filter: blur(10px);
+    }
+
+    body[data-timeline-mode="cards"] .node-label {
+      min-width: 0;
     }
 
     body[data-timeline-mode="cards"] .timeline-node:hover {
@@ -1582,6 +1593,18 @@
 
     .timeline-mode-menu.is-open {
       display: flex;
+      animation: menuReveal 120ms ease both;
+    }
+
+    @keyframes menuReveal {
+      from {
+        opacity: 0;
+        transform: translateY(-4px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .timeline-mode-option {
@@ -1616,21 +1639,74 @@
     .timeline-zoom {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
       min-height: 32px;
-      padding: 3px 8px 3px 10px;
-      border: var(--border-soft);
+      padding: 3px 10px 3px 11px;
+      border: 1px solid rgba(var(--ink-rgb), 0.12);
       border-radius: var(--radius-pill);
-      background: rgba(var(--ink-rgb), 0.045);
+      background: linear-gradient(180deg, rgba(var(--surface-rgb), 0.8), rgba(var(--bg-rgb), 0.62));
       color: var(--color-text-muted);
       font-size: 11px;
       font-family: var(--font-mono);
       letter-spacing: -0.02em;
+      box-shadow: inset 0 1px 0 rgba(var(--ink-rgb), 0.045), rgba(0,0,0,0.04) 0 8px 18px;
     }
 
     .timeline-zoom input {
       width: 118px;
-      accent-color: var(--color-accent);
+      height: 18px;
+      margin: 0;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .timeline-zoom input::-webkit-slider-runnable-track {
+      height: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--ink-rgb), 0.1);
+      background: linear-gradient(90deg, rgba(245, 78, 0, 0.9), rgba(245, 78, 0, 0.28) var(--zoom-progress, 44%), rgba(var(--ink-rgb), 0.12) var(--zoom-progress, 44%));
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.18);
+    }
+
+    .timeline-zoom input::-webkit-slider-thumb {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      margin-top: -6px;
+      border-radius: 50%;
+      border: 2px solid var(--color-bg);
+      background: var(--color-accent);
+      box-shadow: 0 0 0 1px rgba(245, 78, 0, 0.55), rgba(0,0,0,0.18) 0 6px 14px;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+    .timeline-zoom input:hover::-webkit-slider-thumb,
+    .timeline-zoom input:focus-visible::-webkit-slider-thumb {
+      transform: scale(1.12);
+      box-shadow: 0 0 0 4px rgba(245, 78, 0, 0.14), rgba(0,0,0,0.22) 0 8px 18px;
+    }
+
+    .timeline-zoom input::-moz-range-track {
+      height: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--ink-rgb), 0.1);
+      background: rgba(var(--ink-rgb), 0.12);
+    }
+
+    .timeline-zoom input::-moz-range-progress {
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(245, 78, 0, 0.86);
+    }
+
+    .timeline-zoom input::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--color-bg);
+      background: var(--color-accent);
+      box-shadow: 0 0 0 1px rgba(245, 78, 0, 0.55), rgba(0,0,0,0.18) 0 6px 14px;
     }
 
     body[data-timeline-mode="cards"] .timeline-zoom {
@@ -7234,6 +7310,7 @@
       });
       el.timelineZoom.max = state.timelineMode === 'spiral' ? '32' : '6';
       el.timelineZoom.value = state.timelineZoom;
+      el.timelineZoom.style.setProperty('--zoom-progress', `${(timelineZoomProgress(Number(el.timelineZoom.max || 6)) * 100).toFixed(1)}%`);
       renderYearWheel();
       const layoutIcon = state.layoutMode === 'bottom' ? 'panel-left' : 'panel-bottom';
       const layoutText = state.layoutMode === 'bottom' ? '侧栏' : '底部';
@@ -7265,6 +7342,7 @@
     function setHoverNode(nodeId) {
       if (state.hoverNodeId === nodeId) return;
       state.hoverNodeId = nodeId && nodeMap[nodeId] ? nodeId : null;
+      renderYearWheel();
       renderPrimaryPanel();
       refreshIcons();
     }
@@ -7342,8 +7420,7 @@
         }
 
         if (!event.target.closest('.dock-actions')) {
-          el.timelineModeMenu.classList.remove('is-open');
-          el.timelineModeBtn.setAttribute('aria-expanded', 'false');
+          closeTimelineModeMenu(0);
         }
 
         const yearButton = event.target.closest('[data-card-year]');
@@ -7440,10 +7517,32 @@
       });
 
 
+      let timelineModeMenuTimer = 0;
+
+      function openTimelineModeMenu(delay = 0) {
+        window.clearTimeout(timelineModeMenuTimer);
+        timelineModeMenuTimer = window.setTimeout(() => {
+          el.timelineModeMenu.classList.add('is-open');
+          el.timelineModeBtn.setAttribute('aria-expanded', 'true');
+        }, delay);
+      }
+
+      function closeTimelineModeMenu(delay = 0) {
+        window.clearTimeout(timelineModeMenuTimer);
+        timelineModeMenuTimer = window.setTimeout(() => {
+          el.timelineModeMenu.classList.remove('is-open');
+          el.timelineModeBtn.setAttribute('aria-expanded', 'false');
+        }, delay);
+      }
+
+      const timelineModeControl = el.timelineModeBtn.closest('.timeline-mode-control');
+      timelineModeControl.addEventListener('pointerenter', () => openTimelineModeMenu(220));
+      timelineModeControl.addEventListener('pointerleave', () => closeTimelineModeMenu(180));
+
       el.timelineModeBtn.addEventListener('click', () => {
         const nextOpen = !el.timelineModeMenu.classList.contains('is-open');
-        el.timelineModeMenu.classList.toggle('is-open', nextOpen);
-        el.timelineModeBtn.setAttribute('aria-expanded', String(nextOpen));
+        if (nextOpen) openTimelineModeMenu(0);
+        else closeTimelineModeMenu(0);
       });
 
       el.timelineModeMenu.addEventListener('click', event => {
@@ -7451,8 +7550,7 @@
         if (!option) return;
         state.timelineMode = option.dataset.timelineModeOption;
         localStorage.setItem('conceptline-timeline-mode', state.timelineMode);
-        el.timelineModeMenu.classList.remove('is-open');
-        el.timelineModeBtn.setAttribute('aria-expanded', 'false');
+        closeTimelineModeMenu(0);
         renderAll({ scrollActive: state.timelineMode !== 'spiral' && state.timelineMode !== 'cards' });
         if (state.timelineMode === 'cards') queueScrollCardsTop();
         if (state.timelineMode === 'spiral') queueCenterSpiralContent();
@@ -7556,8 +7654,7 @@
       document.addEventListener('keydown', event => {
         if (event.key === 'Control' || event.key === 'Meta') timelineZoomModifierDown = true;
         if (event.key === 'Escape') {
-          el.timelineModeMenu.classList.remove('is-open');
-          el.timelineModeBtn.setAttribute('aria-expanded', 'false');
+          closeTimelineModeMenu(0);
         }
         if (event.key === 'Escape' && state.modalOpen) closeModal();
         if (state.modalOpen && event.key === 'ArrowLeft') goRelative(-1);
