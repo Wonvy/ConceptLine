@@ -1277,14 +1277,47 @@
       line-height: 1.45;
     }
 
-    .tooltip-tags {
+    .tooltip-detail {
+      display: grid;
+      gap: 7px;
+      margin-top: 9px;
+    }
+
+    .tooltip-line {
+      display: grid;
+      gap: 2px;
+    }
+
+    .tooltip-label {
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0;
+    }
+
+    .tooltip-text {
+      color: var(--color-text-soft);
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.42;
+    }
+
+    .tooltip-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 5px;
       margin-top: 9px;
     }
 
-    .tooltip-tag {
+    .tooltip-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 6px;
+    }
+
+    .tooltip-tag,
+    .tooltip-meta-item {
       border-radius: var(--radius-pill);
       padding: 2px 6px;
       background: rgba(var(--ink-rgb), 0.06);
@@ -1655,7 +1688,7 @@
       border: 1.5px solid var(--color-bg);
       background: var(--node-color, var(--color-accent));
       box-shadow: 0 0 0 1px rgba(var(--ink-rgb), 0.22), rgba(0,0,0,0.1) 0 6px 14px;
-      transition: transform 80ms cubic-bezier(0.2, 0, 0.2, 1), box-shadow 140ms ease;
+      transition: transform 110ms cubic-bezier(0.18, 0.82, 0.24, 1), box-shadow 140ms ease;
       will-change: transform;
     }
 
@@ -2129,7 +2162,7 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
-      background: rgba(var(--ink-rgb), 0.28);
+      background: rgba(0, 0, 0, 0.62);
       backdrop-filter: blur(10px);
     }
 
@@ -5809,29 +5842,53 @@
       return html;
     }
 
+    function nodeTooltipMarkup(node, tagLimit = 5) {
+      const era = eraMap[node.eraId];
+      const compactSummary = node.summary || node.hoverSummary || '';
+      const analogy = node.analogy || '';
+      const meta = [
+        typeLabel(node.type),
+        importanceLabel(node.importance),
+        node.productCategory
+      ].filter(Boolean);
+      return `
+        <div class="tooltip-date">${escapeHtml(node.date)} · ${escapeHtml(era?.title || '')}</div>
+        <div class="tooltip-title">${escapeHtml(node.shortTitle || node.title)}</div>
+        <div class="tooltip-summary">${escapeHtml(node.hoverSummary || compactSummary)}</div>
+        <div class="tooltip-detail">
+          ${compactSummary ? `
+            <div class="tooltip-line">
+              <div class="tooltip-label">简洁</div>
+              <div class="tooltip-text">${escapeHtml(compactSummary)}</div>
+            </div>
+          ` : ''}
+          ${analogy ? `
+            <div class="tooltip-line">
+              <div class="tooltip-label">类比</div>
+              <div class="tooltip-text">${escapeHtml(analogy)}</div>
+            </div>
+          ` : ''}
+        </div>
+        <div class="tooltip-meta">
+          ${meta.map(item => `<span class="tooltip-meta-item">${escapeHtml(item)}</span>`).join('')}
+        </div>
+        <div class="tooltip-tags">
+          ${(node.keywords || []).slice(0, tagLimit).map(tag => `<span class="tooltip-tag">${escapeHtml(tag)}</span>`).join('')}
+        </div>
+      `;
+    }
+
     function createTooltip(node) {
       return `
         <div class="node-tooltip" role="tooltip">
-          <div class="tooltip-date">${escapeHtml(node.date)} · ${escapeHtml(eraMap[node.eraId]?.title || '')}</div>
-          <div class="tooltip-title">${escapeHtml(node.shortTitle || node.title)}</div>
-          <div class="tooltip-summary">${escapeHtml(node.hoverSummary)}</div>
-          <div class="tooltip-tags">
-            ${(node.keywords || []).slice(0, 4).map(tag => `<span class="tooltip-tag">${escapeHtml(tag)}</span>`).join('')}
-          </div>
+          ${nodeTooltipMarkup(node, 4)}
         </div>
       `;
     }
 
 
     function tooltipMarkup(node) {
-      return `
-        <div class="tooltip-date">${escapeHtml(node.date)} · ${escapeHtml(eraMap[node.eraId]?.title || '')}</div>
-        <div class="tooltip-title">${escapeHtml(node.shortTitle || node.title)}</div>
-        <div class="tooltip-summary">${escapeHtml(node.hoverSummary)}</div>
-        <div class="tooltip-tags">
-          ${(node.keywords || []).slice(0, 5).map(tag => `<span class="tooltip-tag">${escapeHtml(tag)}</span>`).join('')}
-        </div>
-      `;
+      return nodeTooltipMarkup(node, 5);
     }
 
     function clamp(value, min, max) {
@@ -6999,8 +7056,8 @@
         dockMagnificationFrame = 0;
         if (state.timelineMode !== 'scale' || timelineDrag.active) return;
         if (!dockMagnificationItems.length) collectDockMagnificationItems();
-        const radius = 220;
-        const maxScale = 1.9;
+        const radius = 132;
+        const maxScale = 2.08;
         dockMagnificationItems.forEach(({ node, centerX }) => {
           const distance = Math.abs(dockMagnificationX - centerX);
           if (distance >= radius) {
@@ -7008,7 +7065,7 @@
             return;
           }
           const t = 1 - distance / radius;
-          const eased = t * t * (3 - 2 * t);
+          const eased = Math.pow(t, 3.2);
           const scale = 1 + eased * (maxScale - 1);
           node.style.setProperty('--dock-scale', scale.toFixed(3));
         });
