@@ -1159,14 +1159,21 @@
     body[data-timeline-mode="cards"] .timeline-scroll {
       width: min(1200px, calc(100vw - 32px));
       height: calc(var(--dock-height) - 84px);
+      display: block;
+      align-items: initial;
       overflow-y: auto;
       padding: 12px 0 24px;
     }
 
+    body[data-timeline-only="true"][data-timeline-mode="cards"] .timeline-scroll {
+      display: block;
+      align-items: initial;
+    }
+
     body[data-timeline-mode="cards"] .timeline-track {
       display: grid;
-      grid-template-columns: 116px minmax(0, 1fr);
-      gap: 24px;
+      grid-template-columns: 1fr;
+      gap: 18px;
       align-items: start;
       width: min(1200px, 100%);
       min-width: 0;
@@ -1181,25 +1188,43 @@
     }
 
     .card-year-axis {
-      position: sticky;
-      top: 8px;
       display: grid;
-      gap: 10px;
-      padding: 6px 0 6px 18px;
+      gap: 18px;
+      padding: 2px 0 6px;
     }
 
     .card-year-axis::before {
+      display: none;
+    }
+
+    .card-year-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 116px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+      scroll-margin-top: 16px;
+    }
+
+    .card-year-row::before {
       content: "";
       position: absolute;
       left: 3px;
       top: 18px;
-      bottom: 18px;
+      bottom: -18px;
       width: 1px;
-      background: linear-gradient(180deg, transparent, rgba(var(--ink-rgb), 0.28), transparent);
+      background: rgba(var(--ink-rgb), 0.18);
+    }
+
+    .card-year-row:last-child::before {
+      bottom: 18px;
     }
 
     .card-year-marker {
       position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
       border: 0;
       padding: 0 0 0 12px;
       background: transparent;
@@ -1226,29 +1251,19 @@
       transform: translateY(-50%);
     }
 
+    .card-year-row:has(.timeline-node:hover) .card-year-marker,
+    .card-year-row:has(.timeline-node:focus-visible) .card-year-marker,
     .card-year-marker:hover,
     .card-year-marker.is-active {
       color: var(--color-accent);
       transform: translateX(2px);
     }
 
+    .card-year-row:has(.timeline-node:hover) .card-year-marker::before,
+    .card-year-row:has(.timeline-node:focus-visible) .card-year-marker::before,
     .card-year-marker.is-active::before {
       background: var(--color-accent);
       box-shadow: 0 0 0 4px rgba(245, 78, 0, 0.16);
-    }
-
-    .card-year-content {
-      display: grid;
-      gap: 16px;
-    }
-
-    .card-year-group {
-      display: block;
-      scroll-margin-top: 16px;
-    }
-
-    .card-year-heading {
-      display: none;
     }
 
     .card-year-cards {
@@ -1259,29 +1274,18 @@
     }
 
     @media (max-width: 760px) {
-      body[data-timeline-mode="cards"] .timeline-track {
+      .card-year-row {
         grid-template-columns: 1fr;
+        gap: 10px;
       }
 
-      .card-year-axis {
-        position: relative;
-        top: auto;
-        display: flex;
-        overflow-x: auto;
-        padding: 4px 0 10px;
-      }
-
-      .card-year-axis::before,
+      .card-year-row::before,
       .card-year-marker::before {
         display: none;
       }
 
       .card-year-marker {
-        padding: 0 8px;
-      }
-
-      .card-year-content {
-        gap: 14px;
+        padding: 0;
       }
     }
 
@@ -1374,8 +1378,8 @@
       left: 50%;
       bottom: calc(100% + 12px);
       transform: translateX(-50%) translateY(4px);
-      width: 278px;
-      padding: 12px;
+      width: 308px;
+      padding: 0;
       border: var(--border-soft);
       border-radius: var(--radius-md);
       background: var(--color-surface);
@@ -1410,6 +1414,7 @@
     }
 
     .tooltip-date {
+      padding: 12px 14px 0;
       font-family: var(--font-mono);
       font-size: 10px;
       color: var(--color-accent);
@@ -1417,28 +1422,36 @@
     }
 
     .tooltip-title {
-      margin-top: 4px;
+      padding: 4px 14px 0;
       font-size: 15px;
       font-weight: 620;
       letter-spacing: -0.02em;
     }
 
     .tooltip-summary {
-      margin-top: 6px;
+      margin-top: 8px;
+      padding: 0 14px 12px;
+      border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
       color: var(--color-text-soft);
       font-size: 13px;
-      line-height: 1.45;
+      line-height: 1.52;
     }
 
     .tooltip-detail {
       display: grid;
-      gap: 7px;
-      margin-top: 9px;
+      gap: 0;
+      padding: 2px 14px;
+      border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
     }
 
     .tooltip-line {
       display: grid;
-      gap: 2px;
+      gap: 4px;
+      padding: 9px 0;
+    }
+
+    .tooltip-line + .tooltip-line {
+      border-top: 1px solid rgba(var(--ink-rgb), 0.075);
     }
 
     .tooltip-label {
@@ -1452,21 +1465,21 @@
       color: var(--color-text-soft);
       font-size: 12px;
       font-weight: 300;
-      line-height: 1.42;
+      line-height: 1.5;
     }
 
     .tooltip-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 5px;
-      margin-top: 9px;
+      padding: 10px 14px 0;
     }
 
     .tooltip-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 5px;
-      margin-top: 6px;
+      padding: 6px 14px 12px;
     }
 
     .tooltip-tag,
@@ -1509,8 +1522,8 @@
       left: 0;
       top: 0;
       z-index: 90;
-      width: 290px;
-      padding: 12px;
+      width: 318px;
+      padding: 0;
       border: var(--border-soft);
       border-radius: var(--radius-md);
       background: var(--color-surface);
@@ -6539,6 +6552,11 @@
       return clamp(Math.round(year), bounds.min, bounds.max);
     }
 
+    function yearForNode(node) {
+      const match = String(node?.sortDate || node?.date || '').match(/^(\d{4})/);
+      return match ? Number(match[1]) : null;
+    }
+
     const MIN_NODE_DISTANCE = 40;
     const MIN_SCALE_WIDTH = 3700;
     const SCALE_SIDE_PADDING = 160;
@@ -6911,10 +6929,7 @@
       });
       const years = Array.from(groups.keys()).sort((a, b) => Number(b) - Number(a));
       const activeYear = String((nodeMap[state.activeNodeId]?.sortDate || nodeMap[state.activeNodeId]?.date || '').match(/^(\d{4})/)?.[1] || years[0] || '');
-      const axis = years.map(year => `
-        <button class="card-year-marker ${year === activeYear ? 'is-active' : ''}" data-card-year="${escapeHtml(year)}" type="button">${escapeHtml(year)}</button>
-      `).join('');
-      const content = years.map(year => {
+      return years.map(year => {
         const cards = groups.get(year).slice().sort((a, b) => b.sortDate.localeCompare(a.sortDate)).map(node => {
           const era = eraMap[node.eraId];
           const hasLogo = node.domain || node.type === 'product';
@@ -6930,15 +6945,12 @@
           `;
         }).join('');
         return `
-          <section class="card-year-group" data-card-year-section="${escapeHtml(year)}">
+          <section class="card-year-row" data-card-year-section="${escapeHtml(year)}">
+            <button class="card-year-marker ${year === activeYear ? 'is-active' : ''}" data-card-year="${escapeHtml(year)}" type="button">${escapeHtml(year)}</button>
             <div class="card-year-cards">${cards}</div>
           </section>
         `;
       }).join('');
-      return `
-        <nav class="card-year-axis" aria-label="年份时间轴">${axis}</nav>
-        <div class="card-year-content">${content}</div>
-      `;
     }
 
     function renderScaleDate(date) {
@@ -7088,6 +7100,10 @@
 
     function queueScrollActive() {
       requestAnimationFrame(() => {
+        if (state.timelineMode === 'cards') {
+          queueScrollCardsTop();
+          return;
+        }
         if (state.timelineMode === 'spiral') {
           centerTimelineContent();
           return;
@@ -7097,9 +7113,31 @@
       });
     }
 
+    function queueScrollCardsTop() {
+      requestAnimationFrame(() => {
+        if (state.timelineMode !== 'cards') return;
+        el.timelineScroll.scrollTop = 0;
+        el.timelineScroll.scrollLeft = 0;
+        requestAnimationFrame(() => {
+          if (state.timelineMode !== 'cards') return;
+          el.timelineScroll.scrollTop = 0;
+          el.timelineScroll.scrollLeft = 0;
+        });
+        window.setTimeout(() => {
+          if (state.timelineMode !== 'cards') return;
+          el.timelineScroll.scrollTop = 0;
+          el.timelineScroll.scrollLeft = 0;
+        }, 120);
+      });
+    }
+
     function queueScrollToday() {
       requestAnimationFrame(() => {
         if (state.layoutMode !== 'bottom') return;
+        if (state.timelineMode === 'cards') {
+          queueScrollCardsTop();
+          return;
+        }
         if (state.timelineMode === 'scale') {
           el.timelineScroll.scrollLeft = Math.max(0, el.timelineScroll.scrollWidth - el.timelineScroll.clientWidth);
           return;
@@ -7118,10 +7156,12 @@
     function renderYearWheel() {
       const bounds = yearBounds();
       state.selectedYear = clampSelectedYear();
+      const hoverYear = state.timelineMode === 'cards' ? yearForNode(nodeMap[state.hoverNodeId]) : null;
+      const displayYear = hoverYear || state.selectedYear;
       el.yearWheelPrev.textContent = '';
-      el.yearWheelCurrent.textContent = state.selectedYear;
+      el.yearWheelCurrent.textContent = displayYear;
       el.yearWheelNext.textContent = '';
-      el.yearWheel.setAttribute('aria-label', `年份筛选器：${state.selectedYear}`);
+      el.yearWheel.setAttribute('aria-label', `年份筛选器：${displayYear}`);
     }
 
     function scrollTimelineToYear(year = state.selectedYear) {
@@ -7413,7 +7453,8 @@
         localStorage.setItem('conceptline-timeline-mode', state.timelineMode);
         el.timelineModeMenu.classList.remove('is-open');
         el.timelineModeBtn.setAttribute('aria-expanded', 'false');
-        renderAll({ scrollActive: state.timelineMode !== 'spiral' });
+        renderAll({ scrollActive: state.timelineMode !== 'spiral' && state.timelineMode !== 'cards' });
+        if (state.timelineMode === 'cards') queueScrollCardsTop();
         if (state.timelineMode === 'spiral') queueCenterSpiralContent();
       });
 
