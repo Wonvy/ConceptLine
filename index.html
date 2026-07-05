@@ -1139,7 +1139,7 @@
       gap: 14px;
       min-width: max-content;
       padding: 0 8px;
-      z-index: 2;
+      z-index: 5;
     }
 
     .timeline-track::before {
@@ -1187,6 +1187,17 @@
       display: none;
     }
 
+    body[data-timeline-mode="cards"] .timeline-track::after {
+      content: "";
+      position: absolute;
+      left: 86px;
+      top: 28px;
+      bottom: 64px;
+      width: 1px;
+      background: rgba(var(--ink-rgb), 0.18);
+      pointer-events: none;
+    }
+
     .card-year-axis {
       display: grid;
       gap: 18px;
@@ -1207,17 +1218,7 @@
     }
 
     .card-year-row::before {
-      content: "";
-      position: absolute;
-      left: 86px;
-      top: -18px;
-      bottom: -18px;
-      width: 1px;
-      background: rgba(var(--ink-rgb), 0.18);
-    }
-
-    .card-year-row:last-child::before {
-      bottom: -18px;
+      display: none;
     }
 
     .card-year-marker {
@@ -1254,7 +1255,7 @@
       background: var(--color-bg);
       box-shadow: 0 0 0 1px rgba(var(--ink-rgb), 0.3);
       transform: translateY(-50%);
-      z-index: 2;
+      z-index: 5;
     }
 
     .card-year-row:has(.timeline-node:hover) .card-year-marker,
@@ -2335,7 +2336,7 @@
       transform: translate(-50%, -50%) scale(var(--depth-scale, 1));
       color: var(--color-accent);
       font-family: var(--font-number);
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 300;
       line-height: 1;
       opacity: var(--depth-opacity, 0.78);
@@ -2349,11 +2350,11 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: var(--color-accent);
-      box-shadow: 0 0 0 4px rgba(245, 78, 0, 0.14);
+      background: rgba(var(--ink-rgb), 0.58);
+      box-shadow: 0 0 0 2px rgba(var(--bg-rgb), 0.86), 0 0 0 4px rgba(var(--ink-rgb), 0.08);
       transform: translate(-50%, -50%);
     }
 
@@ -2372,10 +2373,14 @@
 
     .spiral-year-text {
       position: absolute;
-      left: var(--year-text-x, 18px);
+      left: var(--year-text-x, 12px);
       top: var(--year-text-y, -10px);
       display: block;
-      transform: translate(-50%, -50%);
+      transform: translate(var(--year-text-shift, 0), -50%);
+      padding: 2px 4px;
+      border-radius: 6px;
+      background: rgba(var(--bg-rgb), 0.62);
+      backdrop-filter: blur(6px);
     }
 
     .spiral-node:hover,
@@ -7139,17 +7144,12 @@
       const yearNodes = points.map(({ node, x, y, depthScale, depthOpacity, depth }, index) => {
         const year = String(node.sortDate || node.date || '').match(/^(\d{4})/)?.[1];
         if (!year || seenYears.has(year)) return '';
-        const lane = seenYears.size % 3;
         seenYears.add(year);
-        const outwardX = x - cx;
-        const outwardY = y - cy;
-        const length = Math.max(1, Math.hypot(outwardX, outwardY));
-        const textDistance = (28 + lane * 18) * dimensions.scale;
-        const textX = outwardX / length * textDistance;
-        const textY = outwardY / length * textDistance;
-        const leader = Math.max(14, textDistance - 12);
-        const angleDeg = Math.atan2(textY, textX) * 180 / Math.PI;
-        return `<span class="spiral-year-node" style="--x:${x.toFixed(2)}px;--y:${y.toFixed(2)}px;--year-text-x:${textX.toFixed(2)}px;--year-text-y:${textY.toFixed(2)}px;--year-leader:${leader.toFixed(2)}px;--year-angle:${angleDeg.toFixed(2)}deg;--depth-scale:${depthScale.toFixed(3)};--depth-opacity:${Math.max(0.58, depthOpacity).toFixed(3)}"><span class="spiral-year-text">${escapeHtml(year)}</span></span>`;
+        const textSide = x >= cx ? 1 : -1;
+        const textX = textSide * (12 + Math.min(5, dimensions.scale * 2));
+        const textY = depth > 0.35 ? -12 : 12;
+        const textShift = textSide > 0 ? '0' : '-100%';
+        return `<span class="spiral-year-node" style="--x:${x.toFixed(2)}px;--y:${y.toFixed(2)}px;--year-text-x:${textX.toFixed(2)}px;--year-text-y:${textY.toFixed(2)}px;--year-text-shift:${textShift};--depth-scale:${depthScale.toFixed(3)};--depth-opacity:${Math.max(0.72, depthOpacity).toFixed(3)}"><span class="spiral-year-text">${escapeHtml(year)}</span></span>`;
       }).join('');
       return `
         <svg class="spiral-svg" viewBox="0 0 ${width} ${height}" aria-hidden="true">

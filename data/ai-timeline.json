@@ -2,9 +2,9 @@
   "meta": {
     "id": "ai",
     "title": "AI Timeline",
-    "subtitle": "从图灵测试到智能体，用一条时间轴看懂 AI 发展史",
-    "version": "1.2.0",
-    "updatedAt": "2026-07-05"
+    "subtitle": "从图灵测试到智能体，用一条时间轴看懂 AI 发展史与最新产品浪潮",
+    "version": "1.3.0",
+    "updatedAt": "2026-07-06"
   },
   "eras": [
     {
@@ -159,6 +159,31 @@
       "related": [
         "eliza-1966",
         "chatgpt-2022"
+      ]
+    },
+    {
+      "id": "logic-theorist-1956",
+      "date": "1956",
+      "sortDate": "1956-01",
+      "eraId": "symbolic-ai",
+      "title": "Logic Theorist 展示机器证明能力",
+      "shortTitle": "Logic Theorist",
+      "type": "product",
+      "importance": "advanced",
+      "icon": "Brain",
+      "keywords": [
+        "Logic Theorist",
+        "Symbolic AI",
+        "Automated Reasoning",
+        "Proof"
+      ],
+      "hoverSummary": "早期程序开始尝试证明数学定理，符号主义 AI 的想象被具象化。",
+      "summary": "Logic Theorist 是早期人工智能程序，尝试用搜索和符号推理证明数学定理。",
+      "analogy": "像让电脑按照一套推理规则去解证明题：它不会直觉思考，但能一步步试路径。",
+      "detailMd": "### 它是什么？\nLogic Theorist 是 Newell、Simon 等人开发的早期 AI 程序，用来自动证明逻辑定理。\n\n### 为什么重要？\n它展示了机器不只是计算数字，也可以处理符号、规则和推理任务。\n\n### 初学者怎么理解？\n这类程序更像“会按规则找证明路径的机器”，代表早期符号主义 AI。",
+      "related": [
+        "ai-dartmouth-1956",
+        "turing-test-1950"
       ]
     },
     {
@@ -335,6 +360,32 @@
       "productCategory": "棋类 AI"
     },
     {
+      "id": "lenet-1998",
+      "date": "1998",
+      "sortDate": "1998-01",
+      "eraId": "expert-ml",
+      "title": "LeNet 推动卷积神经网络识别手写数字",
+      "shortTitle": "LeNet",
+      "type": "model",
+      "importance": "advanced",
+      "icon": "ScanEye",
+      "keywords": [
+        "LeNet",
+        "CNN",
+        "Computer Vision",
+        "Handwriting"
+      ],
+      "hoverSummary": "卷积神经网络在手写数字识别中获得实用价值，为后来的视觉深度学习铺路。",
+      "summary": "LeNet 是早期卷积神经网络代表，被用于手写数字和字符识别。",
+      "analogy": "像让机器学会先看局部笔画，再组合成数字的整体形状。",
+      "detailMd": "### 它是什么？\nLeNet 是 Yann LeCun 等人提出的卷积神经网络架构，常用于手写数字识别。\n\n### 为什么重要？\n它证明神经网络在视觉识别中可以落地应用，后来 AlexNet 的突破延续了这条路线。\n\n### 初学者怎么理解？\nCNN 擅长看图片，因为它会从局部边缘、纹理逐步组合成更高级的图像特征。",
+      "related": [
+        "backpropagation-1986",
+        "imagenet-2009",
+        "alexnet-2012"
+      ]
+    },
+    {
       "id": "imagenet-2009",
       "date": "2009",
       "sortDate": "2009-01",
@@ -356,6 +407,36 @@
       "related": [
         "alexnet-2012"
       ]
+    },
+    {
+      "id": "watson-2011",
+      "date": "2011.02",
+      "sortDate": "2011-02",
+      "eraId": "expert-ml",
+      "title": "IBM Watson 赢得 Jeopardy!",
+      "shortTitle": "IBM Watson",
+      "type": "product",
+      "importance": "advanced",
+      "icon": "Trophy",
+      "keywords": [
+        "IBM Watson",
+        "Question Answering",
+        "NLP",
+        "Jeopardy"
+      ],
+      "hoverSummary": "AI 在开放式问答节目中击败人类冠军，展示自然语言检索和知识问答能力。",
+      "summary": "IBM Watson 通过信息检索、自然语言处理和答案排序，在 Jeopardy! 节目中获胜。",
+      "analogy": "像一个会快速翻百科、理解题目暗示、再给出最可能答案的答题选手。",
+      "detailMd": "### 它是什么？\nWatson 是 IBM 开发的问答系统，2011 年在 Jeopardy! 中战胜人类冠军。\n\n### 为什么重要？\n它让大众看到 AI 可以处理复杂语言线索和知识检索，而不只是规则明确的棋类任务。\n\n### 初学者怎么理解？\n它更像“搜索 + 排名 + 判断”的系统，而不是今天这种能自由生成内容的大模型。",
+      "related": [
+        "deepblue-1997",
+        "bert-2018",
+        "rag-2020"
+      ],
+      "domain": "ibm.com",
+      "website": "https://www.ibm.com/watson",
+      "company": "IBM",
+      "productCategory": "问答系统"
     },
     {
       "id": "alexnet-2012",
@@ -380,7 +461,8 @@
       "related": [
         "imagenet-2009",
         "gan-2014",
-        "transformer-2017"
+        "transformer-2017",
+        "lenet-1998"
       ]
     },
     {
@@ -614,7 +696,8 @@
       "related": [
         "gpt3-2020",
         "chatgpt-2022",
-        "agent-2023"
+        "agent-2023",
+        "notebooklm-audio-2024"
       ]
     },
     {
@@ -643,6 +726,35 @@
       ]
     },
     {
+      "id": "alphafold2-2020",
+      "date": "2020.11",
+      "sortDate": "2020-11",
+      "eraId": "llm-pretrain",
+      "title": "AlphaFold2 解决蛋白质结构预测关键难题",
+      "shortTitle": "AlphaFold2",
+      "type": "model",
+      "importance": "core",
+      "icon": "Dna",
+      "keywords": [
+        "AlphaFold",
+        "Protein Folding",
+        "Science AI",
+        "DeepMind"
+      ],
+      "hoverSummary": "AI 在生命科学中取得标志性突破，证明深度学习可以推动基础科学研究。",
+      "summary": "AlphaFold2 在蛋白质结构预测上达到接近实验精度的水平，成为科学 AI 的代表事件。",
+      "analogy": "像给一串氨基酸序列拍了一张 3D 结构照片，帮助科学家理解生命机器如何工作。",
+      "detailMd": "### 它是什么？\nAlphaFold2 是 DeepMind 的蛋白质结构预测系统，可以根据氨基酸序列预测蛋白质三维结构。\n\n### 为什么重要？\n它被广泛视为 AI 进入基础科学研究的重要里程碑，后续还推动了药物发现和生物学研究。\n\n### 初学者怎么理解？\n蛋白质不是一条直线，而会折叠成立体结构。结构决定功能，能预测结构就能帮助理解生命过程。",
+      "related": [
+        "alphago-2016",
+        "gpt4-2023"
+      ],
+      "domain": "deepmind.google",
+      "website": "https://deepmind.google/science/alphafold/",
+      "company": "Google DeepMind",
+      "productCategory": "科学 AI"
+    },
+    {
       "id": "dalle-2021",
       "date": "2021",
       "sortDate": "2021-01",
@@ -665,36 +777,13 @@
       "related": [
         "ddpm-2020",
         "stable-diffusion-2022",
-        "gpt4o-2024"
+        "gpt4o-2024",
+        "dall-e-3-2023"
       ],
       "domain": "openai.com",
       "website": "https://openai.com/index/dall-e/",
       "company": "OpenAI",
       "productCategory": "图像生成"
-    },
-    {
-      "id": "lora-2021",
-      "date": "2021",
-      "sortDate": "2021-06",
-      "eraId": "llm-pretrain",
-      "title": "LoRA 降低大模型微调成本",
-      "shortTitle": "LoRA",
-      "type": "concept",
-      "importance": "advanced",
-      "icon": "SlidersHorizontal",
-      "keywords": [
-        "LoRA",
-        "Fine-tuning",
-        "PEFT"
-      ],
-      "hoverSummary": "不重训整个大模型，只调一小部分参数，也能学会新风格。",
-      "summary": "LoRA 是参数高效微调方法，可以用较低成本让大模型适配新任务或新风格。",
-      "analogy": "像不给整栋楼重建，只加几个可替换的小模块，就能改变用途。",
-      "detailMd": "### 它是什么？\nLoRA 是 Low-Rank Adaptation，一种低秩适配方法。\n\n### 为什么重要？\n完整训练大模型很贵，LoRA 让个人和小团队也可以更轻量地定制模型。\n\n### 初学者怎么理解？\n大模型像一台大机器，LoRA 像外接插件，不动主体也能改变行为。",
-      "related": [
-        "gpt3-2020",
-        "stable-diffusion-2022"
-      ]
     },
     {
       "id": "github-copilot-2021",
@@ -728,27 +817,27 @@
       "company": "GitHub / OpenAI"
     },
     {
-      "id": "instructgpt-2022",
-      "date": "2022.01",
-      "sortDate": "2022-01",
-      "eraId": "generative-ai",
-      "title": "InstructGPT 让模型更听指令",
-      "shortTitle": "InstructGPT",
-      "type": "model",
+      "id": "lora-2021",
+      "date": "2021",
+      "sortDate": "2021-06",
+      "eraId": "llm-pretrain",
+      "title": "LoRA 降低大模型微调成本",
+      "shortTitle": "LoRA",
+      "type": "concept",
       "importance": "advanced",
-      "icon": "ListChecks",
+      "icon": "SlidersHorizontal",
       "keywords": [
-        "Instruction Tuning",
-        "RLHF",
-        "Alignment"
+        "LoRA",
+        "Fine-tuning",
+        "PEFT"
       ],
-      "hoverSummary": "让模型从“会续写”变成“更会按人类要求完成任务”。",
-      "summary": "InstructGPT 通过指令微调和人类反馈，让模型更符合用户意图。",
-      "analogy": "像把一个会写作文的人，训练成更会接需求的助理。",
-      "detailMd": "### 它是什么？\nInstructGPT 是面向指令跟随优化的语言模型路线。\n\n### 为什么重要？\n它为 ChatGPT 这类对话式 AI 产品打下基础。\n\n### 初学者怎么理解？\n原始语言模型只是在接着写，而指令模型更像是在完成你的请求。",
+      "hoverSummary": "不重训整个大模型，只调一小部分参数，也能学会新风格。",
+      "summary": "LoRA 是参数高效微调方法，可以用较低成本让大模型适配新任务或新风格。",
+      "analogy": "像不给整栋楼重建，只加几个可替换的小模块，就能改变用途。",
+      "detailMd": "### 它是什么？\nLoRA 是 Low-Rank Adaptation，一种低秩适配方法。\n\n### 为什么重要？\n完整训练大模型很贵，LoRA 让个人和小团队也可以更轻量地定制模型。\n\n### 初学者怎么理解？\n大模型像一台大机器，LoRA 像外接插件，不动主体也能改变行为。",
       "related": [
-        "rlhf-2017",
-        "chatgpt-2022"
+        "gpt3-2020",
+        "stable-diffusion-2022"
       ]
     },
     {
@@ -779,6 +868,30 @@
       ]
     },
     {
+      "id": "instructgpt-2022",
+      "date": "2022.01",
+      "sortDate": "2022-01",
+      "eraId": "generative-ai",
+      "title": "InstructGPT 让模型更听指令",
+      "shortTitle": "InstructGPT",
+      "type": "model",
+      "importance": "advanced",
+      "icon": "ListChecks",
+      "keywords": [
+        "Instruction Tuning",
+        "RLHF",
+        "Alignment"
+      ],
+      "hoverSummary": "让模型从“会续写”变成“更会按人类要求完成任务”。",
+      "summary": "InstructGPT 通过指令微调和人类反馈，让模型更符合用户意图。",
+      "analogy": "像把一个会写作文的人，训练成更会接需求的助理。",
+      "detailMd": "### 它是什么？\nInstructGPT 是面向指令跟随优化的语言模型路线。\n\n### 为什么重要？\n它为 ChatGPT 这类对话式 AI 产品打下基础。\n\n### 初学者怎么理解？\n原始语言模型只是在接着写，而指令模型更像是在完成你的请求。",
+      "related": [
+        "rlhf-2017",
+        "chatgpt-2022"
+      ]
+    },
+    {
       "id": "midjourney-2022",
       "date": "2022.07",
       "sortDate": "2022-07",
@@ -801,7 +914,10 @@
       "detailMd": "### 它是什么？\nMidjourney 是文生图产品，早期主要通过 Discord 使用。\n\n### 为什么重要？\n它把 AIGC 从研究演示带入创意社区，让设计师、插画师和普通用户都开始尝试 AI 图像。\n\n### 初学者怎么理解？\n它让“提示词”变成一种新的创作语言。",
       "related": [
         "stable-diffusion-2022",
-        "dalle-2021"
+        "dalle-2021",
+        "dall-e-3-2023",
+        "gpt4o-image-2025",
+        "ideogram-2023"
       ],
       "domain": "midjourney.com",
       "website": "https://www.midjourney.com/",
@@ -832,7 +948,9 @@
       "related": [
         "ddpm-2020",
         "dalle-2021",
-        "chatgpt-2022"
+        "chatgpt-2022",
+        "flux-2024",
+        "ideogram-2023"
       ],
       "domain": "stability.ai",
       "website": "https://stability.ai/",
@@ -868,6 +986,36 @@
       "website": "https://character.ai/",
       "productCategory": "角色聊天",
       "company": "Character.AI"
+    },
+    {
+      "id": "whisper-2022",
+      "date": "2022.09",
+      "sortDate": "2022-09",
+      "eraId": "generative-ai",
+      "title": "Whisper 开源多语言语音识别模型",
+      "shortTitle": "Whisper",
+      "type": "model",
+      "importance": "advanced",
+      "icon": "AudioLines",
+      "keywords": [
+        "Whisper",
+        "Speech Recognition",
+        "ASR",
+        "Open Source",
+        "Voice AI"
+      ],
+      "hoverSummary": "高鲁棒性的语音转文字模型，让转录、字幕和多语言语音处理更容易进入应用。",
+      "summary": "Whisper 是 OpenAI 发布的自动语音识别系统，可处理多语言语音识别、翻译和语言识别。",
+      "analogy": "像一个听力很强的速记员，不只听英语，还能处理口音、噪声和不同语言。",
+      "detailMd": "### 它是什么？\nWhisper 是自动语音识别模型，能把语音转成文字，也能做多语言转写和翻译。\n\n### 为什么重要？\n它降低了语音识别能力接入应用的门槛，推动字幕、会议纪要、口播转文本和音视频检索。\n\n### 初学者怎么理解？\n以前语音识别像专用功能，现在它变成开发者可以集成的基础 AI 能力。",
+      "related": [
+        "gpt4o-2024",
+        "elevenlabs-2023"
+      ],
+      "domain": "openai.com",
+      "website": "https://openai.com/index/whisper/",
+      "company": "OpenAI",
+      "productCategory": "语音识别"
     },
     {
       "id": "react-2022",
@@ -1046,34 +1194,36 @@
       "company": "Notion"
     },
     {
-      "id": "gpt4-2023",
+      "id": "adobe-firefly-2023",
       "date": "2023.03",
       "sortDate": "2023-03",
       "eraId": "generative-ai",
-      "title": "GPT-4 提升复杂任务能力",
-      "shortTitle": "GPT-4",
-      "type": "model",
-      "importance": "core",
-      "icon": "Brain",
+      "title": "Adobe Firefly 面向创意软件发布",
+      "shortTitle": "Adobe Firefly",
+      "type": "product",
+      "importance": "advanced",
+      "icon": "Flame",
       "keywords": [
-        "GPT-4",
-        "Reasoning",
-        "Multimodal",
-        "LLM"
+        "Adobe Firefly",
+        "Generative Fill",
+        "Creative AI",
+        "Design Tool",
+        "AI Product"
       ],
-      "hoverSummary": "复杂推理、代码、考试和多模态能力明显增强，大模型进入强能力阶段。",
-      "summary": "GPT-4 代表了大语言模型在复杂任务、代码、推理和多模态方向的重要提升。",
-      "analogy": "像从普通助手升级到更可靠的专家助理，能处理更长、更复杂的任务。",
-      "detailMd": "### 它是什么？\nGPT-4 是能力更强的大模型，特别在复杂问题、代码和多步骤任务中表现更好。\n\n### 为什么重要？\n它让企业和开发者更认真地把大模型接入真实工作流。\n\n### 初学者怎么理解？\n大模型不只是能聊天，而是开始能参与写代码、分析资料、做方案。",
+      "hoverSummary": "AI 进入 Photoshop 等创意软件，生成式填充成为设计师常用能力。",
+      "summary": "Adobe Firefly 代表传统创意软件厂商将生成式 AI 嵌入成熟工作流。",
+      "analogy": "像 Photoshop 里多了一个能听懂文字的修图和生成工具。",
+      "detailMd": "### 它是什么？\nAdobe Firefly 是 Adobe 面向创意工作流的生成式 AI 系列。\n\n### 为什么重要？\n它说明 AIGC 不只在独立网站里，也会成为专业软件的基础能力。\n\n### 初学者怎么理解？\n设计师不用离开原来的软件，就能用自然语言补图、扩图和生成素材。",
       "related": [
-        "chatgpt-2022",
-        "agent-2023",
-        "gpt4o-2024"
+        "stable-diffusion-2022",
+        "midjourney-2022",
+        "gpt4o-image-2025",
+        "figma-make-2025"
       ],
-      "domain": "openai.com",
-      "website": "https://openai.com/index/gpt-4-research/",
-      "company": "OpenAI",
-      "productCategory": "大语言模型"
+      "domain": "adobe.com",
+      "website": "https://www.adobe.com/products/firefly.html",
+      "productCategory": "创意设计",
+      "company": "Adobe"
     },
     {
       "id": "claude-2023",
@@ -1107,67 +1257,6 @@
       "company": "Anthropic"
     },
     {
-      "id": "runway-gen2-2023",
-      "date": "2023.03",
-      "sortDate": "2023-03",
-      "eraId": "generative-ai",
-      "title": "Runway Gen-2 推动文生视频产品化",
-      "shortTitle": "Runway Gen-2",
-      "type": "product",
-      "importance": "advanced",
-      "icon": "Clapperboard",
-      "keywords": [
-        "Runway",
-        "Gen-2",
-        "Text-to-Video",
-        "Video Generation",
-        "AI Product"
-      ],
-      "hoverSummary": "视频生成开始进入创作者工具，而不只是论文演示。",
-      "summary": "Runway Gen-2 是早期文生视频产品化的代表，让 AI 视频创作成为实际工具。",
-      "analogy": "像视频版的文生图：先写画面，再生成动态片段。",
-      "detailMd": "### 它是什么？\nRunway Gen-2 是 Runway 推出的生成式视频工具。\n\n### 为什么重要？\n它让创作者看到了 AI 视频从研究走向商业产品的可能。\n\n### 初学者怎么理解？\n视频生成比图片更难，因为它还要处理运动、时间和镜头一致性。",
-      "related": [
-        "sora-2024",
-        "kling-2024",
-        "hailuo-2024"
-      ],
-      "domain": "runwayml.com",
-      "website": "https://runwayml.com/",
-      "productCategory": "视频生成",
-      "company": "Runway"
-    },
-    {
-      "id": "adobe-firefly-2023",
-      "date": "2023.03",
-      "sortDate": "2023-03",
-      "eraId": "generative-ai",
-      "title": "Adobe Firefly 面向创意软件发布",
-      "shortTitle": "Adobe Firefly",
-      "type": "product",
-      "importance": "advanced",
-      "icon": "Flame",
-      "keywords": [
-        "Adobe Firefly",
-        "Generative Fill",
-        "Creative AI",
-        "Design Tool",
-        "AI Product"
-      ],
-      "hoverSummary": "AI 进入 Photoshop 等创意软件，生成式填充成为设计师常用能力。",
-      "summary": "Adobe Firefly 代表传统创意软件厂商将生成式 AI 嵌入成熟工作流。",
-      "analogy": "像 Photoshop 里多了一个能听懂文字的修图和生成工具。",
-      "detailMd": "### 它是什么？\nAdobe Firefly 是 Adobe 面向创意工作流的生成式 AI 系列。\n\n### 为什么重要？\n它说明 AIGC 不只在独立网站里，也会成为专业软件的基础能力。\n\n### 初学者怎么理解？\n设计师不用离开原来的软件，就能用自然语言补图、扩图和生成素材。",
-      "related": [
-        "stable-diffusion-2022",
-        "midjourney-2022"
-      ],
-      "domain": "adobe.com",
-      "website": "https://www.adobe.com/products/firefly.html",
-      "productCategory": "创意设计",
-      "company": "Adobe"
-    },
-    {
       "id": "cursor-2023",
       "date": "2023.03",
       "sortDate": "2023-03",
@@ -1191,7 +1280,10 @@
       "related": [
         "github-copilot-2021",
         "vibe-coding-2025",
-        "replit-agent-2024"
+        "replit-agent-2024",
+        "v0-2023",
+        "cline-2024",
+        "lovable-2024"
       ],
       "domain": "cursor.com",
       "website": "https://cursor.com/",
@@ -1232,6 +1324,70 @@
       "origin": "CN"
     },
     {
+      "id": "gpt4-2023",
+      "date": "2023.03",
+      "sortDate": "2023-03",
+      "eraId": "generative-ai",
+      "title": "GPT-4 提升复杂任务能力",
+      "shortTitle": "GPT-4",
+      "type": "model",
+      "importance": "core",
+      "icon": "Brain",
+      "keywords": [
+        "GPT-4",
+        "Reasoning",
+        "Multimodal",
+        "LLM"
+      ],
+      "hoverSummary": "复杂推理、代码、考试和多模态能力明显增强，大模型进入强能力阶段。",
+      "summary": "GPT-4 代表了大语言模型在复杂任务、代码、推理和多模态方向的重要提升。",
+      "analogy": "像从普通助手升级到更可靠的专家助理，能处理更长、更复杂的任务。",
+      "detailMd": "### 它是什么？\nGPT-4 是能力更强的大模型，特别在复杂问题、代码和多步骤任务中表现更好。\n\n### 为什么重要？\n它让企业和开发者更认真地把大模型接入真实工作流。\n\n### 初学者怎么理解？\n大模型不只是能聊天，而是开始能参与写代码、分析资料、做方案。",
+      "related": [
+        "chatgpt-2022",
+        "agent-2023",
+        "gpt4o-2024"
+      ],
+      "domain": "openai.com",
+      "website": "https://openai.com/index/gpt-4-research/",
+      "company": "OpenAI",
+      "productCategory": "大语言模型"
+    },
+    {
+      "id": "runway-gen2-2023",
+      "date": "2023.03",
+      "sortDate": "2023-03",
+      "eraId": "generative-ai",
+      "title": "Runway Gen-2 推动文生视频产品化",
+      "shortTitle": "Runway Gen-2",
+      "type": "product",
+      "importance": "advanced",
+      "icon": "Clapperboard",
+      "keywords": [
+        "Runway",
+        "Gen-2",
+        "Text-to-Video",
+        "Video Generation",
+        "AI Product"
+      ],
+      "hoverSummary": "视频生成开始进入创作者工具，而不只是论文演示。",
+      "summary": "Runway Gen-2 是早期文生视频产品化的代表，让 AI 视频创作成为实际工具。",
+      "analogy": "像视频版的文生图：先写画面，再生成动态片段。",
+      "detailMd": "### 它是什么？\nRunway Gen-2 是 Runway 推出的生成式视频工具。\n\n### 为什么重要？\n它让创作者看到了 AI 视频从研究走向商业产品的可能。\n\n### 初学者怎么理解？\n视频生成比图片更难，因为它还要处理运动、时间和镜头一致性。",
+      "related": [
+        "sora-2024",
+        "kling-2024",
+        "hailuo-2024",
+        "runway-gen3-2024",
+        "luma-dream-machine-2024",
+        "pika-2023"
+      ],
+      "domain": "runwayml.com",
+      "website": "https://runwayml.com/",
+      "productCategory": "视频生成",
+      "company": "Runway"
+    },
+    {
       "id": "qwen-2023",
       "date": "2023.04",
       "sortDate": "2023-04",
@@ -1257,13 +1413,44 @@
       "related": [
         "llama-2023",
         "deepseek-r1-2025",
-        "tongyi-lingma-2023"
+        "tongyi-lingma-2023",
+        "qwen3-2025"
       ],
       "domain": "qianwen.com",
       "website": "https://www.qianwen.com/",
       "productCategory": "国产 AI 助手",
       "company": "阿里云",
       "origin": "CN"
+    },
+    {
+      "id": "segment-anything-2023",
+      "date": "2023.04",
+      "sortDate": "2023-04",
+      "eraId": "generative-ai",
+      "title": "Segment Anything 推动通用图像分割",
+      "shortTitle": "Segment Anything",
+      "type": "model",
+      "importance": "advanced",
+      "icon": "ScanLine",
+      "keywords": [
+        "Segment Anything",
+        "SAM",
+        "Computer Vision",
+        "Foundation Model"
+      ],
+      "hoverSummary": "视觉模型开始具备更通用的抠图和区域理解能力，成为图像编辑和标注的重要底座。",
+      "summary": "Segment Anything Model（SAM）让用户通过点、框或提示快速分割图像中的对象。",
+      "analogy": "像给图片装上智能剪刀：你点一下，它就知道大概应该抠出哪个物体。",
+      "detailMd": "### 它是什么？\nSegment Anything 是 Meta 发布的图像分割基础模型。\n\n### 为什么重要？\n它让图像标注、抠图、编辑、医学影像和视觉数据处理更高效。\n\n### 初学者怎么理解？\n图像生成负责“画出来”，图像分割负责“看清楚每个物体在哪里”。",
+      "related": [
+        "dalle-2021",
+        "stable-diffusion-2022",
+        "gpt4o-2024"
+      ],
+      "domain": "ai.meta.com",
+      "website": "https://ai.meta.com/research/publications/segment-anything/",
+      "company": "Meta",
+      "productCategory": "视觉基础模型"
     },
     {
       "id": "agent-2023",
@@ -1389,6 +1576,67 @@
       "origin": "CN"
     },
     {
+      "id": "elevenlabs-2023",
+      "date": "2023.08",
+      "sortDate": "2023-08",
+      "eraId": "generative-ai",
+      "title": "ElevenLabs 推动 AI 声音克隆和配音",
+      "shortTitle": "ElevenLabs",
+      "type": "product",
+      "importance": "advanced",
+      "icon": "Mic2",
+      "keywords": [
+        "ElevenLabs",
+        "Voice AI",
+        "Voice Cloning",
+        "Dubbing",
+        "AI Product"
+      ],
+      "hoverSummary": "逼真的语音生成、克隆和多语言配音，让声音成为生成式 AI 的重要入口。",
+      "summary": "ElevenLabs 让用户可以生成拟真语音、克隆声音，并把内容转成多语言配音。",
+      "analogy": "像把录音棚、配音演员和翻译团队压缩成一个在线工具。",
+      "detailMd": "### 它是什么？\nElevenLabs 是 AI 语音生成和语音 Agent 平台，覆盖文本转语音、声音克隆、配音和语音交互。\n\n### 为什么重要？\n它让播客、有声书、视频配音、客服语音和多语言内容制作更容易自动化。\n\n### 初学者怎么理解？\n文字生成解决“写什么”，声音生成解决“怎么说出来”。",
+      "related": [
+        "whisper-2022",
+        "gpt4o-2024",
+        "suno-2023"
+      ],
+      "domain": "elevenlabs.io",
+      "website": "https://elevenlabs.io/",
+      "company": "ElevenLabs",
+      "productCategory": "语音生成"
+    },
+    {
+      "id": "ideogram-2023",
+      "date": "2023.08",
+      "sortDate": "2023-08",
+      "eraId": "generative-ai",
+      "title": "Ideogram 让文字排版型图像生成更实用",
+      "shortTitle": "Ideogram",
+      "type": "product",
+      "importance": "advanced",
+      "icon": "Type",
+      "keywords": [
+        "Ideogram",
+        "Text-to-Image",
+        "Typography",
+        "AI Design"
+      ],
+      "hoverSummary": "文生图开始更擅长在海报、Logo 和插画中生成可读文字。",
+      "summary": "Ideogram 是面向图像生成的产品，早期因较强的文字渲染能力受到设计师关注。",
+      "analogy": "像一个更懂排版的 AI 画师，能把文字放进画面里，而不只是生成风格图。",
+      "detailMd": "### 它是什么？\nIdeogram 是文生图产品，强调创意图像和文字排版生成。\n\n### 为什么重要？\n对海报、标志、封面和社交图来说，画面里的文字是否可读非常关键。\n\n### 初学者怎么理解？\n它解决的是“AI 画图很美，但字经常乱”的痛点。",
+      "related": [
+        "midjourney-2022",
+        "stable-diffusion-2022",
+        "adobe-firefly-2023"
+      ],
+      "domain": "ideogram.ai",
+      "website": "https://ideogram.ai/",
+      "company": "Ideogram",
+      "productCategory": "图像生成"
+    },
+    {
       "id": "zhipu-qingyan-2023",
       "date": "2023.08",
       "sortDate": "2023-08",
@@ -1423,6 +1671,37 @@
       "origin": "CN"
     },
     {
+      "id": "dall-e-3-2023",
+      "date": "2023.09",
+      "sortDate": "2023-09",
+      "eraId": "generative-ai",
+      "title": "DALL·E 3 提升提示词遵循和文字生成",
+      "shortTitle": "DALL·E 3",
+      "type": "model",
+      "importance": "core",
+      "icon": "Image",
+      "keywords": [
+        "DALL·E 3",
+        "Text-to-Image",
+        "Image Generation",
+        "ChatGPT",
+        "OpenAI"
+      ],
+      "hoverSummary": "文生图不再只拼风格，更强调准确理解复杂描述和在图片中生成可读文字。",
+      "summary": "DALL·E 3 是 OpenAI 的图像生成模型，和 ChatGPT 深度结合，能把自然语言需求转成更准确的图像提示。",
+      "analogy": "像一个会先帮你理解需求、再画图的插画师，不需要你学习太多提示词技巧。",
+      "detailMd": "### 它是什么？\nDALL·E 3 是 OpenAI 的文生图模型，强调提示词遵循、细节理解和文字渲染。\n\n### 为什么重要？\n它让图像生成从“会画好看的图”进一步走向“能按具体需求画对”。\n\n### 初学者怎么理解？\n你可以直接说想要什么画面，ChatGPT 会帮你把想法转成更适合生成图像的描述。",
+      "related": [
+        "dalle-2021",
+        "midjourney-2022",
+        "gpt4o-image-2025"
+      ],
+      "domain": "openai.com",
+      "website": "https://openai.com/index/dall-e-3/",
+      "company": "OpenAI",
+      "productCategory": "图像生成"
+    },
+    {
       "id": "microsoft-copilot-2023",
       "date": "2023.09",
       "sortDate": "2023-09",
@@ -1453,6 +1732,36 @@
       "company": "Microsoft"
     },
     {
+      "id": "canva-magic-studio-2023",
+      "date": "2023.10",
+      "sortDate": "2023-10",
+      "eraId": "generative-ai",
+      "title": "Canva Magic Studio 推动大众设计 AI 化",
+      "shortTitle": "Canva Magic Studio",
+      "type": "product",
+      "importance": "optional",
+      "icon": "WandSparkles",
+      "keywords": [
+        "Canva",
+        "Magic Studio",
+        "AI Design",
+        "AIGC",
+        "AI Product"
+      ],
+      "hoverSummary": "设计工具把生成图片、文案、排版等能力整合到一个创作入口。",
+      "summary": "Canva Magic Studio 代表 AI 设计从专业工具走向大众化创作平台。",
+      "analogy": "像把设计、配图和文案助手放进一个在线画布。",
+      "detailMd": "### 它是什么？\nCanva Magic Studio 是 Canva 面向设计和营销内容的 AI 工具集合。\n\n### 为什么重要？\n它说明生成式 AI 正在重塑在线设计工具，让非专业用户也能快速做视觉内容。\n\n### 初学者怎么理解？\n它不是单个模型，而是一组围绕设计流程的 AI 功能。",
+      "related": [
+        "adobe-firefly-2023",
+        "opendesign-2026"
+      ],
+      "domain": "canva.com",
+      "website": "https://www.canva.com/magic/",
+      "productCategory": "AI 设计",
+      "company": "Canva"
+    },
+    {
       "id": "kimi-2023",
       "date": "2023.10",
       "sortDate": "2023-10",
@@ -1478,7 +1787,8 @@
       "related": [
         "context-engineering-2025",
         "rag-2020",
-        "deepseek-r1-2025"
+        "deepseek-r1-2025",
+        "kimi-k2-6-2026"
       ],
       "domain": "kimi.com",
       "website": "https://www.kimi.com/",
@@ -1520,34 +1830,67 @@
       "origin": "CN"
     },
     {
-      "id": "canva-magic-studio-2023",
+      "id": "v0-2023",
       "date": "2023.10",
       "sortDate": "2023-10",
       "eraId": "generative-ai",
-      "title": "Canva Magic Studio 推动大众设计 AI 化",
-      "shortTitle": "Canva Magic Studio",
+      "title": "Vercel v0 推动生成式 UI",
+      "shortTitle": "v0",
       "type": "product",
-      "importance": "optional",
-      "icon": "WandSparkles",
+      "importance": "core",
+      "icon": "AppWindow",
       "keywords": [
-        "Canva",
-        "Magic Studio",
-        "AI Design",
-        "AIGC",
+        "v0",
+        "Vercel",
+        "Generative UI",
+        "AI App Builder",
         "AI Product"
       ],
-      "hoverSummary": "设计工具把生成图片、文案、排版等能力整合到一个创作入口。",
-      "summary": "Canva Magic Studio 代表 AI 设计从专业工具走向大众化创作平台。",
-      "analogy": "像把设计、配图和文案助手放进一个在线画布。",
-      "detailMd": "### 它是什么？\nCanva Magic Studio 是 Canva 面向设计和营销内容的 AI 工具集合。\n\n### 为什么重要？\n它说明生成式 AI 正在重塑在线设计工具，让非专业用户也能快速做视觉内容。\n\n### 初学者怎么理解？\n它不是单个模型，而是一组围绕设计流程的 AI 功能。",
+      "hoverSummary": "通过自然语言生成网页界面，前端原型和组件设计进入 AI 辅助阶段。",
+      "summary": "v0 是 Vercel 推出的生成式 UI 工具，用户描述需求后可以生成可运行的 Web 界面。",
+      "analogy": "像一个会写 React 组件的设计开发搭档，你说页面长什么样，它先搭一个出来。",
+      "detailMd": "### 它是什么？\nv0 是 Vercel 的 AI Web 应用和界面生成工具。\n\n### 为什么重要？\n它把生成式 AI 带进前端组件、UI 原型和应用搭建流程。\n\n### 初学者怎么理解？\n它不是单纯画图，而是直接生成可编辑、可运行的网页代码。",
       "related": [
-        "adobe-firefly-2023",
-        "opendesign-2026"
+        "github-copilot-2021",
+        "cursor-2023",
+        "bolt-new-2024",
+        "lovable-2024"
       ],
-      "domain": "canva.com",
-      "website": "https://www.canva.com/magic/",
-      "productCategory": "AI 设计",
-      "company": "Canva"
+      "domain": "v0.app",
+      "website": "https://v0.app/",
+      "company": "Vercel",
+      "productCategory": "AI App Builder"
+    },
+    {
+      "id": "pika-2023",
+      "date": "2023.11",
+      "sortDate": "2023-11",
+      "eraId": "generative-ai",
+      "title": "Pika 推动 AI 视频编辑和特效生成",
+      "shortTitle": "Pika",
+      "type": "product",
+      "importance": "advanced",
+      "icon": "Film",
+      "keywords": [
+        "Pika",
+        "AI Video",
+        "Text-to-Video",
+        "Video Effects",
+        "AI Product"
+      ],
+      "hoverSummary": "视频生成工具从研究演示进入社交创意玩法，图片变视频和特效生成更大众化。",
+      "summary": "Pika 是 AI 视频生成与编辑产品，支持根据文本、图片和视频生成动态内容。",
+      "analogy": "像把短视频特效师放进浏览器，输入想法就能试一个动态镜头。",
+      "detailMd": "### 它是什么？\nPika 是 AI 视频生成产品，面向短视频、创意特效和图生视频场景。\n\n### 为什么重要？\n它让视频生成不只追求电影级镜头，也进入更轻量、更社交化的创作场景。\n\n### 初学者怎么理解？\n如果 Runway 更像专业影像工具，Pika 更像适合快速玩创意和特效的视频工具。",
+      "related": [
+        "runway-gen2-2023",
+        "sora-2024",
+        "luma-dream-machine-2024"
+      ],
+      "domain": "pika.art",
+      "website": "https://pika.art/",
+      "company": "Pika",
+      "productCategory": "视频生成"
     },
     {
       "id": "gemini-2023",
@@ -1581,6 +1924,67 @@
       "company": "Google DeepMind"
     },
     {
+      "id": "mistral-mixtral-2023",
+      "date": "2023.12",
+      "sortDate": "2023-12",
+      "eraId": "generative-ai",
+      "title": "Mixtral 8x7B 推动开放 MoE 模型",
+      "shortTitle": "Mixtral",
+      "type": "model",
+      "importance": "advanced",
+      "icon": "Boxes",
+      "keywords": [
+        "Mixtral",
+        "Mistral AI",
+        "MoE",
+        "Open Weight",
+        "LLM"
+      ],
+      "hoverSummary": "开放权重模型开始用专家混合架构提升性价比，推动欧洲开源模型生态。",
+      "summary": "Mixtral 8x7B 是 Mistral AI 发布的稀疏专家混合模型，强调开放权重和高性价比。",
+      "analogy": "像一个小型专家团队：每次任务只叫最相关的专家上场，而不是所有人一起工作。",
+      "detailMd": "### 它是什么？\nMixtral 8x7B 是稀疏 Mixture of Experts 模型。\n\n### 为什么重要？\n它让开放模型生态看到 MoE 架构在成本和能力上的优势。\n\n### 初学者怎么理解？\nMoE 不是每次都启动完整模型，而是根据任务选择一部分专家参与计算。",
+      "related": [
+        "llama-2023",
+        "llama3-2024",
+        "deepseek-v3-2024"
+      ],
+      "domain": "mistral.ai",
+      "website": "https://mistral.ai/news/mixtral-of-experts/",
+      "company": "Mistral AI",
+      "productCategory": "开放模型"
+    },
+    {
+      "id": "suno-2023",
+      "date": "2023.12",
+      "sortDate": "2023-12",
+      "eraId": "generative-ai",
+      "title": "Suno 让文字生成歌曲走红",
+      "shortTitle": "Suno",
+      "type": "product",
+      "importance": "core",
+      "icon": "Music",
+      "keywords": [
+        "Suno",
+        "AI Music",
+        "Music Generation",
+        "AIGC",
+        "AI Product"
+      ],
+      "hoverSummary": "普通用户输入文字就能生成带人声、歌词和编曲的歌曲，AI 音乐创作快速出圈。",
+      "summary": "Suno 是 AI 音乐生成平台，能根据文字或音频提示生成歌曲。",
+      "analogy": "像一个自动乐队：你给主题、风格和歌词方向，它给你唱出来。",
+      "detailMd": "### 它是什么？\nSuno 是生成式 AI 音乐平台，支持从文本生成歌曲和音乐片段。\n\n### 为什么重要？\n它让 AI 创作从文字、图片、视频继续扩展到音乐，带来新的创意机会和版权讨论。\n\n### 初学者怎么理解？\nAI 音乐不是只生成伴奏，还可以生成歌词、人声和完整编曲。",
+      "related": [
+        "udio-2024",
+        "elevenlabs-2023"
+      ],
+      "domain": "suno.com",
+      "website": "https://suno.com/",
+      "company": "Suno",
+      "productCategory": "音乐生成"
+    },
+    {
       "id": "sora-2024",
       "date": "2024.02",
       "sortDate": "2024-02",
@@ -1601,43 +2005,16 @@
       "detailMd": "### 它是什么？\nSora 是面向视频生成的模型，可以根据文字描述生成连续画面。\n\n### 为什么重要？\n它把生成式 AI 的想象力从图片扩展到视频、动画、镜头语言和物理一致性。\n\n### 初学者怎么理解？\n它不仅要画对每一帧，还要让前后动作和场景合理连续。",
       "related": [
         "stable-diffusion-2022",
-        "gpt4o-2024"
+        "gpt4o-2024",
+        "runway-gen3-2024",
+        "luma-dream-machine-2024",
+        "veo-2024",
+        "fable-showrunner-2025"
       ],
       "domain": "openai.com",
       "website": "https://openai.com/sora/",
       "company": "OpenAI",
       "productCategory": "视频生成"
-    },
-    {
-      "id": "devin-2024",
-      "date": "2024.03",
-      "sortDate": "2024-03",
-      "eraId": "generative-ai",
-      "title": "Devin 引爆 AI 软件工程师概念",
-      "shortTitle": "Devin",
-      "type": "product",
-      "importance": "core",
-      "icon": "BotMessageSquare",
-      "keywords": [
-        "Devin",
-        "AI Software Engineer",
-        "Coding Agent",
-        "Autonomous Agent",
-        "AI Product"
-      ],
-      "hoverSummary": "把“AI 不只补代码，而是自己接任务做项目”的想象推到台前。",
-      "summary": "Devin 让 AI Coding 从助手走向软件工程 Agent，推动自主开发、测试和浏览器操作的讨论。",
-      "analogy": "像给一个程序员实习生分配任务：它会开终端、看网页、改代码、跑测试。",
-      "detailMd": "### 它是什么？\nDevin 是 Cognition 推出的 AI 软件工程师产品。\n\n### 为什么重要？\n它让行业开始认真讨论“软件工程智能体”能否承担更完整的开发任务。\n\n### 初学者怎么理解？\n它不是简单补全，而是尝试把计划、编码、调试和交付串起来。",
-      "related": [
-        "cursor-2023",
-        "replit-agent-2024",
-        "opencode-2026"
-      ],
-      "domain": "devin.ai",
-      "website": "https://devin.ai/",
-      "productCategory": "AI 编程 Agent",
-      "company": "Cognition"
     },
     {
       "id": "baidu-comate-2024",
@@ -1671,6 +2048,98 @@
       "productCategory": "国产 AI 编程",
       "company": "百度",
       "origin": "CN"
+    },
+    {
+      "id": "claude3-2024",
+      "date": "2024.03",
+      "sortDate": "2024-03",
+      "eraId": "generative-ai",
+      "title": "Claude 3 家族发布并强化多模态能力",
+      "shortTitle": "Claude 3",
+      "type": "model",
+      "importance": "advanced",
+      "icon": "MessagesSquare",
+      "keywords": [
+        "Claude 3",
+        "Anthropic",
+        "Multimodal",
+        "AI Assistant"
+      ],
+      "hoverSummary": "Claude 进入 Opus、Sonnet、Haiku 分层产品线，长文本和视觉能力更成熟。",
+      "summary": "Claude 3 家族包含 Opus、Sonnet、Haiku，不同模型面向能力、速度和成本的平衡。",
+      "analogy": "像同一个助手品牌分成旗舰版、均衡版和轻量版，用户按任务选择。",
+      "detailMd": "### 它是什么？\nClaude 3 是 Anthropic 发布的模型家族，包括 Opus、Sonnet、Haiku。\n\n### 为什么重要？\n它让 Claude 从单一助手走向清晰的模型产品矩阵，也加强了视觉和复杂任务能力。\n\n### 初学者怎么理解？\n模型家族不是一个模型，而是不同档位的能力组合。",
+      "related": [
+        "claude-2023",
+        "gpt4-2023",
+        "claude-35-sonnet-2024"
+      ],
+      "domain": "anthropic.com",
+      "website": "https://www.anthropic.com/news/claude-3-family",
+      "company": "Anthropic",
+      "productCategory": "大语言模型"
+    },
+    {
+      "id": "devin-2024",
+      "date": "2024.03",
+      "sortDate": "2024-03",
+      "eraId": "generative-ai",
+      "title": "Devin 引爆 AI 软件工程师概念",
+      "shortTitle": "Devin",
+      "type": "product",
+      "importance": "core",
+      "icon": "BotMessageSquare",
+      "keywords": [
+        "Devin",
+        "AI Software Engineer",
+        "Coding Agent",
+        "Autonomous Agent",
+        "AI Product"
+      ],
+      "hoverSummary": "把“AI 不只补代码，而是自己接任务做项目”的想象推到台前。",
+      "summary": "Devin 让 AI Coding 从助手走向软件工程 Agent，推动自主开发、测试和浏览器操作的讨论。",
+      "analogy": "像给一个程序员实习生分配任务：它会开终端、看网页、改代码、跑测试。",
+      "detailMd": "### 它是什么？\nDevin 是 Cognition 推出的 AI 软件工程师产品。\n\n### 为什么重要？\n它让行业开始认真讨论“软件工程智能体”能否承担更完整的开发任务。\n\n### 初学者怎么理解？\n它不是简单补全，而是尝试把计划、编码、调试和交付串起来。",
+      "related": [
+        "cursor-2023",
+        "replit-agent-2024",
+        "opencode-2026"
+      ],
+      "domain": "devin.ai",
+      "website": "https://devin.ai/",
+      "productCategory": "AI 编程 Agent",
+      "company": "Cognition"
+    },
+    {
+      "id": "llama3-2024",
+      "date": "2024.04",
+      "sortDate": "2024-04",
+      "eraId": "generative-ai",
+      "title": "Llama 3 提升开放模型竞争力",
+      "shortTitle": "Llama 3",
+      "type": "model",
+      "importance": "core",
+      "icon": "Box",
+      "keywords": [
+        "Llama 3",
+        "Meta",
+        "Open Model",
+        "LLM",
+        "AI Product"
+      ],
+      "hoverSummary": "Meta 开放模型继续升级，成为本地部署、微调和开源应用的重要底座。",
+      "summary": "Llama 3 是 Meta 发布的新一代开放模型系列，提供 8B 和 70B 等版本。",
+      "analogy": "像给开发者发了一套更强的模型发动机，可以装进自己的应用里。",
+      "detailMd": "### 它是什么？\nLlama 3 是 Meta 发布的大语言模型系列。\n\n### 为什么重要？\n它推动开放模型在企业、本地部署和开源社区中的普及。\n\n### 初学者怎么理解？\n开放模型让更多人可以下载、部署、微调和改造模型，而不只能调用闭源 API。",
+      "related": [
+        "llama-2023",
+        "mistral-mixtral-2023",
+        "qwen3-2025"
+      ],
+      "domain": "ai.meta.com",
+      "website": "https://ai.meta.com/blog/meta-llama-3/",
+      "company": "Meta",
+      "productCategory": "开放模型"
     },
     {
       "id": "udio-2024",
@@ -1728,12 +2197,45 @@
         "dalle-2021",
         "gpt4-2023",
         "sora-2024",
-        "o1-2024"
+        "o1-2024",
+        "whisper-2022",
+        "notebooklm-audio-2024",
+        "gpt4o-image-2025"
       ],
       "domain": "openai.com",
       "website": "https://openai.com/index/hello-gpt-4o/",
       "company": "OpenAI",
       "productCategory": "多模态模型"
+    },
+    {
+      "id": "veo-2024",
+      "date": "2024.05",
+      "sortDate": "2024-05",
+      "eraId": "generative-ai",
+      "title": "Google Veo 进入高质量视频生成竞争",
+      "shortTitle": "Veo",
+      "type": "model",
+      "importance": "core",
+      "icon": "Video",
+      "keywords": [
+        "Veo",
+        "Google DeepMind",
+        "Text-to-Video",
+        "Video Generation"
+      ],
+      "hoverSummary": "Google 发布视频生成模型 Veo，AI 视频竞争从 Sora 扩展到更多主流平台。",
+      "summary": "Veo 是 Google DeepMind 的视频生成模型系列，后续继续发展到 Veo 2、Veo 3 和 Veo 3.1。",
+      "analogy": "像 Google 版的 AI 视频摄影机，把文字提示转成连续镜头。",
+      "detailMd": "### 它是什么？\nVeo 是 Google DeepMind 的视频生成模型系列。\n\n### 为什么重要？\n它把视频生成带入 Google Gemini、Flow 等产品生态，推动视频生成从模型演示走向创作工具。\n\n### 初学者怎么理解？\n图片生成是做一张图，视频生成要同时处理画面、运动、镜头和声音。",
+      "related": [
+        "sora-2024",
+        "runway-gen3-2024",
+        "luma-dream-machine-2024"
+      ],
+      "domain": "deepmind.google",
+      "website": "https://deepmind.google/models/veo/",
+      "company": "Google DeepMind",
+      "productCategory": "视频生成"
     },
     {
       "id": "yuanbao-2024",
@@ -1770,6 +2272,37 @@
       "origin": "CN"
     },
     {
+      "id": "claude-35-sonnet-2024",
+      "date": "2024.06",
+      "sortDate": "2024-06",
+      "eraId": "generative-ai",
+      "title": "Claude 3.5 Sonnet 提升编码和视觉能力",
+      "shortTitle": "Claude 3.5 Sonnet",
+      "type": "model",
+      "importance": "core",
+      "icon": "BrainCircuit",
+      "keywords": [
+        "Claude 3.5 Sonnet",
+        "Coding",
+        "Vision",
+        "Anthropic",
+        "AI Product"
+      ],
+      "hoverSummary": "更强的编码、视觉和复杂指令能力，让 Claude 成为开发者和知识工作者常用模型。",
+      "summary": "Claude 3.5 Sonnet 是 Anthropic 发布的高性价比强能力模型，尤其在编码和视觉任务中受关注。",
+      "analogy": "像一个又快又稳的专家助理，既能写代码，也能看图表和长文档。",
+      "detailMd": "### 它是什么？\nClaude 3.5 Sonnet 是 Claude 3 家族的重要升级模型。\n\n### 为什么重要？\n它推动了大模型在代码、视觉理解和复杂文档处理中的实用化。\n\n### 初学者怎么理解？\n它让模型不只是会聊天，而是更适合成为工作流里的常用助手。",
+      "related": [
+        "claude3-2024",
+        "computer-use-2024",
+        "claude-code-2025"
+      ],
+      "domain": "anthropic.com",
+      "website": "https://www.anthropic.com/news/claude-3-5-sonnet",
+      "company": "Anthropic",
+      "productCategory": "大语言模型"
+    },
+    {
       "id": "kling-2024",
       "date": "2024.06",
       "sortDate": "2024-06",
@@ -1804,37 +2337,97 @@
       "origin": "CN"
     },
     {
-      "id": "vidu-2024",
+      "id": "luma-dream-machine-2024",
+      "date": "2024.06",
+      "sortDate": "2024-06",
+      "eraId": "generative-ai",
+      "title": "Luma Dream Machine 推动图生视频普及",
+      "shortTitle": "Luma Dream Machine",
+      "type": "product",
+      "importance": "core",
+      "icon": "Video",
+      "keywords": [
+        "Luma",
+        "Dream Machine",
+        "Text-to-Video",
+        "Image-to-Video",
+        "AI Product"
+      ],
+      "hoverSummary": "高质量图生视频进入大众创作工具，角色和镜头运动更容易快速试验。",
+      "summary": "Dream Machine 是 Luma 推出的视频生成产品，支持文字和图片生成短视频。",
+      "analogy": "像把一张静态照片交给 AI 摄影师，让它设计一段运动镜头。",
+      "detailMd": "### 它是什么？\nLuma Dream Machine 是 AI 视频生成工具。\n\n### 为什么重要？\n它让图生视频、镜头迭代和创意短片生成更接近普通创作者。\n\n### 初学者怎么理解？\n它不仅根据文字生成画面，也可以把已有图片变成一段动态视频。",
+      "related": [
+        "pika-2023",
+        "runway-gen3-2024",
+        "sora-2024",
+        "veo-2024"
+      ],
+      "domain": "lumalabs.ai",
+      "website": "https://lumalabs.ai/app",
+      "company": "Luma AI",
+      "productCategory": "视频生成"
+    },
+    {
+      "id": "runway-gen3-2024",
+      "date": "2024.06",
+      "sortDate": "2024-06",
+      "eraId": "generative-ai",
+      "title": "Runway Gen-3 Alpha 提升视频一致性和运动质量",
+      "shortTitle": "Runway Gen-3",
+      "type": "model",
+      "importance": "core",
+      "icon": "Clapperboard",
+      "keywords": [
+        "Runway Gen-3",
+        "Text-to-Video",
+        "Video Generation",
+        "World Model"
+      ],
+      "hoverSummary": "AI 视频从短片段实验走向更高保真、更稳定的动态生成。",
+      "summary": "Runway Gen-3 Alpha 是 Runway 下一代视频基础模型，提升画面真实感、一致性和运动表现。",
+      "analogy": "像把文生视频从“会动的图片”推进到更像真实镜头的阶段。",
+      "detailMd": "### 它是什么？\nRunway Gen-3 Alpha 是面向视频生成的基础模型。\n\n### 为什么重要？\n它在画面质量、连续性和运动方面比早期视频模型更进一步。\n\n### 初学者怎么理解？\n视频生成难在每一帧都要好看，而且前后还要连贯。",
+      "related": [
+        "runway-gen2-2023",
+        "sora-2024",
+        "luma-dream-machine-2024"
+      ],
+      "domain": "runwayml.com",
+      "website": "https://runwayml.com/research/introducing-gen-3-alpha",
+      "company": "Runway",
+      "productCategory": "视频生成"
+    },
+    {
+      "id": "flux-2024",
       "date": "2024.08",
       "sortDate": "2024-08",
       "eraId": "generative-ai",
-      "title": "Vidu 面向全球上线",
-      "shortTitle": "Vidu",
-      "type": "product",
+      "title": "FLUX.1 推动高质量开源图像生成",
+      "shortTitle": "FLUX.1",
+      "type": "model",
       "importance": "advanced",
-      "icon": "Video",
+      "icon": "Image",
       "keywords": [
-        "Vidu",
-        "Text-to-Video",
-        "国产视频生成",
-        "Tsinghua",
-        "AI Product",
-        "国产 AI"
+        "FLUX",
+        "Black Forest Labs",
+        "Text-to-Image",
+        "Open Model",
+        "Image Generation"
       ],
-      "hoverSummary": "清华系视频大模型产品上线，强调长时长、高一致性和动态能力。",
-      "summary": "Vidu 是国产视频生成产品的重要代表之一，面向创作者提供文生视频和图生视频能力。",
-      "analogy": "像一个会保持主体一致性的 AI 视频导演。",
-      "detailMd": "### 它是什么？\nVidu 是生数科技与清华大学相关团队推出的视频生成产品。\n\n### 为什么重要？\n它显示国产视频生成不只追赶，也在主体一致性、速度和动态能力上持续迭代。\n\n### 初学者怎么理解？\n视频生成的关键不是一帧好看，而是连续很多帧都稳定。",
+      "hoverSummary": "开源图像生成模型质量进一步提升，成为 Stable Diffusion 生态之外的重要选择。",
+      "summary": "FLUX.1 是 Black Forest Labs 推出的图像生成模型系列，面向高质量文生图和创意应用。",
+      "analogy": "像给开源创作者提供新的画笔引擎，让个人和团队可以搭建自己的图像工具。",
+      "detailMd": "### 它是什么？\nFLUX.1 是图像生成模型系列，受到设计和开源 AIGC 社区关注。\n\n### 为什么重要？\n它让高质量图像生成不只依赖少数闭源平台，也给本地部署和二次开发带来新选择。\n\n### 初学者怎么理解？\n它和 Stable Diffusion 一样，属于可以进入开源工具链的图像生成底座。",
       "related": [
-        "sora-2024",
-        "kling-2024",
-        "hailuo-2024"
+        "stable-diffusion-2022",
+        "midjourney-2022",
+        "ideogram-2023"
       ],
-      "domain": "vidu.com",
-      "website": "https://www.vidu.com/",
-      "productCategory": "视频生成",
-      "company": "生数科技 / 清华系",
-      "origin": "CN"
+      "domain": "blackforestlabs.ai",
+      "website": "https://blackforestlabs.ai/",
+      "company": "Black Forest Labs",
+      "productCategory": "图像生成"
     },
     {
       "id": "hailuo-2024",
@@ -1871,6 +2464,70 @@
       "origin": "CN"
     },
     {
+      "id": "vidu-2024",
+      "date": "2024.08",
+      "sortDate": "2024-08",
+      "eraId": "generative-ai",
+      "title": "Vidu 面向全球上线",
+      "shortTitle": "Vidu",
+      "type": "product",
+      "importance": "advanced",
+      "icon": "Video",
+      "keywords": [
+        "Vidu",
+        "Text-to-Video",
+        "国产视频生成",
+        "Tsinghua",
+        "AI Product",
+        "国产 AI"
+      ],
+      "hoverSummary": "清华系视频大模型产品上线，强调长时长、高一致性和动态能力。",
+      "summary": "Vidu 是国产视频生成产品的重要代表之一，面向创作者提供文生视频和图生视频能力。",
+      "analogy": "像一个会保持主体一致性的 AI 视频导演。",
+      "detailMd": "### 它是什么？\nVidu 是生数科技与清华大学相关团队推出的视频生成产品。\n\n### 为什么重要？\n它显示国产视频生成不只追赶，也在主体一致性、速度和动态能力上持续迭代。\n\n### 初学者怎么理解？\n视频生成的关键不是一帧好看，而是连续很多帧都稳定。",
+      "related": [
+        "sora-2024",
+        "kling-2024",
+        "hailuo-2024"
+      ],
+      "domain": "vidu.com",
+      "website": "https://www.vidu.com/",
+      "productCategory": "视频生成",
+      "company": "生数科技 / 清华系",
+      "origin": "CN"
+    },
+    {
+      "id": "notebooklm-audio-2024",
+      "date": "2024.09",
+      "sortDate": "2024-09",
+      "eraId": "generative-ai",
+      "title": "NotebookLM Audio Overviews 让资料变成 AI 播客",
+      "shortTitle": "NotebookLM 音频概览",
+      "type": "product",
+      "importance": "advanced",
+      "icon": "Podcast",
+      "keywords": [
+        "NotebookLM",
+        "Audio Overview",
+        "RAG",
+        "Research Assistant",
+        "AI Product"
+      ],
+      "hoverSummary": "AI 不只总结资料，还能把文档变成双人播客式讲解，改变学习和研究体验。",
+      "summary": "NotebookLM 的 Audio Overviews 能把用户上传的资料生成对话式音频摘要。",
+      "analogy": "像把一堆 PDF 和笔记交给两位主持人，他们帮你聊成一集播客。",
+      "detailMd": "### 它是什么？\nNotebookLM 是 Google 的资料型 AI 研究和笔记工具，Audio Overviews 可以生成类似播客的音频讲解。\n\n### 为什么重要？\n它展示了 RAG 和多模态生成结合的新形态：资料不只被摘要，也能被重新包装成音频内容。\n\n### 初学者怎么理解？\n它不是凭空聊天，而是围绕你给的资料生成解释。",
+      "related": [
+        "rag-2020",
+        "gpt4o-2024",
+        "kimi-2023"
+      ],
+      "domain": "notebooklm.google",
+      "website": "https://notebooklm.google/",
+      "company": "Google",
+      "productCategory": "AI 研究助手"
+    },
+    {
       "id": "o1-2024",
       "date": "2024.09",
       "sortDate": "2024-09",
@@ -1894,7 +2551,8 @@
         "chain-of-thought-2022",
         "gpt4o-2024",
         "deepseek-r1-2025",
-        "gpt5-2025"
+        "gpt5-2025",
+        "claude-37-sonnet-2025"
       ]
     },
     {
@@ -1921,12 +2579,48 @@
       "related": [
         "cursor-2023",
         "bolt-new-2024",
-        "vibe-coding-2025"
+        "vibe-coding-2025",
+        "lovable-2024",
+        "v0-2023"
       ],
       "domain": "replit.com",
       "website": "https://replit.com/",
       "productCategory": "AI 编程 Agent",
       "company": "Replit"
+    },
+    {
+      "id": "bolt-new-2024",
+      "date": "2024.10",
+      "sortDate": "2024-10",
+      "eraId": "generative-ai",
+      "title": "Bolt.new 让浏览器里生成全栈应用",
+      "shortTitle": "Bolt.new",
+      "type": "product",
+      "importance": "core",
+      "icon": "Zap",
+      "keywords": [
+        "Bolt.new",
+        "StackBlitz",
+        "AI App Builder",
+        "WebContainers",
+        "Vibe Coding",
+        "AI Product"
+      ],
+      "hoverSummary": "不用本地配置环境，直接在浏览器里让 AI 生成、运行和部署应用。",
+      "summary": "Bolt.new 代表 AI 编程工具向“自然语言生成可运行网页应用”的方向发展。",
+      "analogy": "像一个能边写代码边开服务器的浏览器开发环境。",
+      "detailMd": "### 它是什么？\nBolt.new 是 StackBlitz 推出的 AI 全栈 Web 开发 Agent。\n\n### 为什么重要？\n它把代码生成、依赖安装、运行预览和部署放到浏览器里完成。\n\n### 初学者怎么理解？\n它特别适合快速做网页原型和小应用。",
+      "related": [
+        "replit-agent-2024",
+        "cursor-2023",
+        "vibe-coding-2025",
+        "v0-2023",
+        "lovable-2024"
+      ],
+      "domain": "bolt.new",
+      "website": "https://bolt.new/",
+      "productCategory": "AI 编程 Agent",
+      "company": "StackBlitz"
     },
     {
       "id": "computer-use-2024",
@@ -1961,36 +2655,71 @@
       "productCategory": "Agent 能力"
     },
     {
-      "id": "bolt-new-2024",
-      "date": "2024.10",
-      "sortDate": "2024-10",
+      "id": "jimeng-2024",
+      "date": "2024.11",
+      "sortDate": "2024-11",
       "eraId": "generative-ai",
-      "title": "Bolt.new 让浏览器里生成全栈应用",
-      "shortTitle": "Bolt.new",
+      "title": "即梦 AI 接入视频生成模型",
+      "shortTitle": "即梦 AI",
+      "type": "product",
+      "importance": "advanced",
+      "icon": "Images",
+      "keywords": [
+        "即梦 AI",
+        "Jimeng",
+        "字节跳动",
+        "AI Design",
+        "Video Generation",
+        "国产 AIGC",
+        "AI Product",
+        "国产 AI"
+      ],
+      "hoverSummary": "字节的 AI 创作平台继续扩展图片、海报和视频生成能力。",
+      "summary": "即梦 AI 代表国内内容平台把图像、视频和设计创作整合成一站式 AIGC 工具。",
+      "analogy": "像给短视频和视觉创作者准备的 AI 创意工作台。",
+      "detailMd": "### 它是什么？\n即梦 AI 是字节跳动旗下的一站式 AI 创作平台。\n\n### 为什么重要？\n它把图像生成、视频生成、海报设计等能力整合到内容创作流程里。\n\n### 初学者怎么理解？\n它和豆包一样，体现了字节在大众 AI 产品上的布局。",
+      "related": [
+        "doubao-2023",
+        "hailuo-2024",
+        "kling-2024"
+      ],
+      "domain": "jimeng.jianying.com",
+      "website": "https://jimeng.jianying.com/ai-tool/home",
+      "productCategory": "AI 设计 / 视频",
+      "company": "字节跳动",
+      "origin": "CN"
+    },
+    {
+      "id": "lovable-2024",
+      "date": "2024.11",
+      "sortDate": "2024-11",
+      "eraId": "generative-ai",
+      "title": "Lovable 让自然语言生成全栈应用流行",
+      "shortTitle": "Lovable",
       "type": "product",
       "importance": "core",
-      "icon": "Zap",
+      "icon": "Rocket",
       "keywords": [
-        "Bolt.new",
-        "StackBlitz",
+        "Lovable",
         "AI App Builder",
-        "WebContainers",
         "Vibe Coding",
+        "No-code",
         "AI Product"
       ],
-      "hoverSummary": "不用本地配置环境，直接在浏览器里让 AI 生成、运行和部署应用。",
-      "summary": "Bolt.new 代表 AI 编程工具向“自然语言生成可运行网页应用”的方向发展。",
-      "analogy": "像一个能边写代码边开服务器的浏览器开发环境。",
-      "detailMd": "### 它是什么？\nBolt.new 是 StackBlitz 推出的 AI 全栈 Web 开发 Agent。\n\n### 为什么重要？\n它把代码生成、依赖安装、运行预览和部署放到浏览器里完成。\n\n### 初学者怎么理解？\n它特别适合快速做网页原型和小应用。",
+      "hoverSummary": "用户用聊天描述想法，AI 生成前端、后端和部署，非程序员也能快速做应用。",
+      "summary": "Lovable 是 AI App Builder，强调用自然语言构建、迭代和部署 Web 应用。",
+      "analogy": "像把产品经理、前端、后端和部署工程师压缩成一个聊天式建站工具。",
+      "detailMd": "### 它是什么？\nLovable 是全栈 AI 开发平台，用户可以通过自然语言生成和迭代 Web 应用。\n\n### 为什么重要？\n它让 Vibe Coding 不只属于会写代码的人，也进入创业者、设计师和运营的原型制作流程。\n\n### 初学者怎么理解？\n它不是只生成页面截图，而是生成真实代码和可部署应用。",
       "related": [
+        "v0-2023",
+        "bolt-new-2024",
         "replit-agent-2024",
-        "cursor-2023",
         "vibe-coding-2025"
       ],
-      "domain": "bolt.new",
-      "website": "https://bolt.new/",
-      "productCategory": "AI 编程 Agent",
-      "company": "StackBlitz"
+      "domain": "lovable.dev",
+      "website": "https://lovable.dev/",
+      "company": "Lovable",
+      "productCategory": "AI App Builder"
     },
     {
       "id": "mcp-2024",
@@ -2056,38 +2785,66 @@
       "company": "Codeium"
     },
     {
-      "id": "jimeng-2024",
-      "date": "2024.11",
-      "sortDate": "2024-11",
+      "id": "cline-2024",
+      "date": "2024.12",
+      "sortDate": "2024-12",
       "eraId": "generative-ai",
-      "title": "即梦 AI 接入视频生成模型",
-      "shortTitle": "即梦 AI",
+      "title": "Cline 推动开源 VS Code 编程 Agent",
+      "shortTitle": "Cline",
       "type": "product",
       "importance": "advanced",
-      "icon": "Images",
+      "icon": "Code2",
       "keywords": [
-        "即梦 AI",
-        "Jimeng",
-        "字节跳动",
-        "AI Design",
-        "Video Generation",
-        "国产 AIGC",
-        "AI Product",
-        "国产 AI"
+        "Cline",
+        "AI Coding Agent",
+        "VS Code",
+        "Open Source",
+        "Tool Use"
       ],
-      "hoverSummary": "字节的 AI 创作平台继续扩展图片、海报和视频生成能力。",
-      "summary": "即梦 AI 代表国内内容平台把图像、视频和设计创作整合成一站式 AIGC 工具。",
-      "analogy": "像给短视频和视觉创作者准备的 AI 创意工作台。",
-      "detailMd": "### 它是什么？\n即梦 AI 是字节跳动旗下的一站式 AI 创作平台。\n\n### 为什么重要？\n它把图像生成、视频生成、海报设计等能力整合到内容创作流程里。\n\n### 初学者怎么理解？\n它和豆包一样，体现了字节在大众 AI 产品上的布局。",
+      "hoverSummary": "开源编程 Agent 进入 VS Code，能读写文件、运行命令并和开发者确认步骤。",
+      "summary": "Cline 是 VS Code 中的开源 AI 编程 Agent，支持多模型、工具调用和项目级修改。",
+      "analogy": "像在编辑器里多了一个会先问你确认、再改文件和跑命令的实习工程师。",
+      "detailMd": "### 它是什么？\nCline 是面向 VS Code 的开源 AI 编程 Agent。\n\n### 为什么重要？\n它让 Agentic Coding 从闭源产品扩展到开源插件生态，开发者可以连接不同模型。\n\n### 初学者怎么理解？\n它不是只补全一行代码，而是能围绕项目执行多步骤开发任务。",
       "related": [
-        "doubao-2023",
-        "hailuo-2024",
-        "kling-2024"
+        "cursor-2023",
+        "windsurf-2024",
+        "opencode-2026"
       ],
-      "domain": "jimeng.jianying.com",
-      "website": "https://jimeng.jianying.com/ai-tool/home",
-      "productCategory": "AI 设计 / 视频",
-      "company": "字节跳动",
+      "domain": "github.com",
+      "website": "https://github.com/cline/cline",
+      "company": "Cline",
+      "productCategory": "开源 AI 编程"
+    },
+    {
+      "id": "deepseek-v3-2024",
+      "date": "2024.12",
+      "sortDate": "2024-12",
+      "eraId": "generative-ai",
+      "title": "DeepSeek-V3 以低成本开放模型引发关注",
+      "shortTitle": "DeepSeek-V3",
+      "type": "model",
+      "importance": "core",
+      "icon": "Boxes",
+      "keywords": [
+        "DeepSeek-V3",
+        "MoE",
+        "Open Model",
+        "国产 AI",
+        "LLM"
+      ],
+      "hoverSummary": "国产开放模型在能力、成本和工程效率上获得全球关注，为 R1 爆发打下基础。",
+      "summary": "DeepSeek-V3 是 DeepSeek 发布的 MoE 大语言模型，强调高性能、开源和较低训练成本。",
+      "analogy": "像用更聪明的工程方法造出高性价比发动机，让更多人能用得起强模型。",
+      "detailMd": "### 它是什么？\nDeepSeek-V3 是 DeepSeek 的开放大模型，采用 MoE 等工程设计。\n\n### 为什么重要？\n它强化了全球对中国开源模型能力和成本效率的关注，也为后续 DeepSeek-R1 的传播铺路。\n\n### 初学者怎么理解？\n强模型不一定只能靠无限堆算力，架构和训练工程同样关键。",
+      "related": [
+        "mistral-mixtral-2023",
+        "deepseek-r1-2025",
+        "glm-5-2-2026"
+      ],
+      "domain": "deepseek.com",
+      "website": "https://api-docs.deepseek.com/news/news1226",
+      "company": "DeepSeek",
+      "productCategory": "开放模型",
       "origin": "CN"
     },
     {
@@ -2125,6 +2882,36 @@
       "origin": "CN"
     },
     {
+      "id": "claude-37-sonnet-2025",
+      "date": "2025.02",
+      "sortDate": "2025-02",
+      "eraId": "agentic-ai",
+      "title": "Claude 3.7 Sonnet 推出混合推理模式",
+      "shortTitle": "Claude 3.7 Sonnet",
+      "type": "model",
+      "importance": "core",
+      "icon": "BrainCircuit",
+      "keywords": [
+        "Claude 3.7 Sonnet",
+        "Hybrid Reasoning",
+        "Claude Code",
+        "Reasoning Model"
+      ],
+      "hoverSummary": "模型可以在快速回答和延长思考之间切换，推理模型开始进入主流产品体验。",
+      "summary": "Claude 3.7 Sonnet 是 Anthropic 的混合推理模型，同时发布了 Claude Code 相关能力。",
+      "analogy": "像一个能决定“这题快答就行，还是需要打草稿”的助手。",
+      "detailMd": "### 它是什么？\nClaude 3.7 Sonnet 是强调混合推理的 Claude 模型。\n\n### 为什么重要？\n它让推理模型的使用方式更灵活，也推动 Claude Code 进入开发者工作流。\n\n### 初学者怎么理解？\n复杂问题需要更多推理预算，简单问题则可以快速回答。",
+      "related": [
+        "o1-2024",
+        "claude-code-2025",
+        "claude4-2025"
+      ],
+      "domain": "anthropic.com",
+      "website": "https://www.anthropic.com/news/claude-3-7-sonnet",
+      "company": "Anthropic",
+      "productCategory": "推理模型"
+    },
+    {
       "id": "claude-code-2025",
       "date": "2025.02",
       "sortDate": "2025-02",
@@ -2148,7 +2935,11 @@
       "related": [
         "cursor-2023",
         "devin-2024",
-        "opencode-2026"
+        "opencode-2026",
+        "claude-37-sonnet-2025",
+        "claude4-2025",
+        "claude-fable-5-2026",
+        "claude-sonnet-5-2026"
       ],
       "domain": "anthropic.com",
       "website": "https://www.anthropic.com/claude-code",
@@ -2186,6 +2977,37 @@
       "website": "https://openai.github.io/openai-agents-python/",
       "company": "OpenAI",
       "productCategory": "Agent 框架"
+    },
+    {
+      "id": "gpt4o-image-2025",
+      "date": "2025.03",
+      "sortDate": "2025-03",
+      "eraId": "agentic-ai",
+      "title": "4o Image Generation 让图像生成成为多模态对话能力",
+      "shortTitle": "4o 图像生成",
+      "type": "model",
+      "importance": "core",
+      "icon": "Images",
+      "keywords": [
+        "GPT-4o Image",
+        "4o Image Generation",
+        "Image Editing",
+        "Multimodal",
+        "OpenAI"
+      ],
+      "hoverSummary": "图像生成深度嵌入多模态模型，文本渲染、图像编辑和上下文理解能力明显提升。",
+      "summary": "4o image generation 将图像生成和编辑能力整合进 ChatGPT 与 Sora，强化多轮编辑、文本渲染和指令遵循。",
+      "analogy": "像一个能看着参考图和聊天记录持续改图的设计助理，而不是每次重新盲画。",
+      "detailMd": "### 它是什么？\n4o image generation 是 OpenAI 基于 GPT-4o 的原生多模态图像生成能力。\n\n### 为什么重要？\n它让图像生成和语言理解更紧密地结合，适合海报、示意图、产品图和多轮修改。\n\n### 初学者怎么理解？\n以前文生图像一次性出图，现在更像在聊天中一步步修改设计。",
+      "related": [
+        "gpt4o-2024",
+        "dall-e-3-2023",
+        "figma-make-2025"
+      ],
+      "domain": "openai.com",
+      "website": "https://openai.com/index/introducing-4o-image-generation/",
+      "company": "OpenAI",
+      "productCategory": "图像生成"
     },
     {
       "id": "manus-2025",
@@ -2306,12 +3128,107 @@
       "related": [
         "agents-sdk-2025",
         "claude-code-2025",
-        "github-copilot-2021"
+        "github-copilot-2021",
+        "gpt5-5-2026"
       ],
       "domain": "openai.com",
       "website": "https://openai.com/",
       "productCategory": "AI 编程 Agent",
       "company": "OpenAI"
+    },
+    {
+      "id": "qwen3-2025",
+      "date": "2025.04",
+      "sortDate": "2025-04",
+      "eraId": "agentic-ai",
+      "title": "Qwen3 发布并强化混合推理与开源生态",
+      "shortTitle": "Qwen3",
+      "type": "model",
+      "importance": "core",
+      "icon": "Cloud",
+      "keywords": [
+        "Qwen3",
+        "通义千问",
+        "Open Model",
+        "MoE",
+        "国产 AI"
+      ],
+      "hoverSummary": "阿里开源模型家族进入新阶段，覆盖密集模型、MoE、推理和多语言能力。",
+      "summary": "Qwen3 是阿里发布的新一代开源大模型系列，强调混合推理、MoE 和多语言能力。",
+      "analogy": "像给开发者提供一整套不同尺寸的国产模型积木，可以按设备和任务选择。",
+      "detailMd": "### 它是什么？\nQwen3 是阿里通义千问系列的新一代开源模型家族。\n\n### 为什么重要？\n它推动国产开放模型生态继续扩大，并让开发者更容易在不同场景部署模型。\n\n### 初学者怎么理解？\n模型家族越完整，越适合从手机端、小工具到企业服务的多种应用。",
+      "related": [
+        "qwen-2023",
+        "llama3-2024",
+        "deepseek-r1-2025"
+      ],
+      "domain": "alibabacloud.com",
+      "website": "https://www.alibabacloud.com/en/press-room/alibaba-introduces-qwen3-setting-new-benchmark",
+      "company": "阿里巴巴 / 阿里云",
+      "productCategory": "国产开源模型",
+      "origin": "CN"
+    },
+    {
+      "id": "claude4-2025",
+      "date": "2025.05",
+      "sortDate": "2025-05",
+      "eraId": "agentic-ai",
+      "title": "Claude 4 强化编码、推理和 Agent 能力",
+      "shortTitle": "Claude 4",
+      "type": "model",
+      "importance": "core",
+      "icon": "BrainCircuit",
+      "keywords": [
+        "Claude 4",
+        "Opus 4",
+        "Sonnet 4",
+        "Coding Agent",
+        "AI Agent"
+      ],
+      "hoverSummary": "Claude 模型进入更强的 Agentic Coding 阶段，复杂软件工程和长任务能力显著增强。",
+      "summary": "Claude 4 包含 Opus 4 和 Sonnet 4，重点提升编码、推理和 AI Agent 能力。",
+      "analogy": "像从会帮你写代码的助手，升级成能连续处理复杂工程任务的开发搭档。",
+      "detailMd": "### 它是什么？\nClaude 4 是 Anthropic 发布的模型家族，包括 Claude Opus 4 和 Claude Sonnet 4。\n\n### 为什么重要？\n它标志着模型竞争重点从聊天和单题能力继续转向软件工程、工具使用和长任务执行。\n\n### 初学者怎么理解？\n大模型开始越来越像会干活的工程助理，而不只是回答问题的聊天框。",
+      "related": [
+        "claude-37-sonnet-2025",
+        "claude-code-2025",
+        "claude-fable-5-2026"
+      ],
+      "domain": "anthropic.com",
+      "website": "https://www.anthropic.com/news/claude-4",
+      "company": "Anthropic",
+      "productCategory": "大语言模型"
+    },
+    {
+      "id": "figma-make-2025",
+      "date": "2025.05",
+      "sortDate": "2025-05",
+      "eraId": "agentic-ai",
+      "title": "Figma Make 把设计转成交互原型和代码",
+      "shortTitle": "Figma Make",
+      "type": "product",
+      "importance": "core",
+      "icon": "PenTool",
+      "keywords": [
+        "Figma Make",
+        "AI Design",
+        "Prompt-to-Code",
+        "Prototype",
+        "AI Product"
+      ],
+      "hoverSummary": "设计工具开始从静态画布走向可运行原型，设计和前端开发之间的距离缩短。",
+      "summary": "Figma Make 是 Figma 的 AI 工具，可通过提示词和设计上下文生成可测试、可编辑的交互原型。",
+      "analogy": "像在 Figma 里多了一个前端原型师，你改设计，它帮你变成能点击的页面。",
+      "detailMd": "### 它是什么？\nFigma Make 是 Figma 面向 prompt-to-app / prompt-to-prototype 的 AI 功能。\n\n### 为什么重要？\n它让 UI 设计、产品原型和代码实现之间的边界变得更模糊。\n\n### 初学者怎么理解？\n以前设计稿需要交给开发实现；现在设计工具本身开始能生成可运行原型。",
+      "related": [
+        "canva-magic-studio-2023",
+        "v0-2023",
+        "opendesign-2026"
+      ],
+      "domain": "figma.com",
+      "website": "https://www.figma.com/blog/introducing-figma-make/",
+      "company": "Figma",
+      "productCategory": "AI 设计"
     },
     {
       "id": "vibe-coding-2025",
@@ -2336,8 +3253,43 @@
       "detailMd": "### 它是什么？\nVibe Coding 是一种偏口语化的开发方式，强调用自然语言驱动 AI 写代码和迭代原型。\n\n### 为什么重要？\n它降低了从想法到可运行原型的门槛，也改变了设计师、产品经理和独立开发者的工作方式。\n\n### 初学者怎么理解？\n它不是完全不用懂代码，而是把大量敲代码工作变成描述、审查、调试和迭代。",
       "related": [
         "agents-sdk-2025",
-        "agentic-ai-2025"
+        "agentic-ai-2025",
+        "lovable-2024",
+        "v0-2023",
+        "figma-make-2025"
       ]
+    },
+    {
+      "id": "fable-showrunner-2025",
+      "date": "2025.07",
+      "sortDate": "2025-07",
+      "eraId": "agentic-ai",
+      "title": "Fable Showrunner 探索 AI 生成互动剧集",
+      "shortTitle": "Fable Showrunner",
+      "type": "product",
+      "importance": "advanced",
+      "icon": "Clapperboard",
+      "keywords": [
+        "Fable",
+        "Showrunner",
+        "AI Video",
+        "Interactive Story",
+        "AI Entertainment"
+      ],
+      "hoverSummary": "AI 不只生成单个视频片段，而是开始尝试生成可观看、可改写、可互动的动画剧集。",
+      "summary": "Showrunner 是 Fable 推出的生成式娱乐平台，用户可以通过提示词创作动画场景和剧集。",
+      "analogy": "像一个可互动的动画片工厂：你写剧情，它生成角色、镜头和片段。",
+      "detailMd": "### 它是什么？\nShowrunner 是 Fable 面向 AI 生成动画剧集和互动娱乐的产品。\n\n### 为什么重要？\n它把生成式视频从短片段工具推进到“连续内容、角色、剧情和用户参与”的方向。\n\n### 初学者怎么理解？\n普通视频工具像生成一个镜头，Showrunner 更像尝试生成一集动画节目。",
+      "related": [
+        "pika-2023",
+        "sora-2024",
+        "runway-gen3-2024",
+        "veo-2024"
+      ],
+      "domain": "showrunner.xyz",
+      "website": "https://www.showrunner.xyz/",
+      "company": "Fable",
+      "productCategory": "AI 影视娱乐"
     },
     {
       "id": "gpt5-2025",
@@ -2362,7 +3314,8 @@
       "related": [
         "o1-2024",
         "deepseek-r1-2025",
-        "agentic-ai-2025"
+        "agentic-ai-2025",
+        "gpt5-5-2026"
       ],
       "domain": "openai.com",
       "website": "https://openai.com/",
@@ -2394,8 +3347,44 @@
         "mcp-2024",
         "function-calling-2023",
         "agents-sdk-2025",
-        "ai-skills-2026"
+        "ai-skills-2026",
+        "gpt5-5-2026",
+        "claude-fable-5-2026",
+        "claude-sonnet-5-2026",
+        "glm-5-2-2026",
+        "gemini3-5-flash-2026"
       ]
+    },
+    {
+      "id": "gemini3-1-pro-2026",
+      "date": "2026.02",
+      "sortDate": "2026-02",
+      "eraId": "agentic-ai",
+      "title": "Gemini 3.1 Pro 强化复杂任务与多模态推理",
+      "shortTitle": "Gemini 3.1 Pro",
+      "type": "model",
+      "importance": "core",
+      "icon": "Gem",
+      "keywords": [
+        "Gemini 3.1 Pro",
+        "Google",
+        "Multimodal",
+        "Reasoning",
+        "AI Agent"
+      ],
+      "hoverSummary": "Google 将更强的核心智能带入 Gemini API、Vertex AI、Gemini App 和 NotebookLM。",
+      "summary": "Gemini 3.1 Pro 是 Google 的多模态推理模型，面向复杂任务、长上下文和开发者应用。",
+      "analogy": "像 Google 生态里的高级大脑，可以连接搜索、文档、代码和多媒体信息。",
+      "detailMd": "### 它是什么？\nGemini 3.1 Pro 是 Google Gemini 3 系列的高能力模型。\n\n### 为什么重要？\n它强化了 Google 在多模态、长上下文和日常产品集成中的竞争力。\n\n### 初学者怎么理解？\nGemini 不只是聊天助手，也是 Google 搜索、云、开发工具和学习工具背后的模型底座。",
+      "related": [
+        "gemini-2023",
+        "notebooklm-audio-2024",
+        "gemini3-5-flash-2026"
+      ],
+      "domain": "blog.google",
+      "website": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/",
+      "company": "Google DeepMind",
+      "productCategory": "多模态模型"
     },
     {
       "id": "opencode-2026",
@@ -2453,8 +3442,42 @@
       "related": [
         "context-engineering-2025",
         "agents-sdk-2025",
-        "agentic-ai-2025"
+        "agentic-ai-2025",
+        "google-antigravity-2026",
+        "kimi-k2-6-2026"
       ]
+    },
+    {
+      "id": "gpt5-5-2026",
+      "date": "2026.04",
+      "sortDate": "2026-04",
+      "eraId": "agentic-ai",
+      "title": "GPT-5.5 强化复杂工作和工具使用",
+      "shortTitle": "GPT-5.5",
+      "type": "model",
+      "importance": "core",
+      "icon": "Sparkles",
+      "keywords": [
+        "GPT-5.5",
+        "OpenAI",
+        "Agentic Workflow",
+        "Coding",
+        "Professional Work"
+      ],
+      "hoverSummary": "OpenAI 进一步把模型能力推向复杂知识工作、编码、研究、文档和多工具协作。",
+      "summary": "GPT-5.5 是 OpenAI 面向复杂专业工作的模型，强调更强的编码、研究、工具使用和持续执行能力。",
+      "analogy": "像一个更耐心的高级助理，不只是回答一次，而是能跨工具把任务推进到结果。",
+      "detailMd": "### 它是什么？\nGPT-5.5 是 OpenAI 的前沿模型，面向复杂真实工作和专业任务。\n\n### 为什么重要？\n它体现了大模型竞争从回答质量继续转向长任务、工具使用、文档处理和工作流执行。\n\n### 初学者怎么理解？\nAI 不再只是给建议，而是越来越接近帮你完成一整段工作。",
+      "related": [
+        "gpt5-2025",
+        "openai-codex-2025",
+        "agentic-ai-2025",
+        "claude-fable-5-2026"
+      ],
+      "domain": "openai.com",
+      "website": "https://openai.com/index/introducing-gpt-5-5/",
+      "company": "OpenAI",
+      "productCategory": "大语言模型"
     },
     {
       "id": "opendesign-2026",
@@ -2489,6 +3512,197 @@
       "company": "nexu-io"
     },
     {
+      "id": "gemini3-5-flash-2026",
+      "date": "2026.05",
+      "sortDate": "2026-05",
+      "eraId": "agentic-ai",
+      "title": "Gemini 3.5 Flash 推动 Agentic Gemini 时代",
+      "shortTitle": "Gemini 3.5 Flash",
+      "type": "model",
+      "importance": "core",
+      "icon": "Zap",
+      "keywords": [
+        "Gemini 3.5",
+        "Gemini 3.5 Flash",
+        "Agentic AI",
+        "Google I/O",
+        "AI Agent"
+      ],
+      "hoverSummary": "Google 在 I/O 2026 强调从提示到行动，面向 Agent 和编码推出更快的前沿模型。",
+      "summary": "Gemini 3.5 Flash 是 Google 面向 Agent、编码和长任务的 Gemini 3.5 系列首个模型。",
+      "analogy": "像把强模型做成更快的执行引擎，让 Agent 可以更频繁地计划、调用工具和迭代。",
+      "detailMd": "### 它是什么？\nGemini 3.5 Flash 是 Google Gemini 3.5 系列的模型，强调速度、编码和 Agent 工作流。\n\n### 为什么重要？\n它显示模型竞争进入“智能 + 行动 + 速度”的阶段，适合需要多轮工具调用的 Agent 场景。\n\n### 初学者怎么理解？\nAgent 需要反复思考和行动，所以不仅要聪明，也要够快、够便宜。",
+      "related": [
+        "gemini3-1-pro-2026",
+        "agentic-ai-2025",
+        "google-antigravity-2026"
+      ],
+      "domain": "blog.google",
+      "website": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+      "company": "Google DeepMind",
+      "productCategory": "Agent 模型"
+    },
+    {
+      "id": "google-antigravity-2026",
+      "date": "2026.05",
+      "sortDate": "2026-05",
+      "eraId": "agentic-ai",
+      "title": "Google Antigravity 强化 Agent-first 开发平台",
+      "shortTitle": "Google Antigravity",
+      "type": "product",
+      "importance": "advanced",
+      "icon": "Workflow",
+      "keywords": [
+        "Google Antigravity",
+        "Agent Platform",
+        "Gemini CLI",
+        "AI Coding",
+        "AI Agent"
+      ],
+      "hoverSummary": "Google 将开发工具从辅助编码推进到 Agent-first 平台，强调编排、构建和运行智能体。",
+      "summary": "Google Antigravity 是面向开发者的 Agent-first 平台，用于构建、编排和运行 AI Agent 工作流。",
+      "analogy": "像一个专门管理 AI 开发助理的工作台，让模型不只是回答代码问题，而是参与构建流程。",
+      "detailMd": "### 它是什么？\nGoogle Antigravity 是 Google 面向开发者和 Agent 工作流的平台方向。\n\n### 为什么重要？\n它说明大型科技公司正在把开发工具重构为 Agent-first 体验。\n\n### 初学者怎么理解？\nAI 编程工具不只是 IDE 插件，正在变成一套能创建和管理 Agent 的平台。",
+      "related": [
+        "gemini3-5-flash-2026",
+        "agents-sdk-2025",
+        "opencode-2026"
+      ],
+      "domain": "developers.googleblog.com",
+      "website": "https://developers.googleblog.com/all-the-news-from-the-google-io-2026-developer-keynote/",
+      "company": "Google",
+      "productCategory": "Agent 开发平台"
+    },
+    {
+      "id": "claude-fable-5-2026",
+      "date": "2026.06",
+      "sortDate": "2026-06",
+      "eraId": "agentic-ai",
+      "title": "Claude Fable 5 面向长周期 Agent 和高难编码",
+      "shortTitle": "Claude Fable 5",
+      "type": "model",
+      "importance": "core",
+      "icon": "BrainCircuit",
+      "keywords": [
+        "Claude Fable 5",
+        "Anthropic",
+        "Long-running Agent",
+        "Coding",
+        "Agentic AI"
+      ],
+      "hoverSummary": "Anthropic 发布面向长周期、自主性和复杂工程任务的高能力模型，Fable 成为 2026 年关键节点。",
+      "summary": "Claude Fable 5 是 Anthropic 面向长时间运行 Agent、复杂编码和企业工作流的高能力模型。",
+      "analogy": "像一个能接大项目的资深工程助理，可以规划阶段、调用工具、检查结果并持续推进。",
+      "detailMd": "### 它是什么？\nClaude Fable 5 是 Anthropic 面向高难任务和长周期 Agent 的模型。\n\n### 为什么重要？\n它把模型能力进一步推向多天级任务、复杂工程迁移、视觉检查和企业工作流。\n\n### 初学者怎么理解？\n普通模型适合一次问答；Fable 这类模型更适合“把一个大任务交给它慢慢做”。",
+      "related": [
+        "claude4-2025",
+        "claude-code-2025",
+        "gpt5-5-2026",
+        "agentic-ai-2025"
+      ],
+      "domain": "anthropic.com",
+      "website": "https://www.anthropic.com/claude/fable",
+      "company": "Anthropic",
+      "productCategory": "长周期 Agent 模型"
+    },
+    {
+      "id": "claude-sonnet-5-2026",
+      "date": "2026.06",
+      "sortDate": "2026-06",
+      "eraId": "agentic-ai",
+      "title": "Claude Sonnet 5 让 Agent 能力进入日常可用层",
+      "shortTitle": "Claude Sonnet 5",
+      "type": "model",
+      "importance": "core",
+      "icon": "Bot",
+      "keywords": [
+        "Claude Sonnet 5",
+        "Anthropic",
+        "Agentic AI",
+        "Coding",
+        "Tool Use"
+      ],
+      "hoverSummary": "更强的 Agentic Sonnet 成为默认模型之一，把浏览器、终端和计划能力带给更广泛用户。",
+      "summary": "Claude Sonnet 5 是 Anthropic 面向日常工作、编码和 Agent 任务的模型，强调更可负担的自主执行能力。",
+      "analogy": "像把高级 Agent 能力下放到日常助手，让更多任务可以交给 AI 规划和执行。",
+      "detailMd": "### 它是什么？\nClaude Sonnet 5 是 Anthropic 的高性价比 Agentic 模型。\n\n### 为什么重要？\n它说明 Agent 能力开始从旗舰模型下沉到更普及的产品层级。\n\n### 初学者怎么理解？\nFable 更像高端专家，Sonnet 5 更像每天都能用的工作助理。",
+      "related": [
+        "claude-fable-5-2026",
+        "claude-code-2025",
+        "agentic-ai-2025"
+      ],
+      "domain": "anthropic.com",
+      "website": "https://www.anthropic.com/news/claude-sonnet-5",
+      "company": "Anthropic",
+      "productCategory": "Agent 模型"
+    },
+    {
+      "id": "glm-5-2-2026",
+      "date": "2026.06",
+      "sortDate": "2026-06",
+      "eraId": "agentic-ai",
+      "title": "Z.ai GLM-5.2 聚焦长上下文和 Agentic Coding",
+      "shortTitle": "GLM-5.2",
+      "type": "model",
+      "importance": "core",
+      "icon": "Boxes",
+      "keywords": [
+        "GLM-5.2",
+        "Z.ai",
+        "智谱",
+        "国产 AI",
+        "Coding Agent",
+        "Open Model"
+      ],
+      "hoverSummary": "国产开放模型在长上下文、编码 Agent 和复杂工程任务上继续追赶前沿模型。",
+      "summary": "GLM-5.2 是 Z.ai 发布的长周期任务模型，强调 1M 上下文、Coding Agent 和开源能力。",
+      "analogy": "像给编程 Agent 准备了超长记忆和更稳的执行力，让它能看完整个大项目。",
+      "detailMd": "### 它是什么？\nGLM-5.2 是 Z.ai 的旗舰模型，面向长上下文和长周期 Coding Agent 场景。\n\n### 为什么重要？\n它代表国产模型从聊天助手继续走向复杂工程、长任务和开放生态竞争。\n\n### 初学者怎么理解？\n上下文越长，模型越能同时看见大仓库、大文档和复杂任务背景。",
+      "related": [
+        "zcode-2026",
+        "zhipu-qingyan-2023",
+        "deepseek-r1-2025",
+        "qwen3-2025"
+      ],
+      "domain": "z.ai",
+      "website": "https://z.ai/blog/glm-5.2",
+      "company": "Z.ai / 智谱",
+      "productCategory": "国产开放模型",
+      "origin": "CN"
+    },
+    {
+      "id": "kimi-k2-6-2026",
+      "date": "2026",
+      "sortDate": "2026-06",
+      "eraId": "agentic-ai",
+      "title": "Kimi K2.6 强调多模态、Coding 和 Agent Swarm",
+      "shortTitle": "Kimi K2.6",
+      "type": "model",
+      "importance": "advanced",
+      "icon": "Moon",
+      "keywords": [
+        "Kimi K2.6",
+        "Moonshot AI",
+        "Long Context",
+        "Agent Swarm",
+        "国产 AI"
+      ],
+      "hoverSummary": "Kimi 从长上下文助手继续走向多模态、编程和多 Agent 协作。",
+      "summary": "Kimi K2.6 是月之暗面展示的新一代模型能力方向，强调多模态、Coding 和 Agent performance。",
+      "analogy": "像一个内存很大的中文研究助理，开始能组织多个子任务一起完成复杂工作。",
+      "detailMd": "### 它是什么？\nKimi K2.6 是 Moonshot AI / Kimi 产品线中的新模型能力节点。\n\n### 为什么重要？\n它体现了中文 AI 助手从长文阅读继续向 Agent、编程和多模态任务扩展。\n\n### 初学者怎么理解？\nKimi 早期靠长上下文出圈，后续重点是把“能读长资料”变成“能做复杂任务”。",
+      "related": [
+        "kimi-2023",
+        "context-engineering-2025",
+        "deepseek-r1-2025"
+      ],
+      "domain": "moonshot.ai",
+      "website": "https://www.moonshot.ai/",
+      "company": "Moonshot AI / 月之暗面",
+      "productCategory": "国产 AI 助手",
+      "origin": "CN"
+    },
+    {
       "id": "zcode-2026",
       "date": "2026.07",
       "sortDate": "2026-07",
@@ -2514,7 +3728,8 @@
       "related": [
         "zhipu-qingyan-2023",
         "trae-2025",
-        "opencode-2026"
+        "opencode-2026",
+        "glm-5-2-2026"
       ],
       "domain": "z.ai",
       "website": "https://z.ai/",
@@ -2537,7 +3752,15 @@
         "gpt1-2018",
         "gpt3-2020",
         "chatgpt-2022",
-        "gpt4-2023"
+        "gpt4-2023",
+        "mistral-mixtral-2023",
+        "llama3-2024",
+        "deepseek-v3-2024",
+        "qwen3-2025",
+        "gpt5-5-2026",
+        "claude-fable-5-2026",
+        "glm-5-2-2026",
+        "gemini3-1-pro-2026"
       ]
     },
     {
@@ -2565,7 +3788,10 @@
         "chain-of-thought-2022",
         "chatgpt-2022",
         "context-engineering-2025",
-        "vibe-coding-2025"
+        "vibe-coding-2025",
+        "v0-2023",
+        "lovable-2024",
+        "figma-make-2025"
       ]
     },
     {
@@ -2649,7 +3875,8 @@
       "summary": "先查资料再回答，像给 AI 配了一个资料库。",
       "relatedNodes": [
         "rag-2020",
-        "context-engineering-2025"
+        "context-engineering-2025",
+        "notebooklm-audio-2024"
       ]
     },
     {
@@ -2676,7 +3903,12 @@
         "function-calling-2023",
         "computer-use-2024",
         "mcp-2024",
-        "agents-sdk-2025"
+        "agents-sdk-2025",
+        "claude-fable-5-2026",
+        "claude-sonnet-5-2026",
+        "glm-5-2-2026",
+        "google-antigravity-2026",
+        "kimi-k2-6-2026"
       ]
     },
     {
@@ -2687,7 +3919,11 @@
       "icon": "Workflow",
       "category": "智能体",
       "summary": "把 AI 的思考、工具、检查和交接组织成完整流程。",
-      "relatedNodes": []
+      "relatedNodes": [
+        "gpt5-5-2026",
+        "claude-fable-5-2026",
+        "google-antigravity-2026"
+      ]
     },
     {
       "id": "skill",
@@ -2716,7 +3952,10 @@
         "function-calling-2023",
         "computer-use-2024",
         "mcp-2024",
-        "agents-sdk-2025"
+        "agents-sdk-2025",
+        "gpt5-5-2026",
+        "claude-fable-5-2026",
+        "google-antigravity-2026"
       ]
     },
     {
@@ -2740,7 +3979,9 @@
       "category": "智能体",
       "summary": "像给 AI 和外部工具之间制定统一插头标准。",
       "relatedNodes": [
-        "mcp-2024"
+        "mcp-2024",
+        "figma-make-2025",
+        "google-antigravity-2026"
       ]
     },
     {
@@ -2766,7 +4007,10 @@
       "summary": "模型一次能读更多文档、代码或聊天历史。",
       "relatedNodes": [
         "kimi-2023",
-        "context-engineering-2025"
+        "context-engineering-2025",
+        "glm-5-2-2026",
+        "kimi-k2-6-2026",
+        "gemini3-1-pro-2026"
       ]
     },
     {
@@ -2781,7 +4025,12 @@
         "dalle-2021",
         "gpt4-2023",
         "gpt4o-2024",
-        "gpt5-2025"
+        "gpt5-2025",
+        "claude3-2024",
+        "gemini3-1-pro-2026",
+        "kimi-k2-6-2026",
+        "veo-2024",
+        "gpt4o-image-2025"
       ]
     },
     {
@@ -2794,7 +4043,10 @@
       "summary": "从噪声一步步去噪生成图片，是文生图的重要路线。",
       "relatedNodes": [
         "ddpm-2020",
-        "stable-diffusion-2022"
+        "stable-diffusion-2022",
+        "flux-2024",
+        "ideogram-2023",
+        "dall-e-3-2023"
       ]
     },
     {
@@ -2863,7 +4115,12 @@
       "icon": "Boxes",
       "category": "模型",
       "summary": "把模型分成多个专家，按任务选择部分专家工作。",
-      "relatedNodes": []
+      "relatedNodes": [
+        "mistral-mixtral-2023",
+        "deepseek-v3-2024",
+        "qwen3-2025",
+        "glm-5-2-2026"
+      ]
     },
     {
       "id": "reasoning-model",
@@ -2875,7 +4132,12 @@
       "summary": "更擅长数学、代码、规划等需要多步推理的问题。",
       "relatedNodes": [
         "o1-2024",
-        "deepseek-r1-2025"
+        "deepseek-r1-2025",
+        "claude-37-sonnet-2025",
+        "claude4-2025",
+        "gpt5-5-2026",
+        "gemini3-1-pro-2026",
+        "claude-fable-5-2026"
       ]
     },
     {
@@ -2991,7 +4253,10 @@
       "category": "开发",
       "summary": "能理解项目、修改文件、运行测试的编程智能体。",
       "relatedNodes": [
-        "vibe-coding-2025"
+        "vibe-coding-2025",
+        "cline-2024",
+        "claude-code-2025",
+        "glm-5-2-2026"
       ]
     },
     {
@@ -3003,7 +4268,11 @@
       "category": "开发",
       "summary": "用自然语言驱动 AI 写代码和改原型。",
       "relatedNodes": [
-        "vibe-coding-2025"
+        "vibe-coding-2025",
+        "v0-2023",
+        "lovable-2024",
+        "figma-make-2025",
+        "glm-5-2-2026"
       ]
     },
     {
@@ -3017,7 +4286,15 @@
       "relatedNodes": [
         "chatgpt-2022",
         "doubao-2023",
-        "cursor-2023"
+        "cursor-2023",
+        "v0-2023",
+        "suno-2023",
+        "elevenlabs-2023",
+        "pika-2023",
+        "lovable-2024",
+        "figma-make-2025",
+        "dall-e-3-2023",
+        "gpt4o-image-2025"
       ]
     },
     {
@@ -3031,7 +4308,12 @@
       "relatedNodes": [
         "devin-2024",
         "claude-code-2025",
-        "opencode-2026"
+        "opencode-2026",
+        "cline-2024",
+        "claude4-2025",
+        "gpt5-5-2026",
+        "glm-5-2-2026",
+        "google-antigravity-2026"
       ]
     },
     {
@@ -3044,7 +4326,11 @@
       "summary": "把需求、参考、设计系统和视觉交付串起来的设计智能体。",
       "relatedNodes": [
         "opendesign-2026",
-        "canva-magic-studio-2023"
+        "canva-magic-studio-2023",
+        "figma-make-2025",
+        "v0-2023",
+        "lovable-2024",
+        "gpt4o-image-2025"
       ]
     },
     {
@@ -3058,7 +4344,9 @@
       "relatedNodes": [
         "perplexity-2022",
         "kimi-2023",
-        "yuanbao-2024"
+        "yuanbao-2024",
+        "notebooklm-audio-2024",
+        "gemini3-1-pro-2026"
       ]
     },
     {
@@ -3073,7 +4361,12 @@
         "sora-2024",
         "kling-2024",
         "hailuo-2024",
-        "vidu-2024"
+        "vidu-2024",
+        "pika-2023",
+        "runway-gen3-2024",
+        "luma-dream-machine-2024",
+        "veo-2024",
+        "fable-showrunner-2025"
       ]
     },
     {
@@ -3088,7 +4381,11 @@
         "ernie-bot-2023",
         "doubao-2023",
         "deepseek-r1-2025",
-        "trae-2025"
+        "trae-2025",
+        "qwen3-2025",
+        "deepseek-v3-2024",
+        "glm-5-2-2026",
+        "kimi-k2-6-2026"
       ]
     },
     {
@@ -3102,7 +4399,221 @@
       "relatedNodes": [
         "cursor-2023",
         "windsurf-2024",
-        "trae-2025"
+        "trae-2025",
+        "cline-2024",
+        "v0-2023",
+        "lovable-2024",
+        "google-antigravity-2026"
+      ]
+    },
+    {
+      "id": "open-weight",
+      "name": "Open Weight",
+      "fullName": "Open Weight Model",
+      "firstAppeared": "2023",
+      "icon": "Box",
+      "category": "模型",
+      "summary": "开放权重模型允许开发者下载、部署和微调，是开源 AI 生态的重要基础。",
+      "relatedNodes": [
+        "llama-2023",
+        "mistral-mixtral-2023",
+        "llama3-2024",
+        "deepseek-v3-2024",
+        "qwen3-2025",
+        "glm-5-2-2026"
+      ]
+    },
+    {
+      "id": "ai-video",
+      "name": "AI Video",
+      "fullName": "AI Video Generation",
+      "firstAppeared": "2023",
+      "icon": "Video",
+      "category": "视频",
+      "summary": "用文字、图片或视频生成动态镜头，核心难点是运动、连续性和主体一致性。",
+      "relatedNodes": [
+        "runway-gen2-2023",
+        "pika-2023",
+        "sora-2024",
+        "runway-gen3-2024",
+        "luma-dream-machine-2024",
+        "veo-2024",
+        "kling-2024",
+        "hailuo-2024",
+        "vidu-2024"
+      ]
+    },
+    {
+      "id": "image-to-video",
+      "name": "Image-to-Video",
+      "fullName": "Image-to-Video",
+      "firstAppeared": "2024",
+      "icon": "Film",
+      "category": "视频",
+      "summary": "把静态图片变成动态视频，常用于产品展示、角色动画和创意短片。",
+      "relatedNodes": [
+        "pika-2023",
+        "luma-dream-machine-2024",
+        "kling-2024",
+        "hailuo-2024"
+      ]
+    },
+    {
+      "id": "ai-music",
+      "name": "AI Music",
+      "fullName": "AI Music Generation",
+      "firstAppeared": "2023",
+      "icon": "Music",
+      "category": "音频",
+      "summary": "根据文本或音频提示生成歌曲、旋律、人声和编曲。",
+      "relatedNodes": [
+        "suno-2023",
+        "udio-2024"
+      ]
+    },
+    {
+      "id": "voice-ai",
+      "name": "Voice AI",
+      "fullName": "Voice AI",
+      "firstAppeared": "2022",
+      "icon": "Mic2",
+      "category": "音频",
+      "summary": "语音识别、语音合成、声音克隆和语音 Agent 共同构成的 AI 声音能力。",
+      "relatedNodes": [
+        "whisper-2022",
+        "elevenlabs-2023",
+        "gpt4o-2024"
+      ]
+    },
+    {
+      "id": "generative-ui",
+      "name": "Generative UI",
+      "fullName": "Generative User Interface",
+      "firstAppeared": "2023",
+      "icon": "AppWindow",
+      "category": "开发",
+      "summary": "用自然语言生成网页界面、组件和可交互原型。",
+      "relatedNodes": [
+        "v0-2023",
+        "figma-make-2025",
+        "lovable-2024"
+      ]
+    },
+    {
+      "id": "ai-app-builder",
+      "name": "AI App Builder",
+      "fullName": "AI App Builder",
+      "firstAppeared": "2023",
+      "icon": "Rocket",
+      "category": "开发",
+      "summary": "通过聊天或提示词生成应用、后端、数据库和部署流程。",
+      "relatedNodes": [
+        "v0-2023",
+        "bolt-new-2024",
+        "replit-agent-2024",
+        "lovable-2024",
+        "figma-make-2025"
+      ]
+    },
+    {
+      "id": "prompt-to-app",
+      "name": "Prompt-to-App",
+      "fullName": "Prompt-to-App",
+      "firstAppeared": "2024",
+      "icon": "WandSparkles",
+      "category": "开发",
+      "summary": "从一句需求直接生成可运行应用，是 Vibe Coding 的产品化形态。",
+      "relatedNodes": [
+        "lovable-2024",
+        "bolt-new-2024",
+        "replit-agent-2024",
+        "figma-make-2025"
+      ]
+    },
+    {
+      "id": "long-horizon-agent",
+      "name": "Long-Horizon Agent",
+      "fullName": "Long-Horizon Agent",
+      "firstAppeared": "2025",
+      "icon": "Workflow",
+      "category": "智能体",
+      "summary": "能持续数小时甚至数天推进复杂任务的 Agent，强调规划、记忆、验证和工具使用。",
+      "relatedNodes": [
+        "claude4-2025",
+        "claude-fable-5-2026",
+        "gpt5-5-2026",
+        "glm-5-2-2026"
+      ]
+    },
+    {
+      "id": "hybrid-reasoning",
+      "name": "Hybrid Reasoning",
+      "fullName": "Hybrid Reasoning",
+      "firstAppeared": "2025",
+      "icon": "BrainCircuit",
+      "category": "推理",
+      "summary": "模型可以在快速回答和深度推理之间切换，兼顾速度和复杂任务能力。",
+      "relatedNodes": [
+        "claude-37-sonnet-2025",
+        "claude4-2025",
+        "gemini3-1-pro-2026"
+      ]
+    },
+    {
+      "id": "agent-swarm",
+      "name": "Agent Swarm",
+      "fullName": "Agent Swarm",
+      "firstAppeared": "2026",
+      "icon": "Boxes",
+      "category": "智能体",
+      "summary": "多个子 Agent 分工协作处理复杂任务，适合研究、开发和多步骤工作流。",
+      "relatedNodes": [
+        "kimi-k2-6-2026",
+        "agents-sdk-2025",
+        "agentic-ai-2025"
+      ]
+    },
+    {
+      "id": "science-ai",
+      "name": "Science AI",
+      "fullName": "AI for Science",
+      "firstAppeared": "2020",
+      "icon": "Dna",
+      "category": "科学",
+      "summary": "AI 用于蛋白质结构、数学、药物发现、科研分析等科学问题。",
+      "relatedNodes": [
+        "alphafold2-2020",
+        "gpt5-5-2026",
+        "gemini3-1-pro-2026"
+      ]
+    },
+    {
+      "id": "interactive-ai-entertainment",
+      "name": "Interactive AI Entertainment",
+      "fullName": "Interactive AI Entertainment",
+      "firstAppeared": "2025",
+      "icon": "Clapperboard",
+      "category": "娱乐",
+      "summary": "用生成式 AI 创作可互动角色、剧情、场景和剧集。",
+      "relatedNodes": [
+        "fable-showrunner-2025",
+        "character-ai-2022",
+        "sora-2024"
+      ]
+    },
+    {
+      "id": "image-editing-ai",
+      "name": "Image Editing AI",
+      "fullName": "AI Image Editing",
+      "firstAppeared": "2025",
+      "icon": "Images",
+      "category": "图像",
+      "summary": "在对话中基于参考图、文字和上下文生成或修改图像。",
+      "relatedNodes": [
+        "dall-e-3-2023",
+        "gpt4o-image-2025",
+        "adobe-firefly-2023",
+        "figma-make-2025"
       ]
     }
   ]
