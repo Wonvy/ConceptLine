@@ -7726,6 +7726,7 @@
         moved: false,
         pointerId: null,
         startNodeId: null,
+        startButton: 0,
         startX: 0,
         startY: 0,
         startScrollLeft: 0,
@@ -7733,12 +7734,16 @@
       };
 
       timelineScroll.addEventListener('pointerdown', event => {
-        if (event.button !== 0 || state.layoutMode !== 'bottom') return;
+        const isPrimaryDrag = event.button === 0;
+        const isMiddleSpiralDrag = event.button === 1 && state.timelineMode === 'spiral';
+        if ((!isPrimaryDrag && !isMiddleSpiralDrag) || state.layoutMode !== 'bottom') return;
+        if (isMiddleSpiralDrag) event.preventDefault();
         const nodeButton = event.target.closest('[data-node]');
         timelineDrag.active = true;
         timelineDrag.moved = false;
         timelineDrag.pointerId = event.pointerId;
         timelineDrag.startNodeId = nodeButton ? nodeButton.getAttribute('data-node') : null;
+        timelineDrag.startButton = event.button;
         timelineDrag.startX = event.clientX;
         timelineDrag.startY = event.clientY;
         timelineDrag.startScrollLeft = timelineScroll.scrollLeft;
@@ -7763,7 +7768,7 @@
         if (!timelineDrag.active || event.pointerId !== timelineDrag.pointerId) return;
         const startNodeId = timelineDrag.startNodeId;
         const endNode = document.elementFromPoint(event.clientX, event.clientY)?.closest?.('[data-node]');
-        const shouldOpenNode = !timelineDrag.moved && startNodeId && endNode?.getAttribute('data-node') === startNodeId;
+        const shouldOpenNode = timelineDrag.startButton === 0 && !timelineDrag.moved && startNodeId && endNode?.getAttribute('data-node') === startNodeId;
         if (timelineScroll.hasPointerCapture(event.pointerId)) {
           timelineScroll.releasePointerCapture(event.pointerId);
         }
@@ -7772,6 +7777,7 @@
         timelineDrag.active = false;
         timelineDrag.pointerId = null;
         timelineDrag.startNodeId = null;
+        timelineDrag.startButton = 0;
         if (shouldOpenNode) {
           event.preventDefault();
           event.stopPropagation();
@@ -7787,6 +7793,11 @@
         timelineDrag.active = false;
         timelineDrag.pointerId = null;
         timelineDrag.startNodeId = null;
+        timelineDrag.startButton = 0;
+      });
+
+      timelineScroll.addEventListener('auxclick', event => {
+        if (state.timelineMode === 'spiral' && event.button === 1) event.preventDefault();
       });
 
       el.timelineResizeHandle.addEventListener('pointerdown', event => {
