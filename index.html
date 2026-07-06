@@ -1321,7 +1321,7 @@
 
     .timeline-node {
       position: relative;
-      z-index: 2;
+      z-index: 8;
       display: inline-grid;
       grid-template-columns: 10px auto;
       gap: 8px;
@@ -2235,6 +2235,77 @@
       filter: drop-shadow(0 10px 18px rgba(0,0,0,0.16));
     }
 
+    .spiral-rotate-control {
+      position: absolute;
+      top: 82px;
+      right: 22px;
+      z-index: 24;
+      display: none;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(var(--ink-rgb), 0.14);
+      border-radius: 12px;
+      background: rgba(var(--bg-rgb), 0.72);
+      color: var(--color-text);
+      box-shadow: rgba(0,0,0,0.12) 0 12px 28px;
+      backdrop-filter: blur(14px);
+      cursor: grab;
+      perspective: 140px;
+      touch-action: none;
+      transition: border 140ms ease, background 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+    }
+
+    body[data-timeline-mode="spiral"] .spiral-rotate-control {
+      display: grid;
+      place-items: center;
+    }
+
+    .spiral-rotate-control:hover,
+    .spiral-rotate-control:focus-visible,
+    .spiral-rotate-control.is-dragging {
+      border-color: rgba(245, 78, 0, 0.42);
+      background: rgba(var(--surface-rgb), 0.9);
+      box-shadow: rgba(245, 78, 0, 0.14) 0 0 0 4px, rgba(0,0,0,0.14) 0 16px 34px;
+    }
+
+    .spiral-rotate-control.is-dragging {
+      cursor: grabbing;
+      transform: scale(1.04);
+    }
+
+    .spiral-rotate-cube {
+      position: relative;
+      width: 22px;
+      height: 22px;
+      transform-style: preserve-3d;
+      transform: rotateX(var(--cube-rotate-x, -18deg)) rotateY(var(--cube-rotate-y, 28deg)) rotateZ(var(--cube-rotate-z, 0deg));
+      transition: transform 140ms ease;
+    }
+
+    .spiral-rotate-cube span {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(var(--ink-rgb), 0.24);
+      border-radius: 4px;
+      background: rgba(var(--surface-rgb), 0.7);
+    }
+
+    .spiral-rotate-cube span:nth-child(1) {
+      transform: translateZ(11px);
+      background: rgba(245, 78, 0, 0.26);
+      border-color: rgba(245, 78, 0, 0.46);
+    }
+
+    .spiral-rotate-cube span:nth-child(2) {
+      transform: rotateY(90deg) translateZ(11px);
+      background: rgba(var(--ink-rgb), 0.1);
+    }
+
+    .spiral-rotate-cube span:nth-child(3) {
+      transform: rotateX(90deg) translateZ(11px);
+      background: rgba(var(--ink-rgb), 0.08);
+    }
+
     .spiral-node {
       position: absolute;
       left: var(--x);
@@ -2303,6 +2374,7 @@
       position: absolute;
       left: 0;
       top: 18px;
+      bottom: auto;
       max-width: 130px;
       padding: 2px 5px;
       border-radius: 6px;
@@ -2321,7 +2393,13 @@
       transition: opacity 140ms ease, visibility 140ms ease, transform 140ms ease, color 140ms ease, background 140ms ease, box-shadow 140ms ease;
     }
 
-    .spiral-label.is-hidden {
+    .spiral-label.is-flipped {
+      top: auto;
+      bottom: 18px;
+    }
+
+    .spiral-label.is-hidden,
+    .spiral-label.is-collision-hidden {
       opacity: 0;
       visibility: hidden;
     }
@@ -2330,7 +2408,7 @@
       position: absolute;
       left: var(--x);
       top: var(--y);
-      z-index: 2;
+      z-index: 8;
       width: 1px;
       height: 1px;
       transform: translate(-50%, -50%) scale(var(--depth-scale, 1));
@@ -2339,7 +2417,7 @@
       font-size: 16px;
       font-weight: 300;
       line-height: 1;
-      opacity: var(--depth-opacity, 0.78);
+      opacity: 0.92;
       pointer-events: none;
       text-shadow: 0 8px 22px rgba(0,0,0,0.28);
       white-space: nowrap;
@@ -2353,8 +2431,9 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: rgba(var(--ink-rgb), 0.58);
-      box-shadow: 0 0 0 2px rgba(var(--bg-rgb), 0.86), 0 0 0 4px rgba(var(--ink-rgb), 0.08);
+      border: 1px solid rgba(var(--bg-rgb), 0.88);
+      background: var(--color-accent);
+      box-shadow: 0 0 0 2px rgba(245, 78, 0, 0.16), rgba(0,0,0,0.14) 0 3px 8px;
       transform: translate(-50%, -50%);
     }
 
@@ -2376,10 +2455,11 @@
       left: var(--year-text-x, 12px);
       top: var(--year-text-y, -10px);
       display: block;
-      transform: translate(var(--year-text-shift, 0), -50%);
+      transform: translate(-50%, -50%) rotate(var(--year-text-angle, 0deg));
+      transform-origin: center center;
       padding: 2px 4px;
       border-radius: 6px;
-      background: rgba(var(--bg-rgb), 0.62);
+      background: rgba(var(--bg-rgb), 0.38);
       backdrop-filter: blur(6px);
     }
 
@@ -2425,8 +2505,8 @@
       visibility: visible;
     }
 
-    body[data-timeline-mode="spiral"] .timeline-track:has(.spiral-node:hover) .spiral-node:not(:hover):not(.is-occluded) .spiral-label:not(.is-hidden),
-    body[data-timeline-mode="spiral"] .timeline-track:has(.spiral-node:focus-visible) .spiral-node:not(:focus-visible):not(.is-occluded) .spiral-label:not(.is-hidden) {
+    body[data-timeline-mode="spiral"] .timeline-track:has(.spiral-node:hover) .spiral-node:not(:hover):not(.is-occluded) .spiral-label:not(.is-hidden):not(.is-collision-hidden),
+    body[data-timeline-mode="spiral"] .timeline-track:has(.spiral-node:focus-visible) .spiral-node:not(:focus-visible):not(.is-occluded) .spiral-label:not(.is-hidden):not(.is-collision-hidden) {
       opacity: 0.28;
       visibility: visible;
     }
@@ -2442,7 +2522,14 @@
       transform: translateX(-50%) translateY(2px);
     }
 
+    .spiral-node:hover .spiral-label.is-flipped,
+    .spiral-node.is-active .spiral-label.is-flipped,
+    .spiral-node:focus-visible .spiral-label.is-flipped {
+      transform: translateX(-50%) translateY(-2px);
+    }
+
     body[data-timeline-mode="spiral"] .timeline-track.is-spiral-hovering .spiral-node:not(.is-hovered) .spiral-label.is-hidden,
+    body[data-timeline-mode="spiral"] .timeline-track.is-spiral-hovering .spiral-node:not(.is-hovered) .spiral-label.is-collision-hidden,
     body[data-timeline-mode="spiral"] .timeline-track.is-spiral-hovering .spiral-node.is-occluded .spiral-label {
       opacity: 0;
       visibility: hidden;
@@ -2987,6 +3074,11 @@
     <div class="timeline-scroll" id="timelineScroll">
       <div class="timeline-track" id="timelineTrack"></div>
     </div>
+    <button class="spiral-rotate-control" id="spiralRotateControl" type="button" aria-label="拖拽旋转螺旋轴" title="拖拽旋转螺旋轴">
+      <span class="spiral-rotate-cube" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
   </section>
 
   <div class="floating-tooltip" id="floatingTooltip" aria-hidden="true"></div>
@@ -6136,6 +6228,8 @@
       dockHeight: Number(localStorage.getItem('conceptline-dock-height') || 0),
       timelineOnly: localStorage.getItem('conceptline-timeline-only') === 'true',
       selectedYear: Number(localStorage.getItem('conceptline-selected-year') || new Date().getFullYear()),
+      spiralRotateX: Number(localStorage.getItem('conceptline-spiral-rotate-x') || '0'),
+      spiralRotateY: Number(localStorage.getItem('conceptline-spiral-rotate-y') || '0'),
       themeMode: localStorage.getItem('conceptline-theme') || 'system',
       tooltipTarget: null,
       activeNodeId: nodes.find(n => n.importance === 'core')?.id || nodes[0]?.id,
@@ -6161,6 +6255,7 @@
       timelineModeBtn: document.getElementById('timelineModeBtn'),
       timelineModeMenu: document.getElementById('timelineModeMenu'),
       timelineZoom: document.getElementById('timelineZoom'),
+      spiralRotateControl: document.getElementById('spiralRotateControl'),
       timelineResizeHandle: document.getElementById('timelineResizeHandle'),
       yearWheel: document.getElementById('yearWheel'),
       yearWheelPrev: document.getElementById('yearWheelPrev'),
@@ -7110,27 +7205,120 @@
       const outerRadius = 252 * dimensions.scale;
       const innerRadius = 36 * dimensions.scale;
       const yTilt = 0.46;
+      const zDepth = 0.72;
+      const rotX = state.spiralRotateX * Math.PI / 180;
+      const rotY = state.spiralRotateY * Math.PI / 180;
+      const cosX = Math.cos(rotX);
+      const sinX = Math.sin(rotX);
+      const cosY = Math.cos(rotY);
+      const sinY = Math.sin(rotY);
       const total = Math.max(1, nodes.length - 1);
-      const points = nodes.map((node, index) => {
-        const t = index / total;
+      const pointAt = t => {
         const angle = -Math.PI / 2 + t * turns * Math.PI * 2;
         const radius = innerRadius + (outerRadius - innerRadius) * t;
-        const depth = Math.sin(angle);
-        const perspective = 0.78 + ((depth + 1) / 2) * 0.34;
-        const x = cx + Math.cos(angle) * radius * perspective;
-        const y = cy + Math.sin(angle) * radius * yTilt * perspective;
-        const depthScale = 0.72 + ((depth + 1) / 2) * 0.5;
-        const depthOpacity = 0.42 + ((depth + 1) / 2) * 0.58;
-        return { node, x, y, depth, depthScale, depthOpacity };
+        const localX = Math.cos(angle) * radius;
+        const localY = Math.sin(angle) * radius * yTilt;
+        const localZ = Math.sin(angle) * radius * zDepth;
+        const x1 = localX;
+        const y1 = localY * cosX - localZ * sinX;
+        const z1 = localY * sinX + localZ * cosX;
+        const x2 = x1 * cosY + z1 * sinY;
+        const z2 = -x1 * sinY + z1 * cosY;
+        const perspective = clamp(1 + z2 / Math.max(1, outerRadius * 2.8), 0.66, 1.34);
+        const x = cx + x2 * perspective;
+        const y = cy + y1 * perspective;
+        const depth = clamp((z2 / Math.max(1, outerRadius * 0.95) + 1) / 2, 0, 1);
+        const depthScale = 0.72 + depth * 0.5;
+        const depthOpacity = 0.42 + depth * 0.58;
+        return { x, y, depth, depthScale, depthOpacity };
+      };
+      const points = nodes.map((node, index) => {
+        const t = index / total;
+        return { node, ...pointAt(t) };
       });
-      const orbitPath = smoothPath(points);
-      const labelDensity = dimensions.scale < 0.95 ? 6 : dimensions.scale < 1.18 ? 3 : 1;
+      const lastPoint = points[points.length - 1];
+      const previousPoint = points[Math.max(0, points.length - 2)];
+      const targetExtension = Math.hypot(lastPoint.x - previousPoint.x, lastPoint.y - previousPoint.y) * 0.5;
+      const futurePoints = [];
+      let walkedExtension = 0;
+      let cursor = lastPoint;
+      for (let step = 1; step <= 16 && walkedExtension < targetExtension; step += 1) {
+        const candidate = pointAt(1 + step * 0.006);
+        const segment = Math.hypot(candidate.x - cursor.x, candidate.y - cursor.y);
+        if (walkedExtension + segment >= targetExtension) {
+          const remainingRatio = clamp((targetExtension - walkedExtension) / Math.max(1, segment), 0, 1);
+          futurePoints.push({
+            x: cursor.x + (candidate.x - cursor.x) * remainingRatio,
+            y: cursor.y + (candidate.y - cursor.y) * remainingRatio,
+            depth: candidate.depth,
+            depthScale: candidate.depthScale,
+            depthOpacity: candidate.depthOpacity
+          });
+          break;
+        }
+        futurePoints.push(candidate);
+        walkedExtension += segment;
+        cursor = candidate;
+      }
+      const orbitPath = smoothPath([...points, ...futurePoints]);
+      const labelDensity = dimensions.scale < 0.82 ? 4 : 1;
+      const tangentAt = t => {
+        const delta = 0.004;
+        const before = pointAt(Math.max(0, t - delta));
+        const after = pointAt(Math.min(1.02, t + delta));
+        const dx = after.x - before.x;
+        const dy = after.y - before.y;
+        const length = Math.max(1, Math.hypot(dx, dy));
+        return { x: dx / length, y: dy / length };
+      };
+      const seenYears = new Set();
+      const placedYearLabels = [];
+      const yearLayouts = points.map(({ node }, index) => {
+        const year = String(node.sortDate || node.date || '').match(/^(\d{4})/)?.[1];
+        if (!year || seenYears.has(year)) return null;
+        seenYears.add(year);
+        const hasPreviousPoint = index > 0;
+        const yearT = hasPreviousPoint ? (index - 0.5) / total : Math.max(0, index / total - 0.015);
+        const yearPoint = pointAt(yearT);
+        const yearX = yearPoint.x;
+        const yearY = yearPoint.y;
+        const tangent = tangentAt(yearT);
+        let angleDeg = Math.atan2(tangent.y, tangent.x) * 180 / Math.PI;
+        if (angleDeg > 90) angleDeg -= 180;
+        if (angleDeg < -90) angleDeg += 180;
+        let normalX = -tangent.y;
+        let normalY = tangent.x;
+        const initialOutwardX = yearX - cx;
+        const initialOutwardY = yearY - cy;
+        if (normalX * initialOutwardX + normalY * initialOutwardY < 0) {
+          normalX *= -1;
+          normalY *= -1;
+        }
+        const baseOutwardOffset = 18 + Math.min(6, dimensions.scale * 1.6);
+        let textX = 0;
+        let textY = 0;
+        let labelCenterX = 0;
+        let labelCenterY = 0;
+        for (let lane = 0; lane < 5; lane += 1) {
+          const outwardOffset = baseOutwardOffset + lane * 8;
+          textX = normalX * outwardOffset;
+          textY = normalY * outwardOffset;
+          labelCenterX = yearX + textX;
+          labelCenterY = yearY + textY;
+          const overlapsYear = placedYearLabels.some(label => Math.abs(label.x - labelCenterX) < 46 && Math.abs(label.y - labelCenterY) < 24);
+          if (!overlapsYear) break;
+        }
+        const yearLabel = { x: labelCenterX, y: labelCenterY, w: 58, h: 26 };
+        placedYearLabels.push(yearLabel);
+        return { year, yearX, yearY, textX, textY, angleDeg, depthScale: yearPoint.depthScale, depthOpacity: yearPoint.depthOpacity, label: yearLabel };
+      }).filter(Boolean);
       const spiralNodes = points.map(({ node, x, y, depthScale, depthOpacity }, index) => {
         const era = eraMap[node.eraId];
         const hasLogo = node.domain || node.type === 'product';
         const dimmed = filteredSet.has(node.id) ? '' : 'is-dimmed';
         const active = node.id === state.activeNodeId ? 'is-active' : '';
-        const label = escapeHtml(node.shortTitle || node.keywords?.[0] || node.title);
+        const rawLabel = node.shortTitle || node.keywords?.[0] || node.title;
+        const label = escapeHtml(rawLabel);
         const hideLabel = labelDensity > 1 && index % labelDensity !== 0 && node.id !== state.activeNodeId;
         return `
           <button class="spiral-node ${hasLogo ? 'has-logo' : ''} ${active} ${dimmed}" data-node="${node.id}" style="--x:${x.toFixed(2)}px;--y:${y.toFixed(2)}px;--depth-scale:${depthScale.toFixed(3)};--depth-opacity:${depthOpacity.toFixed(3)};--node-color:${era?.color || '#f54e00'}" type="button" aria-label="${escapeHtml(node.title)}">
@@ -7140,17 +7328,9 @@
           </button>
         `;
       }).join('');
-      const seenYears = new Set();
-      const yearNodes = points.map(({ node, x, y, depthScale, depthOpacity, depth }, index) => {
-        const year = String(node.sortDate || node.date || '').match(/^(\d{4})/)?.[1];
-        if (!year || seenYears.has(year)) return '';
-        seenYears.add(year);
-        const textSide = x >= cx ? 1 : -1;
-        const textX = textSide * (12 + Math.min(5, dimensions.scale * 2));
-        const textY = depth > 0.35 ? -12 : 12;
-        const textShift = textSide > 0 ? '0' : '-100%';
-        return `<span class="spiral-year-node" style="--x:${x.toFixed(2)}px;--y:${y.toFixed(2)}px;--year-text-x:${textX.toFixed(2)}px;--year-text-y:${textY.toFixed(2)}px;--year-text-shift:${textShift};--depth-scale:${depthScale.toFixed(3)};--depth-opacity:${Math.max(0.72, depthOpacity).toFixed(3)}"><span class="spiral-year-text">${escapeHtml(year)}</span></span>`;
-      }).join('');
+      const yearNodes = yearLayouts.map(({ year, yearX, yearY, textX, textY, angleDeg, depthScale, depthOpacity }) => (
+        `<span class="spiral-year-node" style="--x:${yearX.toFixed(2)}px;--y:${yearY.toFixed(2)}px;--year-text-x:${textX.toFixed(2)}px;--year-text-y:${textY.toFixed(2)}px;--year-text-angle:${angleDeg.toFixed(2)}deg;--depth-scale:${depthScale.toFixed(3)};--depth-opacity:${Math.max(0.72, depthOpacity).toFixed(3)}"><span class="spiral-year-text">${escapeHtml(year)}</span></span>`
+      )).join('');
       return `
         <svg class="spiral-svg" viewBox="0 0 ${width} ${height}" aria-hidden="true">
           <path class="spiral-path" d="${orbitPath}" />
@@ -7158,6 +7338,53 @@
         ${yearNodes}
         ${spiralNodes}
       `;
+    }
+
+    function rectsOverlap(a, b, padding = 6) {
+      return !(a.right + padding < b.left
+        || a.left - padding > b.right
+        || a.bottom + padding < b.top
+        || a.top - padding > b.bottom);
+    }
+
+    function expandRect(rect, x = 0, y = x) {
+      return {
+        left: rect.left - x,
+        right: rect.right + x,
+        top: rect.top - y,
+        bottom: rect.bottom + y
+      };
+    }
+
+    function resolveSpiralYearCollisions() {
+      if (state.timelineMode !== 'spiral') return;
+      const yearRects = Array.from(el.timelineTrack.querySelectorAll('.spiral-year-text'))
+        .map(year => expandRect(year.getBoundingClientRect(), 8, 7));
+      if (!yearRects.length) return;
+      el.timelineTrack.querySelectorAll('.spiral-label.is-collision-hidden, .spiral-label.is-flipped').forEach(label => {
+        label.classList.remove('is-collision-hidden');
+        label.classList.remove('is-flipped');
+      });
+      const collidesWithYear = label => {
+        const labelRect = expandRect(label.getBoundingClientRect(), 5, 4);
+        return yearRects.some(yearRect => rectsOverlap(labelRect, yearRect, 0));
+      };
+      el.timelineTrack.querySelectorAll('.spiral-label:not(.is-hidden)').forEach(label => {
+        if (!collidesWithYear(label)) return;
+        label.classList.add('is-flipped');
+        if (collidesWithYear(label)) label.classList.add('is-collision-hidden');
+      });
+    }
+
+    function persistSpiralRotation() {
+      localStorage.setItem('conceptline-spiral-rotate-x', String(Math.round(state.spiralRotateX * 10) / 10));
+      localStorage.setItem('conceptline-spiral-rotate-y', String(Math.round(state.spiralRotateY * 10) / 10));
+    }
+
+    function updateSpiralRotateControl() {
+      if (!el.spiralRotateControl) return;
+      el.spiralRotateControl.style.setProperty('--cube-rotate-x', `${(-18 - state.spiralRotateX).toFixed(1)}deg`);
+      el.spiralRotateControl.style.setProperty('--cube-rotate-y', `${(28 + state.spiralRotateY).toFixed(1)}deg`);
     }
 
     function renderTimeline() {
@@ -7172,6 +7399,8 @@
         : state.timelineMode === 'spiral'
           ? renderSpiralTimeline(filteredSet)
           : renderCardTimeline(filteredSet);
+      updateSpiralRotateControl();
+      requestAnimationFrame(resolveSpiralYearCollisions);
     }
 
     function queueScrollActive() {
@@ -7673,6 +7902,24 @@
       let dockMagnificationFrame = 0;
       let dockMagnificationX = 0;
       let dockMagnificationItems = [];
+      let spiralRotateDrag = null;
+      let spiralRotateFrame = 0;
+
+      function scheduleSpiralRotationRender() {
+        if (spiralRotateFrame) return;
+        spiralRotateFrame = requestAnimationFrame(() => {
+          spiralRotateFrame = 0;
+          renderTimeline();
+        });
+      }
+
+      function releaseSpiralRotateCapture(event) {
+        try {
+          el.spiralRotateControl.releasePointerCapture?.(event.pointerId);
+        } catch (error) {
+          // Pointer capture may already be gone if the drag ended outside the app.
+        }
+      }
 
       el.timelineTrack.addEventListener('click', event => {
         const nodeButton = event.target.closest('[data-node]');
@@ -7737,6 +7984,55 @@
         });
       }
 
+      el.spiralRotateControl.addEventListener('pointerdown', event => {
+        if (state.timelineMode !== 'spiral' || event.button !== 0) return;
+        event.preventDefault();
+        event.stopPropagation();
+        spiralRotateDrag = {
+          startX: event.clientX,
+          startY: event.clientY,
+          rotateX: state.spiralRotateX,
+          rotateY: state.spiralRotateY
+        };
+        el.spiralRotateControl.classList.add('is-dragging');
+        el.spiralRotateControl.setPointerCapture?.(event.pointerId);
+      });
+
+      el.spiralRotateControl.addEventListener('dblclick', event => {
+        if (state.timelineMode !== 'spiral') return;
+        event.preventDefault();
+        state.spiralRotateX = 0;
+        state.spiralRotateY = 0;
+        persistSpiralRotation();
+        renderTimeline();
+      });
+
+      window.addEventListener('pointermove', event => {
+        if (!spiralRotateDrag) return;
+        event.preventDefault();
+        const deltaX = event.clientX - spiralRotateDrag.startX;
+        const deltaY = event.clientY - spiralRotateDrag.startY;
+        state.spiralRotateY = clamp(spiralRotateDrag.rotateY + deltaX * 0.28, -68, 68);
+        state.spiralRotateX = clamp(spiralRotateDrag.rotateX - deltaY * 0.28, -58, 58);
+        persistSpiralRotation();
+        updateSpiralRotateControl();
+        scheduleSpiralRotationRender();
+      });
+
+      window.addEventListener('pointerup', event => {
+        if (!spiralRotateDrag) return;
+        spiralRotateDrag = null;
+        el.spiralRotateControl.classList.remove('is-dragging');
+        releaseSpiralRotateCapture(event);
+      });
+
+      window.addEventListener('pointercancel', event => {
+        if (!spiralRotateDrag) return;
+        spiralRotateDrag = null;
+        el.spiralRotateControl.classList.remove('is-dragging');
+        releaseSpiralRotateCapture(event);
+      });
+
       function updateDockMagnification(event) {
         if (state.timelineMode !== 'scale' || timelineDrag.active) return;
         dockMagnificationX = event.clientX;
@@ -7749,13 +8045,6 @@
         el.timelineTrack.querySelectorAll('.spiral-node.is-hovered, .spiral-node.is-occluded').forEach(node => {
           node.classList.remove('is-hovered', 'is-occluded');
         });
-      }
-
-      function rectsOverlap(a, b, padding = 6) {
-        return !(a.right + padding < b.left
-          || a.left - padding > b.right
-          || a.bottom + padding < b.top
-          || a.top - padding > b.bottom);
       }
 
       function applySpiralHoverState(targetNode) {
